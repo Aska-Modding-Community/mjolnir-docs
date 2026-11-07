@@ -1,0 +1,60 @@
+.window {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(253, 172, 0, 0.28);
+  border-radius: 6px;
+  background: #15161a;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.6),
+    0 24px 48px rgba(0, 0, 0, 0.55);
+}
+
+.bar {
+  display: flex;
+  align-items: flex-end;
+  height: 40px;
+  padding: 0 12px;
+  background: #0f1013;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.tab {
+  position: relative;
+  padding: 0 16px;
+  line-height: 32px;
+  border-radius: 6px 6px 0 0;
+  background: #15161a;
+  color: #e8dccb;
+  font-family: var(--mj-font-code);
+  font-size: 0.82rem;
+}
+
+.tab::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  border-radius: 6px 6px 0 0;
+  background: var(--mj-amber);
+}
+
+.code {
+  margin: 0;
+  padding: 1.1rem 1.25rem 1.25rem;
+  overflow-x: auto;
+  background: transparent !important;
+  font-family: var(--mj-font-code);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  font-variant-ligatures: none;
+}
+
+.code code {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #d4d4d4;
+  font-size: inherit;
+}

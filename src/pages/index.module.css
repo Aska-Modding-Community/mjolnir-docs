@@ -18,10 +18,15 @@
   padding: 5.5rem 1.5rem 6.5rem;
   text-align: center;
   color: var(--mj-bone);
+  /* A northern night behind the hero; the dark veil keeps the text above 4.5:1 wherever it lands. */
   background:
-    radial-gradient(ellipse 70% 60% at 50% 30%, rgba(253, 172, 0, 0.12), transparent 70%),
-    var(--mj-pattern),
-    linear-gradient(180deg, #0b0a09 0%, var(--mj-ink) 100%);
+    radial-gradient(ellipse 55% 45% at 50% 52%, rgba(7, 8, 10, 0.55), transparent 75%),
+    linear-gradient(180deg, rgba(7, 8, 10, 0.25) 0%, rgba(7, 8, 10, 0.05) 50%, rgba(10, 13, 15, 0.9) 100%),
+    url('../../static/img/bg/hero.svg') center bottom / cover no-repeat,
+    #07090c;
+  min-height: min(92vh, 860px);
+  display: flex;
+  align-items: center;
   overflow: hidden;
 }
 
@@ -50,6 +55,9 @@
 }
 
 .heroInner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
   max-width: 880px;
   margin: 0 auto;
 }
@@ -163,9 +171,9 @@
 .parchment {
   position: relative;
   color: var(--mj-coal);
+  /* Old parchment with the faint lines of a map. */
   background:
-    radial-gradient(ellipse at 20% 10%, rgba(255, 255, 255, 0.55), transparent 60%),
-    radial-gradient(ellipse at 80% 90%, rgba(120, 84, 50, 0.1), transparent 60%),
+    url('../../static/img/bg/parchment.svg') center / cover no-repeat,
     var(--mj-parchment);
 }
 
@@ -266,6 +274,22 @@
   padding: 6rem 0 5.5rem;
   color: #ece4df;
   background: var(--mj-pattern), var(--mj-ink);
+}
+
+/* Dark bands with a picture of their own: a carved circle of runes, a fjord at dusk. */
+.sectionRunes {
+  background:
+    linear-gradient(180deg, rgba(18, 17, 16, 0.25), rgba(18, 17, 16, 0.25)),
+    url('../../static/img/bg/runes.svg') center / cover no-repeat,
+    var(--mj-ink);
+}
+
+.sectionFjord {
+  padding-bottom: 12rem;
+  background:
+    url('../../static/img/bg/fjord.svg') center bottom / 100% auto no-repeat,
+    var(--mj-pattern),
+    var(--mj-ink);
 }
 
 .h2,
@@ -381,10 +405,8 @@
   transform: rotate(45deg);
 }
 
-.splitCode :global(.theme-code-block) {
-  margin: 0;
-  border: 2px solid var(--mj-ash);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+.splitCode {
+  min-width: 0;
 }
 
 /* Module cards on parchment */

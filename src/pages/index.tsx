@@ -3,8 +3,8 @@ import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Translate, {translate} from '@docusaurus/Translate';
 import Layout from '@theme/Layout';
-import CodeBlock from '@theme/CodeBlock';
 import Heading from '@theme/Heading';
+import EditorWindow from '@site/src/components/EditorWindow';
 import styles from './index.module.css';
 
 const firstMod = `using Mjolnir.SDK;
@@ -162,7 +162,7 @@ function CodeSection(): ReactNode {
           <Link className={styles.textLink} to="/docs/concepts/lifecycle">{t('code.more', 'How a mod lives →')}</Link>
         </div>
         <div className={styles.splitCode}>
-          <CodeBlock language="csharp" title="Lightfoot.cs">{firstMod}</CodeBlock>
+          <EditorWindow title="Lightfoot.cs" code={firstMod} />
         </div>
       </div>
     </section>
@@ -207,7 +207,7 @@ function Boot(): ReactNode {
     {name: 'SDK', text: t('boot.sdk', 'Gives mods events, bindables and builders. A rename in the game is fixed here, not in every mod.')},
   ];
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${styles.sectionRunes}`}>
       <div className={styles.container}>
         <Heading as="h2" className={styles.h2Center}>{t('boot.title', 'From the first library to your mod')}</Heading>
         <div className={styles.rule}><Diamond /><span /><Diamond /></div>
@@ -264,7 +264,7 @@ function Players(): ReactNode {
 
 function Status(): ReactNode {
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${styles.sectionFjord}`}>
       <div className={styles.containerNarrow}>
         <Heading as="h2" className={styles.h2Center}>{t('status.title', 'Where it stands')}</Heading>
         <div className={styles.rule}><Diamond /><span /><Diamond /></div>
