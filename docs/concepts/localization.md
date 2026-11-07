@@ -4,8 +4,8 @@ title: Localization
 
 # Localization
 
-A mod's texts live in its `lang` folder, one TOML file per language, next to its `.dll`. English is the fallback for
-every language without a file of its own, and for every key a file leaves out.
+A mod's texts live in `lang/` next to its `.dll`, one TOML file per language. English is the fallback for a language
+without a file and for a key a file leaves out.
 
 ```text
 Mjolnir/Mods/MyMod/
@@ -17,7 +17,7 @@ Mjolnir/Mods/MyMod/
 
 ## Files
 
-A file is named after a language as Steam names it, or after a language code:
+A file is named by Steam's name of the language or by a language code:
 
 | Language | File names |
 |---|---|
@@ -35,7 +35,7 @@ A file is named after a language as Steam names it, or after a language code:
 | Chinese, simplified / traditional | `schinese.toml`, `zh-Hans.toml` / `tchinese.toml`, `zh-Hant.toml` |
 
 Keys nest: `[section] form = "…"` is the key `section.form`, the same as a top-level `section.form = "…"`. Texts are
-formatted with `string.Format`, so `{0}` takes the first argument.
+formatted with `string.Format`.
 
 ```toml title="lang/english.toml"
 greeting = "Hello, {0}!"
@@ -81,13 +81,12 @@ that does not fit its arguments is shown as it is, and logged once.
 
 The game takes its language from Steam (**ASKA → Properties → Language**), so it stays the same for a session.
 
-On a thread other than the main one, only mods' strings are found. The game's are read on the main thread.
+Off the main thread, only mods' strings are found: the game's are read on the main thread.
 
 ## The game's own texts
 
-The SDK also puts each mod's strings into the game's dictionaries, under `<mod id>.<key>`, so the game's own text
-components can show them. A `[game]` table overrides the game's strings by their keys, in the languages the mod gives
-it for:
+The SDK also adds each mod's strings to the game's dictionaries under `<mod id>.<key>`, so the game's own text
+components can show them. A `[game]` table overrides the game's strings by key, in the languages whose files have it:
 
 ```toml title="lang/english.toml"
 [game]
@@ -119,9 +118,8 @@ removed = "The blessing fades."
 
 ## The Mods window
 
-The Mods window shows a mod's name, description and settings in the player's language when its files give them.
-Without them it shows the code's texts: the manifest's name and description, `WithDisplayName` and the settings'
-descriptions.
+The Mods window takes a mod's name, description and settings in the player's language from its files. Without them it
+shows the code's texts: the manifest's name and description, `WithDisplayName` and the settings' descriptions.
 
 ```toml title="lang/russian.toml"
 [mod]
@@ -136,8 +134,8 @@ name = "Расход выносливости"
 description = "Доля обычного расхода выносливости."
 ```
 
-An enum's values are named by a table named after the enum type, in the selector of the Mods window and in any
-`UiStepper` or `UiComboBox` showing them:
+A table named after the enum type names its values, in the Mods window's selector and in any `UiStepper` or
+`UiComboBox` showing them:
 
 ```toml title="lang/russian.toml"
 [Difficulty]

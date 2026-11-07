@@ -4,8 +4,8 @@ title: Config
 
 # Config
 
-Each mod has a TOML file, `Mjolnir/Config/<mod id>.toml`, behind its `Config` property. Every setting a mod binds also
-appears on the mod's page in the game's Mods window, where the player can change it without touching the file.
+A mod's `Config` is its TOML file, `Mjolnir/Config/<mod id>.toml`. Every bound setting also appears on the mod's page in
+the Mods window, where the player changes it without editing the file.
 
 ## Binding settings
 
@@ -56,7 +56,7 @@ public sealed class SettingsMod : Mod
 }
 ```
 
-The file starts like this on the first start. Each setting gets its description, default and range as comments:
+On the first start the file reads as below, each setting with its description, default and range as comments:
 
 ```toml title="Mjolnir/Config/author.settings.toml"
 # Settings Mod (author.settings) 1.0.0 - config written by Mjolnir.
@@ -76,8 +76,8 @@ Show = true
 Multiplier = 1.0
 ```
 
-Enum settings list their allowed names, key settings explain the key syntax, and settings marked
-`WithRestartRequired` say that a change takes effect after a restart. Edit the file while the game is not running:
+An enum setting lists its allowed names, a key setting explains the key syntax, and a `WithRestartRequired` setting
+says that a change takes effect after a restart. Edit the file while the game is not running:
 the game writes its own values back when it quits.
 
 ## Types and their controls
@@ -96,7 +96,7 @@ Any other type throws `NotSupportedException` from `Bind`.
 
 ## Shaping the Mods window
 
-Each builder returns the entry, so they chain after `Bind`:
+The builders return the entry and chain after `Bind`:
 
 | Builder | Effect |
 |---|---|
@@ -121,7 +121,7 @@ Section and row names, descriptions and enum names can be translated in the mod'
 
 ## Binding UI to settings
 
-`ConfigEntry<T>` is an `IBindable<T>`, so a control can be bound to it in both directions:
+`ConfigEntry<T>` is an `IBindable<T>`: a control binds to it both ways:
 
 ```csharp
 var toggle = new UiToggleSwitch { Header = "Show the HUD line" };

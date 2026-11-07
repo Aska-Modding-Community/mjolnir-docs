@@ -4,17 +4,17 @@ title: Items and recipes
 
 # Items and recipes
 
-`Mjolnir.SDK.Content` adds items, recipes, buildings and status effects of a mod's own. Reference
-`Mjolnir.SDK.Content.dll` and add `using Mjolnir.SDK.Content;`. Everything here is added in `OnLoad`.
+`Mjolnir.SDK.Content` adds a mod's own items, recipes, buildings and status effects. Reference
+`Mjolnir.SDK.Content.dll` and add `using Mjolnir.SDK.Content;`. Add everything in `OnLoad`.
 
-The game's assets are named by their asset names: `Item_Wood_Sticks`, `Item_Materials_BasicRope`,
-`Item_Structures_WorkshopL0`. The console's `items <words>` command lists them; see
+Game assets are referred to by asset name: `Item_Wood_Sticks`, `Item_Materials_BasicRope`,
+`Item_Structures_WorkshopL0`. The console command `items <words>` lists them; see
 [Developer console](../console.md).
 
 ## Items
 
-An item is made from one of the game's items. It keeps the base's model in the world, its kind, size and sounds, and
-the mod gives it a name, a picture, a stack size and texts.
+An item is a copy of a game item. It keeps the base's world model, kind, size and sounds; the mod gives it a name,
+a picture, a stack size and texts.
 
 ```csharp title="TwineMod.cs"
 using Mjolnir.SDK;
@@ -46,12 +46,12 @@ public sealed class TwineMod : Mod
 
 `Items.Add(name, basedOn, icon, stackSize)`:
 
-- `name` is letters, digits and underscores, unique in the mod. Adding the same name again returns the item already
-  added; the same name with another base throws.
-- `icon` is a PNG or JPG relative to the mod's folder. Without it the item shows its base's picture.
-- `stackSize` is how many fit in one slot. Without it, the base's.
+- `name`: letters, digits and underscores, unique in the mod. The same name again returns the item already added;
+  the same name with another base throws.
+- `icon`: a PNG or JPG relative to the mod's folder. Without it, the base's picture.
+- `stackSize`: items per slot. Without it, the base's.
 
-The item's texts come from the mod's `lang` files:
+Texts come from the mod's `lang` files:
 
 ```toml title="lang/english.toml"
 [item.twine]
@@ -60,42 +60,40 @@ description = "Thin cord twisted from rope fibres."
 lore = "Coiled so it does not tangle."
 ```
 
-A description or lore left out shows nothing. See [Localization](../../concepts/localization.md).
+An omitted description or lore shows nothing. See [Localization](../../concepts/localization.md).
 
 ## Ids and saves
 
-An item's id is a hash of the mod's id and the item's name, always negative, which the game's ids never are. It is the
-same on every machine and every start, whatever other mods are installed. Its asset name is
-`Item_<mod id>_<name>`.
+An item's id is a hash of the mod id and the item name. It is always negative (game ids never are) and the same on
+every machine and every start, whatever other mods are installed. The asset name is `Item_<mod id>_<name>`.
 
-The game saves items by id, so a save with a mod's items loads them back. Without the mod, the game drops them quietly,
-and the next save is written without them. Never rename an item or change your mod's id after release: the id would
-change and saved items would be lost.
+The game saves items by id, so a save loads a mod's items back. Without the mod, the game drops them silently and the
+next save omits them. After release, never rename an item or change the mod id: the id changes and saved items are
+lost.
 
 ## Recipes
 
 `Recipes.Add(result, quantity, basedOn)` adds a recipe that makes `quantity` of a mod's item. `Needs(item, count)`
-adds an ingredient, by asset name or as a `ModItem`, in the order given. One recipe per result; adding another for
-the same item returns the first.
+adds an ingredient, by asset name or as a `ModItem`, in the order given. One recipe per result; a second `Add` for the
+same item returns the first.
 
-A recipe is made from one of the game's recipes, the rope's (`Item_Binders_BasicRope`) by default. It takes that
-recipe's kind and section of the menus, and is made where that recipe is made: the rope by hand and at the workshop
-of every level.
+A recipe is a copy of a game recipe, by default the rope's (`Item_Binders_BasicRope`). It takes that recipe's kind and
+menu section, and is made where that recipe is made: for the rope, by hand and at the workshop of every level.
 
 ### Where a recipe is made
 
-`MadeAt(place)` replaces the base's places. Call it again for each further place:
+`MadeAt(place)` replaces the base's places. Call it once per place:
 
 | Place | Means |
 |---|---|
 | `ModRecipe.ByHand` | The build menu's crafting |
 | a structure's asset name | Its crafting tables, and those of every structure it is upgraded to: `Item_Structures_WorkshopL0` covers the workshop's every level. An add-on works too, such as `Item_Addons_Weaver` |
 
-- A recipe made by hand is known from the start: a new game's player starts with it, and a player of an older save
-  gets it when the world loads.
-- A station knows the recipes of its crafting tables whatever the player knows. The player crafts them at its table,
-  and its villagers make them when asked to.
-- Stations take their recipes as they are built or loaded, so give the places in `OnLoad`.
+- A hand recipe is known from the start: a new game's player starts with it, an older save's player gets it when the
+  world loads.
+- A station knows its crafting tables' recipes regardless of what the player knows. The player crafts them at its
+  table; its villagers make them on request.
+- Stations take their recipes when built or loaded: set the places in `OnLoad`.
 
 ## Giving items
 
@@ -106,11 +104,11 @@ int given = Items.Give(twine, 10);              // a mod's item
 int sticks = Items.Give("Item_Wood_Sticks", 5);  // a game item by asset name
 ```
 
-`Give` returns how many went into the local player's inventory: 0 off the main thread, outside a world, or without
-room. `Items.CanGive` says whether items can be given now.
+`Give` returns the count placed in the local player's inventory: 0 off the main thread, outside a world, or without
+room. `Items.CanGive` tells whether items can be given now.
 
 :::note[Not done yet]
-- A client joining a host: the network sends an item as its index in the game's list, so every peer must have the
-  same mods' items. The handshake that will check this is not done yet.
+- A client joining a host: the network sends an item as its index in the game's list, so every peer needs the same
+  mods' items. The handshake that will check this is not done yet.
 - A recipe added after a station is up reaches it only at the next load.
 :::

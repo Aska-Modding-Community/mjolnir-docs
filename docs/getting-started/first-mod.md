@@ -4,8 +4,8 @@ title: Your first mod
 
 # Your first mod
 
-A mod is a `net10.0` class library compiled against the files of an installed Mjolnir. This page builds one that
-makes sprinting cheaper, with a setting the player can change in the game.
+A mod is a `net10.0` class library compiled against the files of an installed Mjolnir. The one below makes sprinting
+cheaper, with a setting the player changes in the game.
 
 ## What you need
 
@@ -52,10 +52,10 @@ dotnet new classlib -n MyFirstMod -f net10.0
 </Project>
 ```
 
-`Private="false"` keeps those files out of your output: the game already has them, and a second copy in a mod's folder
-is ignored anyway. Your mod ships only its own `.dll`.
+`Private="false"` keeps those files out of your output: the game has them, and a copy in a mod's folder is ignored. The
+mod ships only its own `.dll`.
 
-Each SDK assembly comes with its XML documentation, so the editor shows what every member does.
+Each SDK assembly ships its XML documentation, so the editor shows what every member does.
 
 ## The mod class
 
@@ -85,16 +85,14 @@ public sealed class MyFirstMod : Mod
 }
 ```
 
-What each part does:
-
-- `[ModManifest]` gives the mod its id, name and version. The id names its config file and seeds its content ids, so
-  it must never change after release.
-- `OnLoad` runs once, early, before the game's engine is up. It is the place for settings, event subscriptions and
-  content. See [Mod lifecycle](../concepts/lifecycle.md).
-- `Config.Bind` declares a setting. Because it has a range, the Mods window shows it as a slider, and it is saved to
-  `Mjolnir/Config/author.myfirstmod.toml`.
-- `LocalPlayer.Stamina.Draining` is raised before each stamina cost of the local player. A handler can change the
-  amount or cancel it.
+- `[ModManifest]` gives the mod its id, name and version. The id names its config file and seeds its content ids: never
+  change it after release.
+- `OnLoad` runs once, before the game's engine is up: the place for settings, event subscriptions and content. See
+  [Mod lifecycle](../concepts/lifecycle.md).
+- `Config.Bind` declares a setting, saved to `Mjolnir/Config/author.myfirstmod.toml`. With a range, the Mods window
+  shows it as a slider.
+- `LocalPlayer.Stamina.Draining` is raised before each stamina cost of the local player. A handler changes the amount
+  or cancels it.
 - `Log` writes to `Mjolnir/LogOutput.log`, each line prefixed with the mod's name.
 
 ## Build and run
@@ -113,7 +111,7 @@ The build copies `MyFirstMod.dll` to `Mjolnir/Mods/MyFirstMod/`. Start the game 
 
 Open **Mjolnir** in the main menu: the mod is in the list, and its **Settings** page has the slider.
 
-Build with the game closed. A running game keeps the mod's file open, and mods are never reloaded while the game runs.
+Build with the game closed: a running game keeps the mod's file open, and mods are never reloaded while it runs.
 
 ## Next
 

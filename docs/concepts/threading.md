@@ -10,7 +10,7 @@ touches the game.
 
 ## Dispatcher
 
-`Dispatcher.MainThread`, in `Mjolnir.SDK.Threading`, is that thread:
+`Dispatcher.MainThread` (`Mjolnir.SDK.Threading`) is that thread:
 
 | Member | What |
 |---|---|
@@ -28,12 +28,12 @@ _ = System.Threading.Tasks.Task.Run(() =>
 });
 ```
 
-An exception from a posted action disables the mod that posted it, as from any other handler.
+An exception from a posted action disables the mod that posted it, as from any handler.
 
 ## await
 
-The main thread has a synchronization context that posts to the dispatcher. Code that awaits on the main thread
-continues on it, at the start of a later frame:
+The main thread's synchronization context posts to the dispatcher: an `await` on the main thread continues there, at
+the start of a later frame:
 
 ```csharp
 Menus.Pause.Add(new UiButton { Content = "Reset" }).OnClick(async () =>
@@ -45,8 +45,8 @@ Menus.Pause.Add(new UiButton { Content = "Reset" }).OnClick(async () =>
 
 ## What is safe from other threads
 
-- **UI elements.** A control's properties can be changed from any thread. The model changes at once, and what is on
-  screen follows on the next frame. A panel's `Children` must be changed on the main thread, or in `Post`.
+- **UI elements.** A control's properties can be set from any thread. The model changes at once; the screen follows on
+  the next frame. A panel's `Children` must be changed on the main thread, or in `Post`.
 - **Stats.** Reading `PlayerStat` or `CharacterStat` from another thread gives the value last seen on the main thread;
   writing one is applied on the next frame.
 - **Console.** `DevConsole.Execute` and `Print` work from any thread; commands run on the main thread.

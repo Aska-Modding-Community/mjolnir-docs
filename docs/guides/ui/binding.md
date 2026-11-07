@@ -4,8 +4,8 @@ title: Binding
 
 # Binding
 
-A control's properties can follow a source, so that the UI never needs updating by hand. Every property has a static
-`…Property` field (`UiTextBlock.TextProperty`, `Control.IsVisibleProperty`), and `Bind` connects it to a source.
+Every property has a static `…Property` field (`UiTextBlock.TextProperty`, `Control.IsVisibleProperty`). `Bind`
+connects it to a source.
 
 ## Sources
 
@@ -38,8 +38,8 @@ bar.Bind(UiProgressBar.ValueProperty, slider.GetObservable(UiSlider.ValuePropert
 `Bind` takes an optional `BindingMode` (`OneWay`, `TwoWay`, `OneTime`) and `convert` / `convertBack` functions. Without them,
 numbers convert to one another and anything converts to a string.
 
-A two-way binding writes a value the player chose back to the source, then reads the source again, so a config
-entry's clamp to its range shows at once.
+A two-way binding writes the player's value back to the source, then reads the source again, so a config entry's
+clamp to its range shows at once.
 
 ```csharp
 ConfigEntry<float> scale = Config.Bind("HUD", "Scale", 1f).WithRange(0.5f, 2f);
@@ -49,9 +49,9 @@ slider.Bind(UiSlider.ValueProperty, scale);   // float to double and back
 
 ## Lifetime
 
-`Bind` returns an `IDisposable`: disposing it ends the binding. A binding follows its source only while the element
+`Bind` returns an `IDisposable`; disposing it ends the binding. A binding follows its source only while the element
 is on screen, so a long-lived source such as a config entry never keeps a closed window alive. While the element is
-not shown, reading the property reads the source through.
+not shown, reading the property reads the source directly.
 
 ## View models
 
@@ -132,10 +132,10 @@ var panel = new UiStackPanel
 };
 ```
 
-A handler given through `On…` that throws disables your mod, as any of its handlers would.
+An `On…` handler that throws disables your mod, like any other handler of the mod.
 
 ## Properties of your own
 
 Controls derive from `MjolnirObject`, which stores their properties. A `UiUserControl` of your own uses the same API:
-`GetValue`, `SetValue`, `ClearValue`, `GetObservable` and `PropertyChanged`, raised only when the value really
-changed.
+`GetValue`, `SetValue`, `ClearValue`, `GetObservable`, and `PropertyChanged`, raised only when the value actually
+changes.

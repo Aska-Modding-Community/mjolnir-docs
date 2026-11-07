@@ -33,16 +33,16 @@ public sealed class MyMod : Mod
 | `Network` | Who needs the mod in multiplayer: `Everyone` (the default), `ClientOnly` or `ServerOnly` |
 | `Icon` | A PNG or JPG relative to the folder of the mod's `.dll`. Without it, an `icon.png` there is used. Without that, the window shows the name's first letter |
 
-An invalid id or version is reported in the log, and the mod is not loaded.
+A mod with an invalid id or version is not loaded; the log gives the reason.
 
 :::note
-`Network` is declared and recorded today. The handshake that will compare mods between a host and a joining client
-is not done yet.
+`Network` is recorded but not yet enforced: the handshake that compares mods between a host and a joining client is
+not done yet.
 :::
 
 ### Dependencies
 
-`[ModDependency(id, versionRange)]` makes your mod load after the other one, and not at all without it.
+`[ModDependency(id, versionRange)]` loads your mod after the other one, and not at all without it.
 
 - A range is a list of bounds that must all hold, separated by spaces or commas: `>=`, `>`, `<=`, `<`, `=`.
 - A bare version is a minimum: `"1.2"` means `>=1.2.0`.
@@ -51,11 +51,13 @@ is not done yet.
   and its version must still be in the range.
 
 A mod is not loaded when a required dependency is missing, turned off by the player, or itself not loaded, or when any
-dependency that is present is outside its range. This goes down the whole chain, and mods in a dependency cycle are
-skipped too. Every skip is logged with its reason and shown in the Mods window. Mods are sorted topologically, and
-ties go by id, so the order is the same on every start. When two mods share an id, the first one found wins.
+dependency that is present is outside its range. The rule applies down the whole chain; mods in a dependency cycle are
+skipped too. Each skip is logged with its reason and shown in the Mods window.
 
-`ModRegistry` tells a mod which others are loaded:
+Mods are sorted topologically, ties by id, so the order is the same on every start. Of two mods with one id, the first
+found wins.
+
+`ModRegistry` lists the loaded mods:
 
 ```csharp
 if (ModRegistry.TryGet("author.extras", out ModManifest extras))
@@ -73,7 +75,7 @@ if (ModRegistry.TryGet("author.extras", out ModManifest extras))
 | `OnLateUpdate()` | Every frame, after all `Update`s | Following something that moved this frame |
 | `OnFixedUpdate()` | Every physics step | Physics |
 
-Only the callbacks you override are subscribed, so an empty `OnUpdate` costs nothing.
+Only overridden callbacks are subscribed: a callback you do not override costs nothing.
 
 ```csharp title="LifecycleMod.cs"
 using Mjolnir.SDK;
@@ -94,16 +96,16 @@ public sealed class LifecycleMod : Mod
 
 ## Two phases
 
-The distinction matters, because the game's engine starts after your `OnLoad` runs.
+The engine starts after `OnLoad` runs.
 
 | Phase | When | Allowed |
 |---|---|---|
 | A | Inside the game's runtime start, before the Unity engine is up. The constructor and `OnLoad` run here | Logging, config, Harmony patches, registering things. **No Unity objects** |
 | B | From the engine's first scene callback, about a second and a half later | Everything. `OnGameReady` marks the start, then the per-frame callbacks run |
 
-Everything the SDK lets you register in phase A waits for the game by itself: HUD elements, menu entries, tabs,
-items, recipes, jobs, console commands. What you cannot do in phase A is create a texture, a sprite or a
-`GameObject`. Build windows that need pictures on first use, or in `OnGameReady`.
+Whatever the SDK registers in phase A waits for the game by itself: HUD elements, menu entries, tabs, items, recipes,
+jobs, console commands. A texture, a sprite or a `GameObject` cannot be created in phase A: build windows that need
+pictures on first use, or in `OnGameReady`.
 
 ## What every mod has
 
@@ -114,7 +116,7 @@ items, recipes, jobs, console commands. What you cannot do in phase A is create 
 | `Config` | Its settings file, created on first use. See [Config](config.md) |
 | `Harmony` | A HarmonyX instance whose id is the mod's id, created on first use. See [Harmony patches](harmony.md) |
 
-All four work in the constructor too: Mjolnir injects them before it constructs the mod.
+All four work in the constructor: Mjolnir injects them before constructing the mod.
 
 ## Faults
 
@@ -139,7 +141,7 @@ Mjolnir/Mods/MyMod/
 ```
 
 Each first-level folder in `Mjolnir/Mods` gets its own assembly load context, so two mods can bring different
-versions of the same library. Mjolnir's own assemblies and the game's interop always come from one shared copy,
-whatever a mod's folder holds, so mods can pass game objects and SDK types to one another.
+versions of one library. Mjolnir's assemblies and the game's interop always come from one shared copy, whatever a
+mod's folder holds, so mods can pass game objects and SDK types to one another.
 
 Mods are never unloaded while the game runs. Turning a mod off in the Mods window applies from the next start.

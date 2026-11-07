@@ -4,8 +4,8 @@ title: HUD, menus and notifications
 
 # HUD, menus and notifications
 
-Everything here can be registered in `OnLoad`. The SDK puts it into the game's interface whenever that interface
-exists: a HUD element appears in each world, a menu button in each new main menu.
+Everything on this page can be registered in `OnLoad`. The SDK inserts it whenever the game's interface exists: a
+HUD element appears in each world, a menu button in each new main menu.
 
 ## HUD
 
@@ -24,12 +24,11 @@ Hud.Add(line, HudAnchor.TopRight);
 | `Hud.Ready` | Raised when a world's HUD comes up |
 | `Hud.Root` | The HUD's `RectTransform` while it exists |
 
-The HUD's elements are scaled with the game's own HUD scale setting, times the player's HUD scale in Mjolnir's
-settings.
+HUD elements scale with the game's HUD scale setting times the player's HUD scale in Mjolnir's settings.
 
 ## Notifications
 
-They look like the game's own by default.
+By default they look like the game's own.
 
 | Call | What |
 |---|---|
@@ -63,8 +62,8 @@ the awaited forms complete at once with `false` or `null`.
 Menus.Pause.Add(new UiButton { Content = "My mod" }).OnClick(() => Notify.Message("Hello"));
 ```
 
-A `UiMenuItem` with `Items` opens a level of its own, as deep as you like, with the game's **Back** and Esc going up a
-level. In the main menu it is a page of the game's own kind; in the pause menu it takes the menu's place.
+A `UiMenuItem` with `Items` opens a level of its own, nested to any depth; the game's **Back** and Esc go up a
+level. In the main menu a level is a page of the game's own kind; in the pause menu it takes the menu's place.
 
 ```csharp
 Menus.Main.Add(new UiMenuItem
@@ -82,13 +81,13 @@ Menus.Main.Add(new UiMenuItem
 });
 ```
 
-`Menus.Main.Remove(item)` takes it away again. `MenuButtons.Opened` is raised when the menu opens.
+`Menus.Main.Remove(item)` removes it. `MenuButtons.Opened` is raised when the menu opens.
 
 ## Tabs in the game's windows
 
-`Menus.Settings` and `Menus.Journal` add a tab of the mod's own after the game's tabs in the settings menu and the
-journal. The tab has the window's icon look, with its header and the mod's name in the hover card. Q and E reach it
-like the game's tabs.
+`Menus.Settings` and `Menus.Journal` add a mod tab after the game's tabs in the settings menu and the journal. It is
+an icon tab in the window's look, with its header and the mod's name in the hover card. Q and E reach it like the
+game's tabs.
 
 ```csharp
 UiTabItem tab = Menus.Settings.Add(new UiTabItem
@@ -98,8 +97,8 @@ UiTabItem tab = Menus.Settings.Add(new UiTabItem
 });
 ```
 
-Without an `Icon` the tab shows its header's first letter. Set the icon in `OnGameReady` or later, since pictures need
-the running game. A change of the item's `Header`, `Icon`, `IsVisible` or `Content` reaches tabs already shown.
+Without an `Icon` the tab shows its header's first letter. Set the icon in `OnGameReady` or later: pictures need the
+running game. Changes to the item's `Header`, `Icon`, `IsVisible` or `Content` reach tabs already shown.
 
 ## Hotkeys
 
@@ -109,15 +108,15 @@ System.IDisposable hotkey = HotKeys.Add(key, () => Notify.Message("F7"));
 ```
 
 `HotKeys.Add` takes a `KeyGesture` or a bindable one, such as a config entry the player rebinds in the Mods window. A
-gesture fires only with exactly its modifiers, and never while the player types in a text field. Dispose the result
-to remove the hotkey.
+gesture fires only with exactly its modifiers, never while the player types in a text field. Dispose the result to
+remove the hotkey.
 
 Key names are Unity Input System's: `F8`, `A`, `Digit1`, `Backquote`, `Space`, with `Ctrl`, `Shift` and `Alt`
 joined by `+`: `"Ctrl+Shift+F8"`. `KeyGesture.None` is no key.
 
 ## Interface scale
 
-`InterfaceScale.Menus` and `InterfaceScale.Hud` are the player's scale settings in Mjolnir's settings page, as
+`InterfaceScale.Menus` and `InterfaceScale.Hud` are the player's scale settings from Mjolnir's settings page, as
 bindable factors from 0.75 to 1.5. `Menus` scales mod windows over the whole range and the game's menus only down to
-75 %, since they are laid out to fill the screen. `Hud` multiplies the game's own HUD scale. Change them only when your
-player asks to.
+75 %, since they are laid out to fill the screen. `Hud` multiplies the game's own HUD scale. Change them only at the
+player's request.

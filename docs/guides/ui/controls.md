@@ -4,8 +4,8 @@ title: Controls and panels
 
 # Controls and panels
 
-Every control a mod creates carries the `Ui` prefix, so it never clashes with `UnityEngine.UI.Button` and the like in
-a mod that also uses raw Unity UI. Everything else has a plain name: `Control`, `Panel`, `Thickness`, `Orientation`.
+Controls carry the `Ui` prefix, so they never clash with `UnityEngine.UI.Button` and the like in a mod that also uses
+raw Unity UI. Everything else has a plain name: `Control`, `Panel`, `Thickness`, `Orientation`.
 
 ## Text and input
 
@@ -23,7 +23,7 @@ a mod that also uses raw Unity UI. Everything else has a plain name: `Control`, 
 | `UiKeyHint` | A key in the game's key pictures, with a text | `Gesture`, `Text` |
 
 A text box writes its `Text` to a binding when the player presses Enter or leaves the field. With
-`UpdateSourceTrigger.PropertyChanged` it writes as the player types, which suits a search field.
+`UpdateSourceTrigger.PropertyChanged` it writes on each keystroke, for a search field.
 
 `UiStepper` and `UiComboBox` show an enum's values by the mod's localized names, then their `[Description]`, then their
 names; other items by `ToString()`, or by an `ItemText` function.
@@ -38,7 +38,7 @@ hello.Click += (_, _) => Notify.Message($"Hello, {name.Text}!");
 volume.ValueChanged += (_, e) => Log.Info($"Volume {e.NewValue:0.##}");
 ```
 
-Value events fire for every change, from code, a binding or the player. `Click` fires only for the player.
+Value events fire on every change: from code, a binding or the player. `Click` fires only for the player.
 
 ## Progress and pictures
 
@@ -59,8 +59,8 @@ string folder = System.IO.Path.GetDirectoryName(Manifest.Location)!;   // Locati
 var icon = new UiImage { Source = new Bitmap(System.IO.Path.Combine(folder, "items/rope.png")), Width = 64, Height = 64 };
 ```
 
-The game unloads unused assets on each scene load. A texture or sprite you make in code and keep across scenes needs
-`hideFlags = HideFlags.DontUnloadUnusedAsset`. The SDK keeps the pictures it reads from files.
+The game unloads unused assets on each scene load. A texture or sprite made in code and kept across scenes needs
+`hideFlags = HideFlags.DontUnloadUnusedAsset`. Pictures read from files are kept by the SDK.
 
 ## Panels
 
@@ -99,8 +99,8 @@ var footer = new UiGrid
 | `UiListBox` | The same, in the game's save-slot rows, with a selection | `SelectedIndex`, `SelectedItem`, `SelectionChanged` |
 | `UiTabControl` | Tabs, each with a page | `Items` of `UiTabItem` (`Header`, `Icon`, `Content`), `TabStripPlacement`, `SelectedIndex` |
 
-An `ObservableCollection<T>` as `ItemsSource` is followed: items added or removed come and go on screen. The
-template makes each item's element:
+An `ObservableCollection<T>` as `ItemsSource` is followed: added and removed items appear and disappear on screen.
+The template makes each item's element:
 
 ```csharp
 var notes = new System.Collections.ObjectModel.ObservableCollection<string> { "Wood", "Stone" };
@@ -137,7 +137,7 @@ var tabs = new UiTabControl
 
 ## Unity objects of your own
 
-When the SDK lacks something, `UiUnityHost` gives you a `RectTransform` in the tree to build into:
+For anything the SDK lacks, `UiUnityHost` gives a `RectTransform` in the tree to build into:
 
 ```csharp
 var stripe = new UiUnityHost(rect =>
@@ -147,4 +147,4 @@ var stripe = new UiUnityHost(rect =>
 }) { Width = 240, Height = 8 };
 ```
 
-This needs `UnityEngine.UI.dll` from `Mjolnir/interop` among the references.
+Reference `UnityEngine.UI.dll` from `Mjolnir/interop` for this.

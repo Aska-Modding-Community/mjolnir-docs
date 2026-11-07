@@ -4,9 +4,8 @@ title: Элементы управления и панели
 
 # Элементы управления и панели
 
-Каждый элемент управления, который создаёт мод, носит префикс `Ui`, поэтому никогда не конфликтует с
-`UnityEngine.UI.Button` и подобными в моде, который использует и Unity UI напрямую. У всего остального простые имена:
-`Control`, `Panel`, `Thickness`, `Orientation`.
+Элементы управления носят префикс `Ui`, поэтому не конфликтуют с `UnityEngine.UI.Button` и подобными в моде, который
+использует и Unity UI напрямую. У всего остального простые имена: `Control`, `Panel`, `Thickness`, `Orientation`.
 
 ## Текст и ввод {/* #text-and-input */}
 
@@ -24,7 +23,7 @@ title: Элементы управления и панели
 | `UiKeyHint` | Клавиша в картинках клавиш игры, с текстом | `Gesture`, `Text` |
 
 Текстовое поле записывает свой `Text` в привязку, когда игрок нажимает Enter или покидает поле. С
-`UpdateSourceTrigger.PropertyChanged` оно записывает по мере ввода, что подходит для поля поиска.
+`UpdateSourceTrigger.PropertyChanged` оно записывает при каждом нажатии клавиши — для поля поиска.
 
 `UiStepper` и `UiComboBox` показывают значения перечисления по локализованным именам мода, затем по их `[Description]`,
 затем по именам; прочие элементы — через `ToString()` или функцию `ItemText`.
@@ -61,7 +60,7 @@ var icon = new UiImage { Source = new Bitmap(System.IO.Path.Combine(folder, "ite
 ```
 
 Игра выгружает неиспользуемые ассеты при каждой загрузке сцены. Текстуре или спрайту, сделанным в коде и хранимым
-между сценами, нужен `hideFlags = HideFlags.DontUnloadUnusedAsset`. Картинки, прочитанные из файлов, SDK сохраняет сам.
+между сценами, нужен `hideFlags = HideFlags.DontUnloadUnusedAsset`. Картинки из файлов SDK сохраняет сам.
 
 ## Панели {/* #panels */}
 
@@ -138,7 +137,7 @@ var tabs = new UiTabControl
 
 ## Собственные объекты Unity {/* #unity-objects-of-your-own */}
 
-Когда в SDK чего-то нет, `UiUnityHost` даёт `RectTransform` в дереве, в котором можно строить своё:
+Для всего, чего нет в SDK, `UiUnityHost` даёт `RectTransform` в дереве, в котором можно строить своё:
 
 ```csharp
 var stripe = new UiUnityHost(rect =>
@@ -148,4 +147,4 @@ var stripe = new UiUnityHost(rect =>
 }) { Width = 240, Height = 8 };
 ```
 
-Для этого среди ссылок нужен `UnityEngine.UI.dll` из `Mjolnir/interop`.
+Для этого подключите `UnityEngine.UI.dll` из `Mjolnir/interop`.

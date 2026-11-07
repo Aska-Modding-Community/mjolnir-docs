@@ -20,11 +20,11 @@ if (WorldTime.IsAvailable && WorldTime.IsNight)
     WorldTime.Hour = 9;   // morning: the villagers go to work
 ```
 
-A game hour lasts a minute. Villagers follow the clock through their schedules, so a working hour sends them to work
-within seconds, and night sends them to bed.
+A game hour lasts a minute. Villagers follow the clock through their schedules: a working hour sends them to work
+within seconds, night sends them to bed.
 
-The clock is the host's. Changes go through the game's own message, the one its debug commands use, so a client's
-change reaches the host and comes back with the world; the new hour shows on the next read. Read it on the main
+The clock is the host's. Changes go through the game's own message, the one its debug commands use: a client's change
+reaches the host and comes back with the world. The new hour shows on the next read. Read the clock on the main
 thread; another thread gets the value last seen there, and its changes run on the next frame.
 
 The console's `time` command uses the same calls: `time day`, `time night`, `time 14:30`, `time stop`, `time run`.

@@ -5,23 +5,23 @@ sidebar_label: Overview and windows
 
 # User interface
 
-`Mjolnir.SDK.UI` builds mod interfaces in code from the game's own interface: its windows, setting rows, buttons, bars
-and slots are cloned, so a mod looks like the game without drawing anything of its own. It also gives mods places in
-the game's interface: the HUD, the main and pause menus, the settings menu and the journal.
+`Mjolnir.SDK.UI` builds mod interfaces in code from clones of the game's windows, setting rows, buttons, bars and
+slots, so a mod looks like the game without drawing anything of its own. It also places mod elements in the game's
+interface: the HUD, the main and pause menus, the settings menu and the journal.
 
 Reference `Mjolnir.SDK.UI.dll` from `Mjolnir/core` and add `using Mjolnir.SDK.UI;`.
 
 ## How it works
 
 A mod builds a tree of **elements**: controls such as `UiButton` and panels such as `UiStackPanel`. The tree is the
-source of truth. When it is shown, the SDK makes live Unity copies of it, and keeps them in step as properties change.
+source of truth. When it is shown, the SDK makes live Unity copies of it and keeps them in step as properties change.
 
-- Elements can be created and changed at any time, from any thread, before the game is up too. What is on screen
-  follows on the next frame.
-- The game destroys and recreates its interface often (the HUD with each world, the pause menu, the settings menu on
-  each open). The SDK builds the copies again each time, from the same tree.
-- Pictures and textures need the running game. Build windows that show pictures on first use, not in `OnLoad`.
-- On a dedicated server without graphics, every UI call does nothing.
+- Elements can be created and changed at any time, from any thread, also before the game is up. The screen follows on
+  the next frame.
+- The game often destroys and recreates its interface (the HUD with each world, the pause menu, the settings menu on
+  each open). The SDK rebuilds the copies each time from the same tree.
+- Pictures and textures need the running game: build windows that show pictures on first use, not in `OnLoad`.
+- On a dedicated server without graphics, every UI call is a no-op.
 
 ## Hosts
 
@@ -35,7 +35,7 @@ An element tree goes on screen through a host:
 | `Menus.Settings.Add`, `Menus.Journal.Add` | Tabs of the mod's own in the game's settings menu and journal |
 | `Dialog`, `Notify` | The game's dialogs and notifications |
 
-See [HUD, menus and notifications](hud-and-menus.md) for all but windows.
+Hosts other than windows: [HUD, menus and notifications](hud-and-menus.md).
 
 ## Windows
 
@@ -107,9 +107,9 @@ public sealed class NotesMod : Mod
 
 ### Sizes
 
-Sizes are reference pixels of a 1920×1080 screen, scaled to the real screen the way the game's own menus are. On top
-of that, the player's **interface scale** (Mjolnir's settings, 75 to 150 %) scales every mod window. A window is always
-kept inside the screen, whatever its size and scale.
+Sizes are reference pixels of a 1920×1080 screen, scaled to the real screen as the game's own menus are. The
+player's **interface scale** (Mjolnir's settings, 75 to 150 %) then scales every mod window. A window always stays
+inside the screen, whatever its size and scale.
 
 ## Elements in common
 
@@ -128,6 +128,6 @@ Every element derives from `Control`:
 | `Loaded` | Raised with the Unity `RectTransform` once a live copy exists |
 
 Rows (`HeaderedControl`: text boxes, toggles, sliders, steppers, combo boxes, buttons and text blocks) also take
-`Header` and `Description`. With a header, a control is drawn as one of the game's settings rows: the name and
-description on the left, the control on the right. Without one, it is the bare control. `Icon` puts a picture on the
-row's left, and `ContentWidth` sets the width of its right part.
+`Header` and `Description`. With a header, the control is drawn as a game settings row: name and description on the
+left, the control on the right. Without one, it is the bare control. `Icon` puts a picture at the row's left;
+`ContentWidth` sets the width of its right part.

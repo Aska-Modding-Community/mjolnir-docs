@@ -5,18 +5,18 @@ title: Characters and stats
 # Characters and stats
 
 A `CharacterSheet` is what a character is made of, the player's and a villager's alike: its characteristics and every
-other attribute, its skills and its status effects. It is in the main library, `Mjolnir.SDK`, so no extra reference
-is needed to use it; the `Mjolnir.SDK.Stats` module connects it to the game.
+other attribute, its skills and its status effects. It is in the main library, `Mjolnir.SDK`, and needs no extra
+reference; the `Mjolnir.SDK.Stats` module connects it to the game.
 
 ```csharp
 CharacterSheet player = LocalPlayer.Sheet;     // Mjolnir.SDK.Player
 CharacterSheet villager = Residents.All[0].Sheet;   // Mjolnir.SDK.AI
 ```
 
-A sheet belongs to one character. Without it, or once it is gone, the sheet is empty and everything reads 0: take it
-again after a load (`LocalPlayer.Spawned`). `IsAvailable` says whether its character is in the world.
+A sheet belongs to one character. Without one, or once it is gone, the sheet is empty and everything reads 0: take
+it again after a load (`LocalPlayer.Spawned`). `IsAvailable` tells whether its character is in the world.
 
-Use a sheet on the main thread. Another thread reads what was last seen there, and its changes are made on the next
+Use a sheet on the main thread. Another thread reads the values last seen there, and its changes apply on the next
 frame.
 
 ## Attributes
@@ -44,8 +44,8 @@ Each is a `CharacterStat`, an `IBindable<float>`, and either a **sum** or a **po
 | `Minimum`, `Maximum`, `Fraction` | 0 | its limits, and the value as a part of them |
 | `AddModifier` | yes | throws |
 
-`IsPool` tells them apart. `AssetName`, `DisplayName` and `Description` name it. `Changed` is raised on each change:
-by the game, by a write, or as a modifier comes or goes.
+`IsPool` tells them apart; `AssetName`, `DisplayName` and `Description` name the attribute. `Changed` is raised on
+each change: by the game, by a write, or as a modifier comes or goes.
 
 ## Modifiers
 
@@ -77,7 +77,7 @@ combat, cooking, shamanism and dog combat.
 | `Rank` | `Novice` below 25, `Apprentice` from 25, `Adept` from 50, `Master` from 75 |
 | `AddExperience(amount)` | Gives experience as real work would, so the multiplier, level-ups and the game's banner come with it |
 
-`Skill.ExperienceGaining`, a static event, is raised before the game gives experience to any character. Change
+The static event `Skill.ExperienceGaining` is raised before the game gives experience to any character. Change
 `Amount` or set `Cancel`:
 
 ```csharp
@@ -91,7 +91,7 @@ The amount is what the action earns before the character's own `ExperienceMultip
 
 ## Effects
 
-`Effects.All` lists every status effect of the game, mods' included, and `Effects.Find(assetName)` gives one. Each is
+`Effects.All` lists every status effect of the game, mods' included; `Effects.Find(assetName)` finds one. Each is
 an `EffectInfo`: `Id`, `AssetName`, `DisplayName`, `Description` and `Kind` (the list the game shows it in: `Buff`,
 `Debuff`, `Perk`, `Cure`…; a well-fed bonus is a `Debuff`). There is one object per effect, so effects compare with
 `==`.
@@ -119,8 +119,8 @@ foreach (ActiveEffect active in effects.Active)
 | `Remove(effect)` | Takes it off |
 | `Added`, `Removed` | Raised when an effect or a stack of it comes or goes |
 
-The game saves effects with the character, each with the time it has left. A mod that applies one whenever the
-character appears asks `Has` first. To add an effect of your own, see [Status effects](content/effects.md).
+The game saves effects with the character, each with the time it has left, so a mod that applies one whenever the
+character appears checks `Has` first. To add an effect of your own, see [Status effects](content/effects.md).
 
 :::note
 Modifiers are local to the machine, and effects go through the game's network component. A joined client is not

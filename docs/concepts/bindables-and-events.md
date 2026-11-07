@@ -4,8 +4,8 @@ title: Bindables and events
 
 # Bindables and events
 
-The SDK hands mods values that change: a config setting, a player's health, a translated text. They share one shape,
-so the same code reads them, follows them and binds UI to them.
+Values that change, such as a config setting, a player's health or a translated text, share one shape: the same code
+reads them, follows them and binds UI to them.
 
 ## Bindable values
 
@@ -23,12 +23,12 @@ LocalPlayer.Health.Changed += (_, e) =>
 };
 ```
 
-The SDK watches the game only while a mod listens. A player's food and water change every frame, so subscribing has
-a cost; unsubscribe when you no longer need it.
+The SDK watches the game only while a mod listens. A player's food and water change every frame, so a subscription has
+a cost: unsubscribe when it is no longer needed.
 
 ### Map
 
-`Map` turns one bindable into another. With a way back, the result can be written; without one, it is read-only.
+`Map` turns one bindable into another: writable with a way back, read-only without one.
 
 ```csharp
 ConfigEntry<int> percent = Config.Bind("UI", "Scale", 100).WithRange(50, 200);
@@ -44,7 +44,7 @@ A control bound to an `IReadOnlyBindable<T>` follows it and never writes to it.
 
 ## The event convention
 
-Every event of the SDK and its modules follows the same rules, which the SDK's own tests enforce:
+Every event of the SDK and its modules follows these rules, enforced by the SDK's tests:
 
 - The handler type is `EventHandler` or `EventHandler<TArgs>`, never `Action`. The sender is the object, or `null`
   for a static event (`LocalPlayer.Spawned`, `Hud.Ready`).
@@ -52,8 +52,8 @@ Every event of the SDK and its modules follows the same rules, which the SDK's o
   (`OnClick`).
 - An event named after a property, `…Changed`, carries `ValueChangedEventArgs<T>` or a type derived from it
   (`RangeValueChangedEventArgs`, `TextChangedEventArgs`).
-- An event raised before something happens, `…ing`, carries `CancelEventArgs` or a type derived from it. A handler can
-  set `Cancel`, and change the values the type exposes:
+- An event raised before something happens, `…ing`, carries `CancelEventArgs` or a type derived from it. A handler sets
+  `Cancel` or changes the values the type exposes:
 
 ```csharp
 LocalPlayer.Stamina.Draining += (_, e) =>
@@ -67,12 +67,12 @@ Skill.ExperienceGaining += (_, e) =>
 };
 ```
 
-Handlers run in the order they subscribed. Mods that subscribe in `OnLoad` do so in load order, so a mod that depends
-on another sees the other's changes first.
+Handlers run in the order they subscribed. Mods subscribing in `OnLoad` do so in load order, so a mod that depends on
+another sees the other's changes first.
 
 ## Naming across the SDK
 
-The same words mean the same things in every module:
+Each word means one thing in every module:
 
 | Word | Meaning |
 |---|---|
@@ -87,5 +87,5 @@ The same words mean the same things in every module:
 | `Add`, `Remove` | What a mod adds and takes away, on the same host |
 | `Find` | Returns `null` when nothing matches |
 
-What a mod adds through `Add` it can remove again. A subscription with no object of its own, such as a hotkey or a
-binding, ends when you dispose what `Add` or `Bind` returned.
+A subscription with no object of its own, such as a hotkey or a binding, ends when you dispose what `Add` or `Bind`
+returned.

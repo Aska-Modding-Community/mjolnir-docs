@@ -1,18 +1,23 @@
 {
   "landing.code.events": {
-    "message": "События до того, как что-то случится: с {cancel} и значениями, которые можно изменить"
+    "message": "События «до» с {cancel} и изменяемыми аргументами",
+    "description": "Pre-events with {cancel} and mutable arguments"
   },
   "landing.players.unpack": {
-    "message": "{verb} архив релиза в папку игры — ту, где лежит {exe}."
+    "message": "{verb} архив релиза в папку с {exe}.",
+    "description": "{verb} the release archive into the folder with {exe}."
   },
   "landing.players.start": {
-    "message": "{verb} игру из Steam. Первый запуск готовит Mjolnir под сборку игры — около полуминуты."
+    "message": "{verb} игру из Steam. Первый запуск генерирует interop под вашу сборку игры, около 30 с.",
+    "description": "{verb} the game from Steam. The first launch generates interop for your game build, about 30 s."
   },
   "landing.players.mods": {
-    "message": "{verb} в {folder}, каждый в свою папку, и включайте и выключайте их в меню игры."
+    "message": "{verb} в {folder}, по папке на мод. Включаются и выключаются в меню Mjolnir в игре.",
+    "description": "{verb} to {folder}, one folder per mod. Turn them on and off in the in-game Mjolnir menu."
   },
   "landing.players.uninstall": {
-    "message": "Удаление — это удаление {dll}. Один раз запустить без модов — {flag}."
+    "message": "Удаление — удалить {dll}. Один запуск без модов — параметр {flag}.",
+    "description": "To uninstall, delete {dll}. To launch once without mods, pass {flag}."
   },
   "theme.ErrorPageContent.title": {
     "message": "На странице произошёл сбой.",
@@ -343,115 +348,115 @@
   },
   "landing.hero.kicker": {
     "message": "Загрузчик модов и C# SDK для ASKA",
-    "description": "A mod loader and C# SDK for ASKA"
+    "description": "Mod loader and C# SDK for ASKA"
   },
   "landing.hero.lead": {
-    "message": "Моды — это сборки .NET 10, которые работают внутри игры. Они общаются с ней через обычные события C#, привязываемые значения и билдеры, а когда нужно — через HarmonyX.",
-    "description": "Mods are .NET 10 assemblies that run inside the game. They speak to it through plain C# events, bindable values and builders, and can still reach for HarmonyX when they need to."
+    "message": "Моды для ASKA на C# и .NET 10: события, привязываемое состояние и билдеры для интерфейса, игрока, контента и жителей. Для всего остального — HarmonyX.",
+    "description": "Write ASKA mods in C# on .NET 10: events, bindable state and builders for UI, players, content and villagers. HarmonyX for everything else."
   },
   "landing.hero.plate": {
-    "message": "Версия 0.x · одиночная игра и хост",
-    "description": "Version 0.x · single player and hosting"
+    "message": "0.x · Одиночная игра и хост",
+    "description": "0.x · Single player and hosted worlds"
   },
   "landing.hero.write": {
-    "message": "Написать мод",
-    "description": "Write a mod"
+    "message": "Начать",
+    "description": "Get started"
   },
   "landing.hero.install": {
     "message": "Установить",
     "description": "Install"
   },
   "landing.paths.play": {
-    "message": "Играть с модами",
-    "description": "Play with mods"
+    "message": "Установка",
+    "description": "Install"
   },
   "landing.paths.play.text": {
-    "message": "Распакуйте, запустите из Steam, положите моды в папку.",
-    "description": "Unpack, start from Steam, drop mods in a folder."
+    "message": "Распакуйте в папку игры и запустите из Steam.",
+    "description": "Unpack into the game folder and launch from Steam."
   },
   "landing.paths.forge": {
-    "message": "Выковать мод",
-    "description": "Forge a mod"
+    "message": "Первый мод",
+    "description": "First mod"
   },
   "landing.paths.forge.text": {
-    "message": "Библиотека классов, один класс, несколько строк.",
-    "description": "A class library, one class, a few lines."
+    "message": "Библиотека классов и один класс, собранные против вашей установки.",
+    "description": "A class library, one class, built against your install."
   },
   "landing.paths.inside": {
-    "message": "Заглянуть внутрь",
-    "description": "See inside"
+    "message": "Архитектура",
+    "description": "Architecture"
   },
   "landing.paths.inside.text": {
-    "message": "Как загрузчик попадает в игру и почему игра от него не падает.",
-    "description": "How the loader reaches the game, and keeps it safe."
+    "message": "Цепочка загрузки, генерация interop, изоляция ошибок.",
+    "description": "Boot chain, interop generation, fault isolation."
   },
   "landing.paths.label": {
     "message": "С чего начать",
     "description": "Where to start"
   },
   "landing.code.title": {
-    "message": "Целый мод на одном экране",
-    "description": "A whole mod on one screen"
+    "message": "Мод целиком",
+    "description": "A complete mod"
   },
   "landing.code.text": {
-    "message": "Мод — это класс с манифестом. Его настройки появляются в окне модов самой игры и сохраняются в файл TOML. Его обработчики выполняются в главном потоке игры, а исключение в одном из них отключает только этот мод.",
-    "description": "A mod is a class with a manifest. Its settings appear in the game’s own Mods window, saved to a TOML file. Its handlers run on the game’s main thread, and an exception in one of them turns off that mod alone."
+    "message": "Манифест, настройка и два обработчика. Настройка появляется в окне модов в игре и хранится в TOML. Исключение отключает только этот мод.",
+    "description": "A manifest, a setting and two handlers. The setting shows up in the in-game Mods window and persists to TOML. An exception disables this mod only."
   },
   "landing.code.bindables": {
-    "message": "Привязываемые характеристики, настройки и тексты, за которыми интерфейс следит сам",
-    "description": "Bindable stats, configs and texts that UI follows by itself"
+    "message": "Привязываемые характеристики, настройки и локализованные тексты",
+    "description": "Bindable stats, settings and localized text"
   },
   "landing.code.ids": {
-    "message": "Id контента из id мода и имени — одинаковые на любой машине",
-    "description": "Content ids from the mod’s id and a name, the same on every machine"
+    "message": "Детерминированные id контента, одинаковые на любой машине",
+    "description": "Deterministic content IDs, identical on every machine"
   },
   "landing.code.more": {
-    "message": "Как живёт мод →",
-    "description": "How a mod lives →"
+    "message": "Жизненный цикл мода →",
+    "description": "Mod lifecycle →"
   },
   "landing.modules.title": {
-    "message": "Что доступно моду",
-    "description": "What a mod can reach"
+    "message": "Модули SDK",
+    "description": "SDK modules"
   },
   "landing.modules.ui": {
     "message": "Интерфейс",
     "description": "UI"
   },
   "landing.modules.ui.text": {
-    "message": "Окна, HUD, меню, вкладки в окнах самой игры — из элементов её интерфейса.",
-    "description": "Windows, HUD, menus, tabs in the game’s own windows, made from the game’s interface."
+    "message": "Окна, HUD, меню и вкладки в окнах игры, собранные из её интерфейса.",
+    "description": "Windows, HUD, menus and tabs in the game’s own windows, built from its UI."
   },
   "landing.modules.player": {
     "message": "Игрок",
     "description": "Player"
   },
   "landing.modules.player.text": {
-    "message": "Появление и смерть, здоровье, выносливость, еда, вода, тепло, телепорты.",
-    "description": "Spawns and deaths, health, stamina, food, water, warmth, teleports."
+    "message": "События появления и смерти, показатели, расход выносливости, телепорт.",
+    "description": "Spawn and death events, vitals, stamina costs, teleport."
   },
   "landing.modules.content": {
     "message": "Контент",
     "description": "Content"
   },
   "landing.modules.content.text": {
-    "message": "Предметы, рецепты вручную и в мастерской, постройки, эффекты, модели.",
-    "description": "Items, recipes by hand and at the workshop, buildings, effects, models."
+    "message": "Предметы, рецепты, постройки, эффекты состояния, модели.",
+    "description": "Items, recipes, buildings, status effects, models."
   },
   "landing.modules.characters": {
     "message": "Персонажи",
     "description": "Characters"
   },
   "landing.modules.characters.text": {
-    "message": "Атрибуты, модификаторы, навыки, опыт и эффекты состояния любого персонажа.",
-    "description": "Attributes, modifiers, skills, experience and status effects of anyone."
+    "message": "Атрибуты, модификаторы, навыки, опыт, эффекты состояния.",
+    "description": "Attributes, modifiers, skills, experience, status effects."
   },
   "landing.modules.residents": {
     "message": "Жители",
     "description": "Residents"
   },
   "landing.modules.residents.text": {
-    "message": "Жители поселения и ваши собственные работы, которые они берут по приоритету.",
-    "description": "The settlement’s villagers, and jobs of your own they take by priority."
+    "message": "Жители поселения и свои работы по приоритету.",
+    "description": "Villagers and custom jobs scheduled by priority."
   },
   "landing.modules.world": {
     "message": "Мир",
@@ -459,7 +464,7 @@
   },
   "landing.modules.world.text": {
     "message": "Часы мира: час, день и ночь, остановка времени.",
-    "description": "The world’s clock: the hour, day and night, time stopped."
+    "description": "World clock: hour, day and night, time stop."
   },
   "landing.modules.console": {
     "message": "Консоль",
@@ -467,43 +472,43 @@
   },
   "landing.modules.console.text": {
     "message": "Свои команды рядом с give, tp, time и stats.",
-    "description": "Commands of your own beside give, tp, time and stats."
+    "description": "Custom commands alongside give, tp, time and stats."
   },
   "landing.modules.kit": {
     "message": "Mod kit",
     "description": "Mod kit"
   },
   "landing.modules.kit.text": {
-    "message": "Проект Unity, настроенный под версию игры и её конвейер рендера.",
-    "description": "A Unity project set up for the game’s version and pipeline."
+    "message": "Проект Unity под версию игры и её конвейер рендера.",
+    "description": "Unity project matching the game’s version and render pipeline."
   },
   "landing.boot.title": {
-    "message": "От первой библиотеки до вашего мода",
-    "description": "From the first library to your mod"
+    "message": "Цепочка загрузки",
+    "description": "Boot chain"
   },
   "landing.boot.proxy": {
-    "message": "Игра загружает прокси системной библиотеки от Mjolnir, который по имени дожидается рантайма игры.",
-    "description": "The game loads Mjolnir’s proxy of a system library, which waits for the game’s runtime by name."
+    "message": "Прокси version.dll перехватывает il2cpp_init по имени. Без жёстко заданных адресов.",
+    "description": "A version.dll proxy hooks il2cpp_init by name. No hardcoded addresses."
   },
   "landing.boot.clr": {
-    "message": "Когда рантайм игры поднят, в том же процессе запускается собственный .NET 10.",
-    "description": "Once the game’s runtime is up, a private .NET 10 starts in the same process."
+    "message": "Собственный рантайм .NET 10 стартует в процессе игры.",
+    "description": "A private .NET 10 runtime starts inside the game process."
   },
   "landing.boot.core": {
-    "message": "Генерирует interop игры для этой сборки, запускает Harmony, загружает моды в порядке зависимостей.",
-    "description": "Generates the game’s interop for this build, starts Harmony, loads mods in dependency order."
+    "message": "Генерирует interop под сборку игры, запускает HarmonyX, загружает моды по зависимостям.",
+    "description": "Generates interop for the game build, starts HarmonyX, loads mods in dependency order."
   },
   "landing.boot.sdk": {
-    "message": "Даёт модам события, привязываемые значения и билдеры. Переименование в игре исправляется здесь, а не в каждом моде.",
-    "description": "Gives mods events, bindables and builders. A rename in the game is fixed here, not in every mod."
+    "message": "Стабильный API поверх типов игры. Переименования в игре гасятся здесь, а не в модах.",
+    "description": "A stable API over the game’s types. Game renames are absorbed here, not in mods."
   },
   "landing.boot.more": {
-    "message": "Архитектура целиком →",
-    "description": "The architecture in full →"
+    "message": "Архитектура →",
+    "description": "Architecture →"
   },
   "landing.players.title": {
-    "message": "Игрокам",
-    "description": "For players"
+    "message": "Установка",
+    "description": "Install"
   },
   "landing.players.unpack.verb": {
     "message": "Распакуйте",
@@ -511,58 +516,58 @@
   },
   "landing.players.start.verb": {
     "message": "Запустите",
-    "description": "Start"
+    "description": "Launch"
   },
   "landing.players.mods.verb": {
-    "message": "Добавляйте моды",
+    "message": "Добавьте моды",
     "description": "Add mods"
   },
   "landing.status.title": {
-    "message": "Где мы сейчас",
-    "description": "Where it stands"
+    "message": "Статус",
+    "description": "Status"
   },
   "landing.status.works": {
-    "message": "Работает",
-    "description": "Works"
+    "message": "Готово",
+    "description": "Available"
   },
   "landing.status.works.1": {
     "message": "Одиночная игра и хост мира",
-    "description": "Single player and hosting a world"
+    "description": "Single player and hosted worlds"
   },
   "landing.status.works.2": {
-    "message": "Интерфейс, игрок, контент, персонажи, жители, часы, консоль",
-    "description": "UI, player, content, characters, residents, the clock, the console"
+    "message": "Интерфейс, игрок, контент, персонажи, жители, часы мира, консоль",
+    "description": "UI, player, content, characters, residents, world clock, console"
   },
   "landing.status.works.3": {
-    "message": "Interop генерируется на машине игрока и заново после каждого обновления игры",
-    "description": "Interop generated on the player’s machine, again after each game update"
+    "message": "Interop генерируется локально и заново после обновлений игры",
+    "description": "Interop generated locally and regenerated after game updates"
   },
   "landing.status.todo": {
-    "message": "Ещё не сделано",
-    "description": "Not done yet"
+    "message": "В планах",
+    "description": "Planned"
   },
   "landing.status.todo.1": {
-    "message": "Клиенты, подключающиеся к хосту с модами",
-    "description": "Clients joining a host with mods"
+    "message": "Подключение клиентов к хосту с модами",
+    "description": "Clients joining a modded host"
   },
   "landing.status.todo.2": {
     "message": "Проверка совместимости модов (handshake)",
-    "description": "The mod-compatibility handshake"
+    "description": "Mod compatibility handshake"
   },
   "landing.status.todo.3": {
-    "message": "Модели построек мода",
-    "description": "Building models of a mod’s own"
+    "message": "Свои модели построек",
+    "description": "Custom building models"
   },
   "landing.status.api": {
-    "message": "Публичный API может меняться между версиями 0.x; каждое изменение зафиксировано в репозитории.",
-    "description": "The public API can change between 0.x versions; every change is declared in the repository."
+    "message": "Публичный API может меняться между релизами 0.x. Каждое изменение фиксируется в описи API.",
+    "description": "The public API may change between 0.x releases. Every change is recorded in the API baseline."
   },
   "landing.meta.title": {
     "message": "Загрузчик модов и C# SDK для ASKA",
     "description": "Mod loader and C# SDK for ASKA"
   },
   "landing.meta.description": {
-    "message": "Mjolnir — загрузчик модов и C# SDK для моддинга игры ASKA.",
-    "description": "Mjolnir is a mod loader and C# modding SDK for the game ASKA."
+    "message": "Mjolnir — загрузчик модов и C# SDK для ASKA.",
+    "description": "Mjolnir is a mod loader and C# SDK for ASKA."
   }
 }

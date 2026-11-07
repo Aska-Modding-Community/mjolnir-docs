@@ -6,14 +6,13 @@ sidebar_label: Overview
 
 # Mjolnir
 
-Mjolnir is a mod loader and C# modding SDK for **ASKA** (Unity 6000.3, IL2CPP, HDRP). Mods are .NET 10 assemblies that
-run on CoreCLR inside the game process. They use the game through an SDK of C# events, bindable values and builders,
-and can patch game methods with HarmonyX directly when the SDK does not cover something.
+Mjolnir is a mod loader and C# SDK for **ASKA** (Unity 6000.3, IL2CPP, HDRP). Mods target .NET 10 and run on
+CoreCLR inside the game process. The SDK exposes the game as C# events, bindable values and builders; HarmonyX covers
+the rest.
 
 :::note[Status: 0.x]
-The public API can change between minor versions, and every change is declared in the repository's
-`PublicAPI.*.txt` files. Single player and hosting a world are tested. Joined clients and the mod-compatibility
-handshake are not done yet.
+The public API can change between minor versions; the repository's `PublicAPI.*.txt` files declare every change.
+Tested: single player and hosting a world. Not done yet: joined clients and the mod-compatibility handshake.
 :::
 
 ## Where to start
@@ -31,7 +30,7 @@ handshake are not done yet.
 
 ## The SDK
 
-A mod references the main library `Mjolnir.SDK` and only the modules it uses. Each module is its own assembly.
+A mod references the main library `Mjolnir.SDK` and only the modules it uses, each its own assembly.
 
 | Assembly | Namespace | What it gives |
 |---|---|---|
@@ -43,12 +42,12 @@ A mod references the main library `Mjolnir.SDK` and only the modules it uses. Ea
 | `Mjolnir.SDK.World` | `Mjolnir.SDK.World` | The world's clock |
 | `Mjolnir.SDK.Stats` | (none) | Connects `CharacterSheet` to the game; it has no public types |
 
-The modules' public signatures use only .NET, Unity and TextMeshPro types, never the game's own. When the game
-renames something, the SDK is updated and your mod keeps working.
+Module public signatures use only .NET, Unity and TextMeshPro types, never the game's. A game rename is fixed in the
+SDK, and mods keep working.
 
 ## Examples
 
-The repository's `examples/` folder holds complete mods, one area each:
+`examples/` in the repository holds complete mods, one area each:
 
 | Mod | Shows |
 |---|---|

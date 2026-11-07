@@ -7,8 +7,8 @@ title: The player
 `Mjolnir.SDK.Player` is the player on this computer: their character in the loaded world, its stats and its place.
 Reference `Mjolnir.SDK.Player.dll` and add `using Mjolnir.SDK.Player;`.
 
-Outside a world, in the main menu, there is no character: `LocalPlayer.IsSpawned` is false and every stat reads 0.
-Events are raised on the main thread, with a `null` sender since they are static.
+In the main menu there is no character: `LocalPlayer.IsSpawned` is false and every stat reads 0. Events are static,
+raised on the main thread with a `null` sender.
 
 ## Spawn and death
 
@@ -19,10 +19,10 @@ Events are raised on the main thread, with a `null` sender since they are static
 | `LocalPlayer.Died` | It died |
 | `LocalPlayer.Revived` | It came back to life |
 
-`IsSpawned`, `IsDead` and `Name` (the player's platform name, or `null`) tell the state at any time.
+`IsSpawned`, `IsDead` and `Name` (the player's platform name, or `null`) give the current state.
 
 The game fills in the saved values during the frame of `Spawned` and the next few: food and water first read 100,
-stamina's limit grows two frames later. Follow a stat with `Changed` or a binding rather than reading it once in
+stamina's limit grows two frames later. Follow a stat with `Changed` or a binding instead of reading it once in
 `Spawned`.
 
 ## Stats
@@ -37,7 +37,7 @@ stamina's limit grows two frames later. Follow a stat with `Changed` or a bindin
 | `Changed` | Raised on each change, with the old and new values |
 
 A `PlayerStat` follows the local character: after a new spawn it is the new character's, after a despawn it reads 0.
-It is an `IBindable<float>`, so a HUD bar can follow it:
+It is an `IBindable<float>`, so a HUD bar can bind to it:
 
 ```csharp
 var bar = new UiProgressBar { ShowProgressText = true, ProgressTextFormat = "Health {0:0}/{3:0}" };
@@ -46,14 +46,14 @@ bar.Bind(UiProgressBar.MaximumProperty, () => LocalPlayer.Health.Maximum, System
 Hud.Add(bar, HudAnchor.BottomLeft);
 ```
 
-Food and water change every frame. The SDK watches the game for a stat only while a mod listens to it.
+Food and water change every frame. The SDK watches a stat in the game only while a mod listens to it.
 
 `LocalPlayer.Sheet` is the character's whole [character sheet](characters.md): characteristics, skills and effects.
 
 ## Stamina costs
 
-`LocalPlayer.Stamina.Draining` is raised each time the local player is about to spend stamina, with the amount before
-the game's own discounts for harvesting and combat. A handler can change `Amount` (never below 0) or set `Cancel`:
+`LocalPlayer.Stamina.Draining` is raised before each stamina cost of the local player, with the amount before the
+game's own discounts for harvesting and combat. A handler can change `Amount` (never below 0) or set `Cancel`:
 
 ```csharp
 LocalPlayer.Stamina.Draining += (_, e) =>
@@ -67,8 +67,7 @@ LocalPlayer.Stamina.Draining += (_, e) =>
 ```
 
 `Use` is `Default` (sprinting, rolling and the rest), `Harvest` or `Combat`. Handlers run in the order they were added,
-each seeing what the one before left. While sprinting it is raised several times a second. Villagers' costs are not
-reported.
+each seeing what the one before left. Sprinting raises it several times a second. Villagers' costs are not reported.
 
 ## Position and teleport
 
@@ -78,8 +77,8 @@ reported.
 | `Teleport(position)` | Moves the character there at its next physics step. Far away the world streams in within a second or so, and a character above the ground falls onto it |
 | `TeleportToGroundAsync(x, z)` | Moves the character onto the ground at x, z as soon as the world there has streamed in. In the sea the ground is the bottom, and the character swims up |
 
-`TeleportToGroundAsync` gives `true` once the character is sent there, and `false` without a character, when it
-despawns or another teleport comes first, or when no ground turns up within ten seconds.
+`TeleportToGroundAsync` returns `true` once the character is sent there. It returns `false` without a character, when
+the character despawns or another teleport comes first, or when no ground turns up within ten seconds.
 
 ```csharp
 var here = LocalPlayer.Position;

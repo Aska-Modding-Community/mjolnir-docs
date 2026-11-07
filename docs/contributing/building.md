@@ -11,7 +11,7 @@ title: Building from source
 - Visual Studio or its Build Tools with the C++ x64 compiler (MSVC) and CMake, for the native proxy;
 - for models only: Unity 6000.3.12f1 through Unity Hub.
 
-The scripts find the game in your Steam libraries, and Unity 6000.3.12f1 in Unity Hub's install folders, by themselves
+The scripts find the game in your Steam libraries and Unity 6000.3.12f1 in Unity Hub's install folders
 (`tools/locations.ps1`). To point them elsewhere, pass `-GameDir` (`deploy.ps1`, `gen-interop.ps1`) or `-Unity`
 (`build-bundles.ps1`), or set `MJOLNIR_GAME_DIR` / `MJOLNIR_UNITY` once for all of them.
 
@@ -32,7 +32,7 @@ The scripts find the game in your Steam libraries, and Unity 6000.3.12f1 in Unit
 ## Interop for compiling
 
 The projects compile against interop assemblies generated from your copy of the game into `build/interop`. Generate
-them once, and again after a game update:
+them once, and again after each game update:
 
 ```bash
 powershell -File tools/gen-interop.ps1
@@ -67,8 +67,8 @@ itself.
 dotnet test tests/Mjolnir.Core.Tests
 ```
 
-There is one unit-test project per assembly under `tests/`, and none needs the game. Everything else is checked in the
-game, with the test mods and `Mjolnir/LogOutput.log`.
+`tests/` holds one unit-test project per assembly; none needs the game. Everything else is checked in the game, with
+the test mods and `Mjolnir/LogOutput.log`.
 
 ## The public API
 
@@ -88,13 +88,13 @@ powershell -File tools/package.ps1
 
 It builds everything in Release and writes `artifacts/package/Mjolnir-<version>.zip` with its `.sha256`. The archive's
 root holds only `version.dll` and `Mjolnir/` (`core`, `interopgen`, `dotnet`, an empty `Mods`, `licenses`, the license
-and a README). Never in it: the interop assemblies, the test mods, the examples, configs or logs. Every third-party
-component's license goes into `Mjolnir/licenses`, with `THIRD-PARTY-NOTICES.txt` listing them; a package without a
-license or a known source stops the script.
+and a README), never the interop assemblies, the test mods, the examples, configs or logs. Every third-party
+component's license goes into `Mjolnir/licenses`, listed in `THIRD-PARTY-NOTICES.txt`; a package without a license or
+a known source stops the script.
 
 ## The documentation site
 
-This documentation lives in its own repository,
+The documentation has its own repository,
 [mjolnir-docs](https://github.com/Aska-Modding-Community/mjolnir-docs): Markdown pages in `docs/`, readable on GitHub as
 they are, and a Docusaurus site around them.
 

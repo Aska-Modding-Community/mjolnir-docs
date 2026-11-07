@@ -4,10 +4,10 @@ title: Residents and jobs
 
 # Residents and jobs
 
-`Mjolnir.SDK.AI` gives mods the settlement's villagers and lets them add jobs of their own, which villagers take by
-priority among the game's own tasks. Reference `Mjolnir.SDK.AI.dll` and add `using Mjolnir.SDK.AI;`.
+`Mjolnir.SDK.AI` gives mods the settlement's villagers and jobs of their own, which villagers take by priority among
+the game's own tasks. Reference `Mjolnir.SDK.AI.dll` and add `using Mjolnir.SDK.AI;`.
 
-The SDK calls a villager a **resident**, since the game's own type is named `Villager`.
+The SDK calls a villager a **resident**: the game's own type is named `Villager`.
 
 ## Residents
 
@@ -17,7 +17,7 @@ The SDK calls a villager a **resident**, since the game's own type is named `Vil
 | `Residents.Added`, `Removed` | A villager came (spawned, loaded with a save) or left (died, left, its world unloaded) |
 | `Residents.Spawn(position)` | Asks the game for a new villager on walkable ground within 3 m, with the game's welcome. `false` outside a world |
 
-A `Resident` is one villager. The same object stands for it while it lives:
+A `Resident` is one villager, the same object while it lives:
 
 | `Resident` | What |
 |---|---|
@@ -31,8 +31,7 @@ Read residents on the main thread: in callbacks, a job's steps, or the events.
 
 ## Jobs
 
-A job is one more thing a villager may do. It has steps, run in order, and a priority function asked for each
-villager:
+A job has steps, run in order, and a priority function asked for each villager:
 
 ```csharp title="GreetMod.cs"
 using System;
@@ -80,12 +79,12 @@ public sealed class GreetMod : Mod
 | `Wait(duration)` | Stays where it is |
 | `Do(action)` | Runs the action once, on the main thread |
 
-After its last step the job ends and the villager picks again. A job that should not run again at once lowers its
-priority itself, with a cooldown or a done flag, as above.
+After its last step the job ends and the villager picks again. To keep a job from running again at once, lower its
+priority yourself with a cooldown or a done flag, as above.
 
 ## Priorities
 
-A villager takes the job when its priority is higher than every other quest of the villager's, within a second or so.
+A villager takes the job within a second or so once its priority is higher than every other quest of the villager's.
 Return `-1` or less when the job is not for this villager now. In a working settlement the game's own quests ask:
 
 | Priority | The game's quest |
@@ -99,11 +98,11 @@ Return `-1` or less when the job is not for this villager now. In a working sett
 | 0 | Talk to others |
 | -1 | Not wanted |
 
-So a job that asks 12 takes only villagers with nothing to do, and one that asks 16 takes a worker from its work.
-Leaving a quest is up to the villager: an idle one comes within a second, a fisherman at sea may take a while. A job
-must not expect to start at once.
+A job that asks 12 takes only villagers with nothing to do; one that asks 16 takes a worker from its work. The
+villager leaves its quest in its own time: an idle one within a second, a fisherman at sea may take a while. Do not
+expect a job to start at once.
 
-The priority function runs through the mod's fault isolation: if it throws, the mod is disabled, and the job is never
+The priority function runs under the mod's fault isolation: if it throws, the mod is disabled and the job is never
 taken again.
 
 :::note

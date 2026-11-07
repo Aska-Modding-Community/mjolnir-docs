@@ -11,7 +11,7 @@ title: Сборка из исходников
 - Visual Studio или её Build Tools с компилятором C++ x64 (MSVC) и CMake — для нативного прокси;
 - только для моделей: Unity 6000.3.12f1 через Unity Hub.
 
-Скрипты сами находят игру в ваших библиотеках Steam, а Unity 6000.3.12f1 — в папках установки Unity Hub
+Скрипты находят игру в ваших библиотеках Steam, а Unity 6000.3.12f1 — в папках установки Unity Hub
 (`tools/locations.ps1`). Чтобы указать другое место, передайте `-GameDir` (`deploy.ps1`, `gen-interop.ps1`) или `-Unity`
 (`build-bundles.ps1`) либо один раз задайте `MJOLNIR_GAME_DIR` / `MJOLNIR_UNITY` для всех сразу.
 
@@ -32,7 +32,7 @@ title: Сборка из исходников
 ## Interop для компиляции {/* #interop-for-compiling */}
 
 Проекты компилируются против interop-сборок, сгенерированных из вашей копии игры в `build/interop`. Сгенерируйте их
-один раз и снова после обновления игры:
+один раз и снова после каждого обновления игры:
 
 ```bash
 powershell -File tools/gen-interop.ps1
@@ -67,7 +67,7 @@ powershell -File tools/deploy.ps1 -Examples
 dotnet test tests/Mjolnir.Core.Tests
 ```
 
-В `tests/` по одному проекту юнит-тестов на сборку, и ни одному не нужна игра. Всё остальное проверяется в игре, с
+В `tests/` по одному проекту юнит-тестов на сборку; ни одному не нужна игра. Всё остальное проверяется в игре, с
 тестовыми модами и `Mjolnir/LogOutput.log`.
 
 ## Публичный API {/* #the-public-api */}
@@ -87,14 +87,14 @@ powershell -File tools/package.ps1
 ```
 
 Скрипт собирает всё в Release и пишет `artifacts/package/Mjolnir-<version>.zip` с его `.sha256`. В корне архива только
-`version.dll` и `Mjolnir/` (`core`, `interopgen`, `dotnet`, пустая `Mods`, `licenses`, лицензия и README). Никогда не
-попадают в него: interop-сборки, тестовые моды, примеры, конфиги и логи. Лицензия каждого стороннего компонента
-кладётся в `Mjolnir/licenses`, а `THIRD-PARTY-NOTICES.txt` их перечисляет; пакет без лицензии или известного источника
-останавливает скрипт.
+`version.dll` и `Mjolnir/` (`core`, `interopgen`, `dotnet`, пустая `Mods`, `licenses`, лицензия и README), но никогда
+не interop-сборки, тестовые моды, примеры, конфиги и логи. Лицензия каждого стороннего компонента кладётся в
+`Mjolnir/licenses`, перечень — в `THIRD-PARTY-NOTICES.txt`; пакет без лицензии или известного источника останавливает
+скрипт.
 
 ## Сайт документации {/* #the-documentation-site */}
 
-Эта документация живёт в собственном репозитории
+У документации собственный репозиторий
 [mjolnir-docs](https://github.com/Aska-Modding-Community/mjolnir-docs): страницы Markdown в `docs/`, которые читаются на
 GitHub как есть, и сайт Docusaurus вокруг них.
 

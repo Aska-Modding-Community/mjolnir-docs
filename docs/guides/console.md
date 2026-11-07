@@ -6,9 +6,9 @@ title: Developer console
 
 The `` ` `` key opens a console for testing and debugging: commands from Mjolnir and from mods, with their answers.
 The key is a setting on Mjolnir's own settings page (the Mods window's **Settings**). Up and Down walk the command
-history, Esc or the key closes it, and the window can be dragged by its frame.
+history, Esc or the key closes it, and the window drags by its frame.
 
-The console speaks English: its answers, and the item names it takes and shows.
+The console is English only: its answers and the item names it takes and shows.
 
 ## Built-in commands
 
@@ -29,8 +29,8 @@ The console speaks English: its answers, and the item names it takes and shows.
 | `villager [count]` | Spawns villagers in front of the player |
 | `villagers` | Lists the world's villagers: what they do and where |
 
-Words are split by spaces; a word with spaces in it goes in double quotes. For example, `give Item_Wood_Sticks 5`
-gives five sticks.
+Words are split by spaces; a word containing spaces goes in double quotes: `give Item_Wood_Sticks 5` gives five
+sticks.
 
 ## Commands of your own
 
@@ -66,7 +66,7 @@ DevConsole.Add("wood", "Gives logs.", context =>
 | `GetRest(i)` | The words from `i` on, joined by spaces |
 | `Print(text)`, `Error(text)` | An answer, plain or in the error colour |
 
-A `DevCommandException` shows its message and the usage line, and the mod stays enabled. Any other exception is
+A `DevCommandException` shows its message and the usage line; the mod stays enabled. Any other exception is
 shown and disables the mod, as from any of its code.
 
 Every console line is also written to `Mjolnir/LogOutput.log` as `[Console]`, errors as warnings.
