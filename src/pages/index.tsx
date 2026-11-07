@@ -1,6 +1,7 @@
 import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import Translate, {translate} from '@docusaurus/Translate';
 import Layout from '@theme/Layout';
 import CodeBlock from '@theme/CodeBlock';
 import Heading from '@theme/Heading';
@@ -92,23 +93,27 @@ function Diamond(): ReactNode {
   return <span className={styles.diamond} aria-hidden="true" />;
 }
 
+/** A landing text by id, English as written here, other languages from i18n/<locale>/code.json. */
+function t(id: string, message: string): string {
+  return translate({id: `landing.${id}`, message});
+}
+
 function Hero(): ReactNode {
   const emblem = useBaseUrl('/img/logo.svg');
   return (
     <header className={styles.hero}>
       <div className={styles.heroInner}>
         <img className={styles.emblem} src={emblem} alt="" width="120" height="120" />
-        <p className={styles.kicker}>A mod loader and C# SDK for ASKA</p>
+        <p className={styles.kicker}>{t('hero.kicker', 'A mod loader and C# SDK for ASKA')}</p>
         <Heading as="h1" className={styles.title}>Mjolnir</Heading>
         <p className={styles.lead}>
-          Mods are .NET 10 assemblies that run inside the game. They speak to it through plain C# events,
-          bindable values and builders, and can still reach for HarmonyX when they need to.
+          {t('hero.lead', 'Mods are .NET 10 assemblies that run inside the game. They speak to it through plain C# events, bindable values and builders, and can still reach for HarmonyX when they need to.')}
         </p>
         <div className={styles.plate}>
-          <span className={styles.plateLabel}>Version 0.x · single player and hosting</span>
+          <span className={styles.plateLabel}>{t('hero.plate', 'Version 0.x · single player and hosting')}</span>
           <div className={styles.actions}>
-            <Link className={styles.primary} to="/docs/getting-started/first-mod">Write a mod</Link>
-            <Link className={styles.secondary} to="/docs/getting-started/installing">Install</Link>
+            <Link className={styles.primary} to="/docs/getting-started/first-mod">{t('hero.write', 'Write a mod')}</Link>
+            <Link className={styles.secondary} to="/docs/getting-started/installing">{t('hero.install', 'Install')}</Link>
           </div>
         </div>
       </div>
@@ -118,12 +123,12 @@ function Hero(): ReactNode {
 
 function Paths(): ReactNode {
   const paths = [
-    {to: '/docs/getting-started/installing', title: 'Play with mods', text: 'Unpack, start from Steam, drop mods in a folder.'},
-    {to: '/docs/getting-started/first-mod', title: 'Forge a mod', text: 'A class library, one class, a few lines.'},
-    {to: '/docs/architecture', title: 'See inside', text: 'How the loader reaches the game, and keeps it safe.'},
+    {to: '/docs/getting-started/installing', title: t('paths.play', 'Play with mods'), text: t('paths.play.text', 'Unpack, start from Steam, drop mods in a folder.')},
+    {to: '/docs/getting-started/first-mod', title: t('paths.forge', 'Forge a mod'), text: t('paths.forge.text', 'A class library, one class, a few lines.')},
+    {to: '/docs/architecture', title: t('paths.inside', 'See inside'), text: t('paths.inside.text', 'How the loader reaches the game, and keeps it safe.')},
   ];
   return (
-    <section className={styles.band} aria-label="Where to start">
+    <section className={styles.band} aria-label={t('paths.label', 'Where to start')}>
       <div className={styles.paths}>
         {paths.map((p) => (
           <Link key={p.to} className={styles.path} to={p.to}>
@@ -141,17 +146,20 @@ function CodeSection(): ReactNode {
     <section className={styles.section}>
       <div className={styles.split}>
         <div className={styles.splitText}>
-          <Heading as="h2" className={styles.h2}>A whole mod on one screen</Heading>
+          <Heading as="h2" className={styles.h2}>{t('code.title', 'A whole mod on one screen')}</Heading>
           <p>
-            A mod is a class with a manifest. Its settings appear in the game's own Mods window, saved to a TOML file.
-            Its handlers run on the game's main thread, and an exception in one of them turns off that mod alone.
+            {t('code.text', 'A mod is a class with a manifest. Its settings appear in the game’s own Mods window, saved to a TOML file. Its handlers run on the game’s main thread, and an exception in one of them turns off that mod alone.')}
           </p>
           <ul className={styles.checks}>
-            <li>Events before things happen, with <code>Cancel</code> and values to change</li>
-            <li>Bindable stats, configs and texts that UI follows by itself</li>
-            <li>Content ids from the mod's id and a name, the same on every machine</li>
+            <li>
+              <Translate id="landing.code.events" values={{cancel: <code>Cancel</code>}}>
+                {'Events before things happen, with {cancel} and values to change'}
+              </Translate>
+            </li>
+            <li>{t('code.bindables', 'Bindable stats, configs and texts that UI follows by itself')}</li>
+            <li>{t('code.ids', 'Content ids from the mod’s id and a name, the same on every machine')}</li>
           </ul>
-          <Link className={styles.textLink} to="/docs/concepts/lifecycle">How a mod lives →</Link>
+          <Link className={styles.textLink} to="/docs/concepts/lifecycle">{t('code.more', 'How a mod lives →')}</Link>
         </div>
         <div className={styles.splitCode}>
           <CodeBlock language="csharp" title="Lightfoot.cs">{firstMod}</CodeBlock>
@@ -163,23 +171,23 @@ function CodeSection(): ReactNode {
 
 function Modules(): ReactNode {
   const modules: {icon: IconName; name: string; to: string; text: string}[] = [
-    {icon: 'window', name: 'UI', to: '/docs/guides/ui/overview', text: 'Windows, HUD, menus, tabs in the game’s own windows, made from the game’s interface.'},
-    {icon: 'player', name: 'Player', to: '/docs/guides/player', text: 'Spawns and deaths, health, stamina, food, water, warmth, teleports.'},
-    {icon: 'chest', name: 'Content', to: '/docs/guides/content/items-and-recipes', text: 'Items, recipes by hand and at the workshop, buildings, effects, models.'},
-    {icon: 'runes', name: 'Characters', to: '/docs/guides/characters', text: 'Attributes, modifiers, skills, experience and status effects of anyone.'},
-    {icon: 'village', name: 'Residents', to: '/docs/guides/residents', text: 'The settlement’s villagers, and jobs of your own they take by priority.'},
-    {icon: 'sun', name: 'World', to: '/docs/guides/world', text: 'The world’s clock: the hour, day and night, time stopped.'},
-    {icon: 'console', name: 'Console', to: '/docs/guides/console', text: 'Commands of your own beside give, tp, time and stats.'},
-    {icon: 'anvil', name: 'Mod kit', to: '/docs/guides/content/models', text: 'A Unity project set up for the game’s version and pipeline.'},
+    {icon: 'window', name: t('modules.ui', 'UI'), to: '/docs/guides/ui/overview', text: t('modules.ui.text', 'Windows, HUD, menus, tabs in the game’s own windows, made from the game’s interface.')},
+    {icon: 'player', name: t('modules.player', 'Player'), to: '/docs/guides/player', text: t('modules.player.text', 'Spawns and deaths, health, stamina, food, water, warmth, teleports.')},
+    {icon: 'chest', name: t('modules.content', 'Content'), to: '/docs/guides/content/items-and-recipes', text: t('modules.content.text', 'Items, recipes by hand and at the workshop, buildings, effects, models.')},
+    {icon: 'runes', name: t('modules.characters', 'Characters'), to: '/docs/guides/characters', text: t('modules.characters.text', 'Attributes, modifiers, skills, experience and status effects of anyone.')},
+    {icon: 'village', name: t('modules.residents', 'Residents'), to: '/docs/guides/residents', text: t('modules.residents.text', 'The settlement’s villagers, and jobs of your own they take by priority.')},
+    {icon: 'sun', name: t('modules.world', 'World'), to: '/docs/guides/world', text: t('modules.world.text', 'The world’s clock: the hour, day and night, time stopped.')},
+    {icon: 'console', name: t('modules.console', 'Console'), to: '/docs/guides/console', text: t('modules.console.text', 'Commands of your own beside give, tp, time and stats.')},
+    {icon: 'anvil', name: t('modules.kit', 'Mod kit'), to: '/docs/guides/content/models', text: t('modules.kit.text', 'A Unity project set up for the game’s version and pipeline.')},
   ];
   return (
     <section className={styles.parchment}>
       <div className={styles.container}>
-        <Heading as="h2" className={styles.h2Center}>What a mod can reach</Heading>
+        <Heading as="h2" className={styles.h2Center}>{t('modules.title', 'What a mod can reach')}</Heading>
         <div className={styles.rule}><Diamond /><span /><Diamond /></div>
         <div className={styles.grid}>
           {modules.map((m) => (
-            <Link key={m.name} className={styles.card} to={m.to}>
+            <Link key={m.to} className={styles.card} to={m.to}>
               <span className={styles.cardIcon}><Icon name={m.icon} /></span>
               <span className={styles.cardName}>{m.name}</span>
               <span className={styles.cardText}>{m.text}</span>
@@ -193,15 +201,15 @@ function Modules(): ReactNode {
 
 function Boot(): ReactNode {
   const steps = [
-    {name: 'version.dll', text: 'The game loads Mjolnir’s proxy of a system library, which waits for the game’s runtime by name.'},
-    {name: 'CoreCLR', text: 'Once the game’s runtime is up, a private .NET 10 starts in the same process.'},
-    {name: 'Core', text: 'Generates the game’s interop for this build, starts Harmony, loads mods in dependency order.'},
-    {name: 'SDK', text: 'Gives mods events, bindables and builders. A rename in the game is fixed here, not in every mod.'},
+    {name: 'version.dll', text: t('boot.proxy', 'The game loads Mjolnir’s proxy of a system library, which waits for the game’s runtime by name.')},
+    {name: 'CoreCLR', text: t('boot.clr', 'Once the game’s runtime is up, a private .NET 10 starts in the same process.')},
+    {name: 'Core', text: t('boot.core', 'Generates the game’s interop for this build, starts Harmony, loads mods in dependency order.')},
+    {name: 'SDK', text: t('boot.sdk', 'Gives mods events, bindables and builders. A rename in the game is fixed here, not in every mod.')},
   ];
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <Heading as="h2" className={styles.h2Center}>From the first library to your mod</Heading>
+        <Heading as="h2" className={styles.h2Center}>{t('boot.title', 'From the first library to your mod')}</Heading>
         <div className={styles.rule}><Diamond /><span /><Diamond /></div>
         <ol className={styles.steps}>
           {steps.map((s, i) => (
@@ -213,7 +221,7 @@ function Boot(): ReactNode {
           ))}
         </ol>
         <p className={styles.center}>
-          <Link className={styles.textLink} to="/docs/architecture">The architecture in full →</Link>
+          <Link className={styles.textLink} to="/docs/architecture">{t('boot.more', 'The architecture in full →')}</Link>
         </p>
       </div>
     </section>
@@ -221,18 +229,33 @@ function Boot(): ReactNode {
 }
 
 function Players(): ReactNode {
+  const code = (text: string) => <code>{text}</code>;
   return (
     <section className={styles.parchment}>
       <div className={styles.container}>
-        <Heading as="h2" className={styles.h2Center}>For players</Heading>
+        <Heading as="h2" className={styles.h2Center}>{t('players.title', 'For players')}</Heading>
         <div className={styles.rule}><Diamond /><span /><Diamond /></div>
         <ol className={styles.install}>
-          <li><b>Unpack</b> the release archive into the game&rsquo;s folder, the one with <code>Aska.exe</code>.</li>
-          <li><b>Start</b> the game from Steam. The first start prepares Mjolnir for the game&rsquo;s build, about half a minute.</li>
-          <li><b>Add mods</b> to <code>Mjolnir/Mods</code>, a folder each, and turn them on or off in the game&rsquo;s menu.</li>
+          <li>
+            <Translate id="landing.players.unpack" values={{verb: <b>{t('players.unpack.verb', 'Unpack')}</b>, exe: code('Aska.exe')}}>
+              {'{verb} the release archive into the game’s folder, the one with {exe}.'}
+            </Translate>
+          </li>
+          <li>
+            <Translate id="landing.players.start" values={{verb: <b>{t('players.start.verb', 'Start')}</b>}}>
+              {'{verb} the game from Steam. The first start prepares Mjolnir for the game’s build, about half a minute.'}
+            </Translate>
+          </li>
+          <li>
+            <Translate id="landing.players.mods" values={{verb: <b>{t('players.mods.verb', 'Add mods')}</b>, folder: code('Mjolnir/Mods')}}>
+              {'{verb} to {folder}, a folder each, and turn them on or off in the game’s menu.'}
+            </Translate>
+          </li>
         </ol>
         <p className={styles.center}>
-          Uninstalling is deleting <code>version.dll</code>. Starting once without mods is <code>--no-mods</code>.
+          <Translate id="landing.players.uninstall" values={{dll: code('version.dll'), flag: code('--no-mods')}}>
+            {'Uninstalling is deleting {dll}. Starting once without mods is {flag}.'}
+          </Translate>
         </p>
       </div>
     </section>
@@ -243,28 +266,28 @@ function Status(): ReactNode {
   return (
     <section className={styles.section}>
       <div className={styles.containerNarrow}>
-        <Heading as="h2" className={styles.h2Center}>Where it stands</Heading>
+        <Heading as="h2" className={styles.h2Center}>{t('status.title', 'Where it stands')}</Heading>
         <div className={styles.rule}><Diamond /><span /><Diamond /></div>
         <div className={styles.status}>
           <div>
-            <span className={styles.statusTitle}>Works</span>
+            <span className={styles.statusTitle}>{t('status.works', 'Works')}</span>
             <ul>
-              <li>Single player and hosting a world</li>
-              <li>UI, player, content, characters, residents, the clock, the console</li>
-              <li>Interop generated on the player&rsquo;s machine, again after each game update</li>
+              <li>{t('status.works.1', 'Single player and hosting a world')}</li>
+              <li>{t('status.works.2', 'UI, player, content, characters, residents, the clock, the console')}</li>
+              <li>{t('status.works.3', 'Interop generated on the player’s machine, again after each game update')}</li>
             </ul>
           </div>
           <div>
-            <span className={styles.statusTitle}>Not done yet</span>
+            <span className={styles.statusTitle}>{t('status.todo', 'Not done yet')}</span>
             <ul>
-              <li>Clients joining a host with mods</li>
-              <li>The mod-compatibility handshake</li>
-              <li>Building models of a mod&rsquo;s own</li>
+              <li>{t('status.todo.1', 'Clients joining a host with mods')}</li>
+              <li>{t('status.todo.2', 'The mod-compatibility handshake')}</li>
+              <li>{t('status.todo.3', 'Building models of a mod’s own')}</li>
             </ul>
           </div>
         </div>
         <p className={styles.center}>
-          The public API can change between 0.x versions; every change is declared in the repository.
+          {t('status.api', 'The public API can change between 0.x versions; every change is declared in the repository.')}
         </p>
       </div>
     </section>
@@ -273,7 +296,9 @@ function Status(): ReactNode {
 
 export default function Home(): ReactNode {
   return (
-    <Layout title="Mod loader and C# SDK for ASKA" description="Mjolnir is a mod loader and C# modding SDK for the game ASKA.">
+    <Layout
+      title={t('meta.title', 'Mod loader and C# SDK for ASKA')}
+      description={t('meta.description', 'Mjolnir is a mod loader and C# modding SDK for the game ASKA.')}>
       <Hero />
       <Paths />
       <main>

@@ -30,6 +30,7 @@ Each push to `main` builds the site and publishes it to
 | Path | Contents |
 |---|---|
 | `docs/` | The pages, in the sidebar's order of `sidebars.ts` |
+| `i18n/ru/` | The Russian site: the pages under `docusaurus-plugin-content-docs/current/` at the same paths as in `docs/`, and the landing's, navbar's, footer's and sidebar's texts in JSON |
 | `src/pages/index.tsx` | The landing page |
 | `src/css/custom.css` | The theme: colours, fonts, the navbar and footer |
 | `static/img/` | The logo |
@@ -42,6 +43,8 @@ Each push to `main` builds the site and publishes it to
   code does not have.
 - Every C# example must compile against an installed Mjolnir (`Mjolnir/core` and `Mjolnir/interop`).
 - What is not done yet is marked as such on the page it concerns.
+- A change to an English page goes into its Russian page too. Russian headings keep the English anchors
+  (`## Две фазы {/* #two-phases */}`), so links work in both languages.
 
 ## License
 

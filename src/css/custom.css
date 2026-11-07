@@ -144,9 +144,24 @@ h3,
   font-weight: 700;
 }
 
-/* Code: no ligatures, so => and != read as typed. */
-code {
-  border: none;
+/*
+ * Inline code: a quiet tint of the page's own colour, not a box. Light mode warms the parchment a little, dark mode
+ * lifts the wood a little; the text keeps full contrast. Code inside a link takes the link's colour.
+ */
+:root {
+  --mj-code-bg: rgba(110, 76, 40, 0.09);
+  --mj-code-border: rgba(110, 76, 40, 0.12);
+  --mj-code-fg: #4a2f12;
+  --mj-table-head: rgba(110, 76, 40, 0.06);
+  --mj-table-line: rgba(32, 30, 29, 0.1);
+}
+
+[data-theme='dark'] {
+  --mj-code-bg: rgba(255, 236, 200, 0.08);
+  --mj-code-border: rgba(255, 236, 200, 0.08);
+  --mj-code-fg: #f1dcb4;
+  --mj-table-head: rgba(255, 236, 200, 0.04);
+  --mj-table-line: rgba(255, 255, 255, 0.08);
 }
 
 code,
@@ -154,21 +169,71 @@ pre {
   font-variant-ligatures: none;
 }
 
-.theme-code-block {
-  border: 1px solid var(--ifm-toc-border-color);
+:not(pre) > code {
+  padding: 0.12em 0.4em;
+  border: none;
+  border-radius: 5px;
+  background: var(--mj-code-bg);
+  color: var(--mj-code-fg);
+  font-size: 0.86em;
+  vertical-align: 0.04em;
+  box-shadow: none;
 }
 
-/* Tables */
+a :not(pre) > code,
+a > code {
+  color: inherit;
+}
+
+.theme-code-block {
+  border: 1px solid var(--mj-table-line);
+  box-shadow: none;
+}
+
+/* Tables: rules between rows, a tinted header, no frame round every cell. */
 .markdown table {
   display: table;
   width: 100%;
+  border-collapse: collapse;
+  border: none;
+}
+
+.markdown thead tr {
+  background: var(--mj-table-head);
+  border-bottom: 2px solid var(--mj-table-line);
+}
+
+.markdown tr {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--mj-table-line);
+}
+
+.markdown tr:nth-child(2n) {
+  background: transparent;
+}
+
+.markdown th,
+.markdown td {
+  border: none;
+  padding: 0.65rem 0.9rem;
+  vertical-align: top;
 }
 
 .markdown th {
   font-family: var(--mj-font-display);
   font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  text-align: left;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+}
+
+/* Code in a header keeps its case and its own font. */
+.markdown th code {
+  font-family: var(--ifm-font-family-monospace);
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 /* Admonitions take the amber frame. */

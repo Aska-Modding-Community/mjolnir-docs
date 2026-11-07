@@ -1,0 +1,568 @@
+{
+  "landing.code.events": {
+    "message": "События до того, как что-то случится: с {cancel} и значениями, которые можно изменить"
+  },
+  "landing.players.unpack": {
+    "message": "{verb} архив релиза в папку игры — ту, где лежит {exe}."
+  },
+  "landing.players.start": {
+    "message": "{verb} игру из Steam. Первый запуск готовит Mjolnir под сборку игры — около полуминуты."
+  },
+  "landing.players.mods": {
+    "message": "{verb} в {folder}, каждый в свою папку, и включайте и выключайте их в меню игры."
+  },
+  "landing.players.uninstall": {
+    "message": "Удаление — это удаление {dll}. Один раз запустить без модов — {flag}."
+  },
+  "theme.ErrorPageContent.title": {
+    "message": "На странице произошёл сбой.",
+    "description": "The title of the fallback page when the page crashed"
+  },
+  "theme.BackToTopButton.buttonAriaLabel": {
+    "message": "Прокрутка к началу",
+    "description": "The ARIA label for the back to top button"
+  },
+  "theme.blog.archive.title": {
+    "message": "Архив",
+    "description": "The page & hero title of the blog archive page"
+  },
+  "theme.blog.archive.description": {
+    "message": "Архив",
+    "description": "The page & hero description of the blog archive page"
+  },
+  "theme.blog.paginator.navAriaLabel": {
+    "message": "Навигация по странице списка блогов",
+    "description": "The ARIA label for the blog pagination"
+  },
+  "theme.blog.paginator.newerEntries": {
+    "message": "Следующие записи",
+    "description": "The label used to navigate to the newer blog posts page (previous page)"
+  },
+  "theme.blog.paginator.olderEntries": {
+    "message": "Предыдущие записи",
+    "description": "The label used to navigate to the older blog posts page (next page)"
+  },
+  "theme.blog.post.paginator.navAriaLabel": {
+    "message": "Навигация по странице поста блога",
+    "description": "The ARIA label for the blog posts pagination"
+  },
+  "theme.blog.post.paginator.newerPost": {
+    "message": "Следующий пост",
+    "description": "The blog post button label to navigate to the newer/previous post"
+  },
+  "theme.blog.post.paginator.olderPost": {
+    "message": "Предыдущий пост",
+    "description": "The blog post button label to navigate to the older/next post"
+  },
+  "theme.tags.tagsPageLink": {
+    "message": "Посмотреть все теги",
+    "description": "The label of the link targeting the tag list page"
+  },
+  "theme.colorToggle.ariaLabel.mode.system": {
+    "message": "system mode",
+    "description": "The name for the system color mode"
+  },
+  "theme.colorToggle.ariaLabel.mode.light": {
+    "message": "Светлый режим",
+    "description": "The name for the light color mode"
+  },
+  "theme.colorToggle.ariaLabel.mode.dark": {
+    "message": "Тёмный режим",
+    "description": "The name for the dark color mode"
+  },
+  "theme.colorToggle.ariaLabel": {
+    "message": "Переключение между темным и светлым режимом (сейчас используется {mode})",
+    "description": "The ARIA label for the color mode toggle"
+  },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "Навигационная цепочка текущей страницы",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.docs.paginator.navAriaLabel": {
+    "message": "Страница документа",
+    "description": "The ARIA label for the docs pagination"
+  },
+  "theme.docs.paginator.previous": {
+    "message": "Предыдущая страница",
+    "description": "The label used to navigate to the previous doc"
+  },
+  "theme.docs.paginator.next": {
+    "message": "Следующая страница",
+    "description": "The label used to navigate to the next doc"
+  },
+  "theme.docs.tagDocListPageTitle.nDocsTagged": {
+    "message": "Одна страница|{count} страницы|{count} страниц",
+    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.docs.tagDocListPageTitle": {
+    "message": "{nDocsTagged} с тегом \"{tagName}\"",
+    "description": "The title of the page for a docs tag"
+  },
+  "theme.docs.versionBadge.label": {
+    "message": "Версия: {versionLabel}"
+  },
+  "theme.docs.versions.unreleasedVersionLabel": {
+    "message": "Это документация для будущей версии {siteTitle} {versionLabel}.",
+    "description": "The label used to tell the user that he's browsing an unreleased doc version"
+  },
+  "theme.docs.versions.unmaintainedVersionLabel": {
+    "message": "Это документация {siteTitle} для версии {versionLabel}, которая уже не поддерживается.",
+    "description": "The label used to tell the user that he's browsing an unmaintained doc version"
+  },
+  "theme.docs.versions.latestVersionSuggestionLabel": {
+    "message": "Актуальная документация находится на странице {latestVersionLink} ({versionLabel}).",
+    "description": "The label used to tell the user to check the latest version"
+  },
+  "theme.docs.versions.latestVersionLinkLabel": {
+    "message": "последней версии",
+    "description": "The label used for the latest version suggestion link label"
+  },
+  "theme.common.editThisPage": {
+    "message": "Отредактировать эту страницу",
+    "description": "The link label to edit the current page"
+  },
+  "theme.common.headingLinkTitle": {
+    "message": "Прямая ссылка на {heading}",
+    "description": "Title for link to heading"
+  },
+  "theme.lastUpdated.atDate": {
+    "message": " {date}",
+    "description": "The words used to describe on which date a page has been last updated"
+  },
+  "theme.lastUpdated.byUser": {
+    "message": " от {user}",
+    "description": "The words used to describe by who the page has been last updated"
+  },
+  "theme.lastUpdated.lastUpdatedAtBy": {
+    "message": "Последнее обновление{atDate}{byUser}",
+    "description": "The sentence used to display when a page has been last updated, and by who"
+  },
+  "theme.NotFound.title": {
+    "message": "Страница не найдена",
+    "description": "The title of the 404 page"
+  },
+  "theme.navbar.mobileVersionsDropdown.label": {
+    "message": "Версии",
+    "description": "The label for the navbar versions dropdown on mobile view"
+  },
+  "theme.tags.tagsListLabel": {
+    "message": "Теги:",
+    "description": "The label alongside a tag list"
+  },
+  "theme.admonition.caution": {
+    "message": "предупреждение",
+    "description": "The default label used for the Caution admonition (:::caution)"
+  },
+  "theme.admonition.danger": {
+    "message": "осторожно",
+    "description": "The default label used for the Danger admonition (:::danger)"
+  },
+  "theme.admonition.info": {
+    "message": "к сведению",
+    "description": "The default label used for the Info admonition (:::info)"
+  },
+  "theme.admonition.note": {
+    "message": "примечание",
+    "description": "The default label used for the Note admonition (:::note)"
+  },
+  "theme.admonition.tip": {
+    "message": "подсказка",
+    "description": "The default label used for the Tip admonition (:::tip)"
+  },
+  "theme.admonition.warning": {
+    "message": "warning",
+    "description": "The default label used for the Warning admonition (:::warning)"
+  },
+  "theme.AnnouncementBar.closeButtonAriaLabel": {
+    "message": "Закрыть",
+    "description": "The ARIA label for close button of announcement bar"
+  },
+  "theme.blog.sidebar.navAriaLabel": {
+    "message": "Навигация по последним постам в блоге",
+    "description": "The ARIA label for recent posts in the blog sidebar"
+  },
+  "theme.DocSidebarItem.expandCategoryAriaLabel": {
+    "message": "Expand sidebar category '{label}'",
+    "description": "The ARIA label to expand the sidebar category"
+  },
+  "theme.DocSidebarItem.collapseCategoryAriaLabel": {
+    "message": "Collapse sidebar category '{label}'",
+    "description": "The ARIA label to collapse the sidebar category"
+  },
+  "theme.IconExternalLink.ariaLabel": {
+    "message": "(opens in new tab)",
+    "description": "The ARIA label for the external link icon"
+  },
+  "theme.NavBar.navAriaLabel": {
+    "message": "Main",
+    "description": "The ARIA label for the main navigation"
+  },
+  "theme.NotFound.p1": {
+    "message": "К сожалению, мы не смогли найти запрашиваемую вами страницу.",
+    "description": "The first paragraph of the 404 page"
+  },
+  "theme.NotFound.p2": {
+    "message": "Пожалуйста, обратитесь к владельцу сайта, с которого вы перешли на эту ссылку, чтобы сообщить ему, что ссылка не работает.",
+    "description": "The 2nd paragraph of the 404 page"
+  },
+  "theme.navbar.mobileLanguageDropdown.label": {
+    "message": "Языки",
+    "description": "The label for the mobile language switcher dropdown"
+  },
+  "theme.TOCCollapsible.toggleButtonLabel": {
+    "message": "Содержание этой страницы",
+    "description": "The label used by the button on the collapsible TOC component"
+  },
+  "theme.blog.post.readMore": {
+    "message": "Читать дальше",
+    "description": "The label used in blog post item excerpts to link to full blog posts"
+  },
+  "theme.blog.post.readMoreLabel": {
+    "message": "Подробнее о {title}",
+    "description": "The ARIA label for the link to full blog posts from excerpts"
+  },
+  "theme.blog.post.readingTime.plurals": {
+    "message": "{readingTime} мин. чтения|{readingTime} мин. чтения|{readingTime} мин. чтения",
+    "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.CodeBlock.copy": {
+    "message": "Скопировать",
+    "description": "The copy button label on code blocks"
+  },
+  "theme.CodeBlock.copied": {
+    "message": "Скопировано",
+    "description": "The copied button label on code blocks"
+  },
+  "theme.CodeBlock.copyButtonAriaLabel": {
+    "message": "Скопировать в буфер обмена",
+    "description": "The ARIA label for copy code blocks button"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "Переключить перенос по строкам",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "Главная страница",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
+  "theme.docs.sidebar.collapseButtonTitle": {
+    "message": "Свернуть сайдбар",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.collapseButtonAriaLabel": {
+    "message": "Свернуть сайдбар",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.navAriaLabel": {
+    "message": "Docs sidebar",
+    "description": "The ARIA label for the sidebar navigation"
+  },
+  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
+    "message": "Закрыть панель навигации",
+    "description": "The ARIA label for close button of mobile sidebar"
+  },
+  "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
+    "message": "Переключить навигационную панель",
+    "description": "The ARIA label for hamburger menu button of mobile navigation"
+  },
+  "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
+    "message": "← Перейти к главному меню",
+    "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+  },
+  "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
+    "message": "Expand the dropdown",
+    "description": "The ARIA label of the button to expand the mobile dropdown navbar item"
+  },
+  "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {
+    "message": "Collapse the dropdown",
+    "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
+  },
+  "theme.docs.sidebar.expandButtonTitle": {
+    "message": "Развернуть сайдбар",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.docs.sidebar.expandButtonAriaLabel": {
+    "message": "Развернуть сайдбар",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.blog.post.plurals": {
+    "message": "{count} запись|{count} записи|{count} записей",
+    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.blog.tagTitle": {
+    "message": "{nPosts} с тегом \"{tagName}\"",
+    "description": "The title of the page for a blog tag"
+  },
+  "theme.blog.author.pageTitle": {
+    "message": "{authorName} - {nPosts}",
+    "description": "The title of the page for a blog author"
+  },
+  "theme.blog.authorsList.pageTitle": {
+    "message": "Authors",
+    "description": "The title of the authors page"
+  },
+  "theme.blog.authorsList.viewAll": {
+    "message": "View All Authors",
+    "description": "The label of the link targeting the blog authors page"
+  },
+  "theme.blog.author.noPosts": {
+    "message": "This author has not written any posts yet.",
+    "description": "The text for authors with 0 blog post"
+  },
+  "theme.contentVisibility.unlistedBanner.title": {
+    "message": "Unlisted page",
+    "description": "The unlisted content banner title"
+  },
+  "theme.contentVisibility.unlistedBanner.message": {
+    "message": "This page is unlisted. Search engines will not index it, and only users having a direct link can access it.",
+    "description": "The unlisted content banner message"
+  },
+  "theme.contentVisibility.draftBanner.title": {
+    "message": "Draft page",
+    "description": "The draft content banner title"
+  },
+  "theme.contentVisibility.draftBanner.message": {
+    "message": "This page is a draft. It will only be visible in dev and be excluded from the production build.",
+    "description": "The draft content banner message"
+  },
+  "theme.docs.DocCard.categoryDescription.plurals": {
+    "message": "{count} элемент|{count} элемента|{count} элементов",
+    "description": "The default description for a category card in the generated index about how many items this category includes"
+  },
+  "theme.ErrorPageContent.tryAgain": {
+    "message": "Попробуйте ещё раз",
+    "description": "The label of the button to try again rendering when the React error boundary captures an error"
+  },
+  "theme.common.skipToMainContent": {
+    "message": "Перейти к основному содержимому",
+    "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+  },
+  "theme.tags.tagsPageTitle": {
+    "message": "Теги",
+    "description": "The title of the tag list page"
+  },
+  "landing.hero.kicker": {
+    "message": "Загрузчик модов и C# SDK для ASKA",
+    "description": "A mod loader and C# SDK for ASKA"
+  },
+  "landing.hero.lead": {
+    "message": "Моды — это сборки .NET 10, которые работают внутри игры. Они общаются с ней через обычные события C#, привязываемые значения и билдеры, а когда нужно — через HarmonyX.",
+    "description": "Mods are .NET 10 assemblies that run inside the game. They speak to it through plain C# events, bindable values and builders, and can still reach for HarmonyX when they need to."
+  },
+  "landing.hero.plate": {
+    "message": "Версия 0.x · одиночная игра и хост",
+    "description": "Version 0.x · single player and hosting"
+  },
+  "landing.hero.write": {
+    "message": "Написать мод",
+    "description": "Write a mod"
+  },
+  "landing.hero.install": {
+    "message": "Установить",
+    "description": "Install"
+  },
+  "landing.paths.play": {
+    "message": "Играть с модами",
+    "description": "Play with mods"
+  },
+  "landing.paths.play.text": {
+    "message": "Распакуйте, запустите из Steam, положите моды в папку.",
+    "description": "Unpack, start from Steam, drop mods in a folder."
+  },
+  "landing.paths.forge": {
+    "message": "Выковать мод",
+    "description": "Forge a mod"
+  },
+  "landing.paths.forge.text": {
+    "message": "Библиотека классов, один класс, несколько строк.",
+    "description": "A class library, one class, a few lines."
+  },
+  "landing.paths.inside": {
+    "message": "Заглянуть внутрь",
+    "description": "See inside"
+  },
+  "landing.paths.inside.text": {
+    "message": "Как загрузчик попадает в игру и почему игра от него не падает.",
+    "description": "How the loader reaches the game, and keeps it safe."
+  },
+  "landing.paths.label": {
+    "message": "С чего начать",
+    "description": "Where to start"
+  },
+  "landing.code.title": {
+    "message": "Целый мод на одном экране",
+    "description": "A whole mod on one screen"
+  },
+  "landing.code.text": {
+    "message": "Мод — это класс с манифестом. Его настройки появляются в окне модов самой игры и сохраняются в файл TOML. Его обработчики выполняются в главном потоке игры, а исключение в одном из них отключает только этот мод.",
+    "description": "A mod is a class with a manifest. Its settings appear in the game’s own Mods window, saved to a TOML file. Its handlers run on the game’s main thread, and an exception in one of them turns off that mod alone."
+  },
+  "landing.code.bindables": {
+    "message": "Привязываемые характеристики, настройки и тексты, за которыми интерфейс следит сам",
+    "description": "Bindable stats, configs and texts that UI follows by itself"
+  },
+  "landing.code.ids": {
+    "message": "Id контента из id мода и имени — одинаковые на любой машине",
+    "description": "Content ids from the mod’s id and a name, the same on every machine"
+  },
+  "landing.code.more": {
+    "message": "Как живёт мод →",
+    "description": "How a mod lives →"
+  },
+  "landing.modules.title": {
+    "message": "Что доступно моду",
+    "description": "What a mod can reach"
+  },
+  "landing.modules.ui": {
+    "message": "Интерфейс",
+    "description": "UI"
+  },
+  "landing.modules.ui.text": {
+    "message": "Окна, HUD, меню, вкладки в окнах самой игры — из элементов её интерфейса.",
+    "description": "Windows, HUD, menus, tabs in the game’s own windows, made from the game’s interface."
+  },
+  "landing.modules.player": {
+    "message": "Игрок",
+    "description": "Player"
+  },
+  "landing.modules.player.text": {
+    "message": "Появление и смерть, здоровье, выносливость, еда, вода, тепло, телепорты.",
+    "description": "Spawns and deaths, health, stamina, food, water, warmth, teleports."
+  },
+  "landing.modules.content": {
+    "message": "Контент",
+    "description": "Content"
+  },
+  "landing.modules.content.text": {
+    "message": "Предметы, рецепты вручную и в мастерской, постройки, эффекты, модели.",
+    "description": "Items, recipes by hand and at the workshop, buildings, effects, models."
+  },
+  "landing.modules.characters": {
+    "message": "Персонажи",
+    "description": "Characters"
+  },
+  "landing.modules.characters.text": {
+    "message": "Атрибуты, модификаторы, навыки, опыт и эффекты состояния любого персонажа.",
+    "description": "Attributes, modifiers, skills, experience and status effects of anyone."
+  },
+  "landing.modules.residents": {
+    "message": "Жители",
+    "description": "Residents"
+  },
+  "landing.modules.residents.text": {
+    "message": "Жители поселения и ваши собственные работы, которые они берут по приоритету.",
+    "description": "The settlement’s villagers, and jobs of your own they take by priority."
+  },
+  "landing.modules.world": {
+    "message": "Мир",
+    "description": "World"
+  },
+  "landing.modules.world.text": {
+    "message": "Часы мира: час, день и ночь, остановка времени.",
+    "description": "The world’s clock: the hour, day and night, time stopped."
+  },
+  "landing.modules.console": {
+    "message": "Консоль",
+    "description": "Console"
+  },
+  "landing.modules.console.text": {
+    "message": "Свои команды рядом с give, tp, time и stats.",
+    "description": "Commands of your own beside give, tp, time and stats."
+  },
+  "landing.modules.kit": {
+    "message": "Mod kit",
+    "description": "Mod kit"
+  },
+  "landing.modules.kit.text": {
+    "message": "Проект Unity, настроенный под версию игры и её конвейер рендера.",
+    "description": "A Unity project set up for the game’s version and pipeline."
+  },
+  "landing.boot.title": {
+    "message": "От первой библиотеки до вашего мода",
+    "description": "From the first library to your mod"
+  },
+  "landing.boot.proxy": {
+    "message": "Игра загружает прокси системной библиотеки от Mjolnir, который по имени дожидается рантайма игры.",
+    "description": "The game loads Mjolnir’s proxy of a system library, which waits for the game’s runtime by name."
+  },
+  "landing.boot.clr": {
+    "message": "Когда рантайм игры поднят, в том же процессе запускается собственный .NET 10.",
+    "description": "Once the game’s runtime is up, a private .NET 10 starts in the same process."
+  },
+  "landing.boot.core": {
+    "message": "Генерирует interop игры для этой сборки, запускает Harmony, загружает моды в порядке зависимостей.",
+    "description": "Generates the game’s interop for this build, starts Harmony, loads mods in dependency order."
+  },
+  "landing.boot.sdk": {
+    "message": "Даёт модам события, привязываемые значения и билдеры. Переименование в игре исправляется здесь, а не в каждом моде.",
+    "description": "Gives mods events, bindables and builders. A rename in the game is fixed here, not in every mod."
+  },
+  "landing.boot.more": {
+    "message": "Архитектура целиком →",
+    "description": "The architecture in full →"
+  },
+  "landing.players.title": {
+    "message": "Игрокам",
+    "description": "For players"
+  },
+  "landing.players.unpack.verb": {
+    "message": "Распакуйте",
+    "description": "Unpack"
+  },
+  "landing.players.start.verb": {
+    "message": "Запустите",
+    "description": "Start"
+  },
+  "landing.players.mods.verb": {
+    "message": "Добавляйте моды",
+    "description": "Add mods"
+  },
+  "landing.status.title": {
+    "message": "Где мы сейчас",
+    "description": "Where it stands"
+  },
+  "landing.status.works": {
+    "message": "Работает",
+    "description": "Works"
+  },
+  "landing.status.works.1": {
+    "message": "Одиночная игра и хост мира",
+    "description": "Single player and hosting a world"
+  },
+  "landing.status.works.2": {
+    "message": "Интерфейс, игрок, контент, персонажи, жители, часы, консоль",
+    "description": "UI, player, content, characters, residents, the clock, the console"
+  },
+  "landing.status.works.3": {
+    "message": "Interop генерируется на машине игрока и заново после каждого обновления игры",
+    "description": "Interop generated on the player’s machine, again after each game update"
+  },
+  "landing.status.todo": {
+    "message": "Ещё не сделано",
+    "description": "Not done yet"
+  },
+  "landing.status.todo.1": {
+    "message": "Клиенты, подключающиеся к хосту с модами",
+    "description": "Clients joining a host with mods"
+  },
+  "landing.status.todo.2": {
+    "message": "Проверка совместимости модов (handshake)",
+    "description": "The mod-compatibility handshake"
+  },
+  "landing.status.todo.3": {
+    "message": "Модели построек мода",
+    "description": "Building models of a mod’s own"
+  },
+  "landing.status.api": {
+    "message": "Публичный API может меняться между версиями 0.x; каждое изменение зафиксировано в репозитории.",
+    "description": "The public API can change between 0.x versions; every change is declared in the repository."
+  },
+  "landing.meta.title": {
+    "message": "Загрузчик модов и C# SDK для ASKA",
+    "description": "Mod loader and C# SDK for ASKA"
+  },
+  "landing.meta.description": {
+    "message": "Mjolnir — загрузчик модов и C# SDK для моддинга игры ASKA.",
+    "description": "Mjolnir is a mod loader and C# modding SDK for the game ASKA."
+  }
+}

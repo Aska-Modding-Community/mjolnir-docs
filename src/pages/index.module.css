@@ -553,8 +553,17 @@
 }
 
 .parchment code {
-  background: rgba(32, 30, 29, 0.08);
-  color: var(--mj-coal);
+  --mj-code-bg: rgba(110, 76, 40, 0.1);
+  --mj-code-border: rgba(110, 76, 40, 0.18);
+  --mj-code-fg: #4a2f12;
+}
+
+/* The dark bands stay dark in either theme, and so does their code. */
+.section code,
+.hero code {
+  --mj-code-bg: rgba(255, 236, 200, 0.06);
+  --mj-code-border: rgba(255, 236, 200, 0.1);
+  --mj-code-fg: #f1dcb4;
 }
 
 /* Status */

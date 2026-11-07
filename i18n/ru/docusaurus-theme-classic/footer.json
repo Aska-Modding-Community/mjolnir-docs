@@ -1,0 +1,50 @@
+{
+  "link.title.Play with mods": {
+    "message": "Играть с модами",
+    "description": "The title of the footer links column with title=Play with mods in the footer"
+  },
+  "link.title.Make mods": {
+    "message": "Делать моды",
+    "description": "The title of the footer links column with title=Make mods in the footer"
+  },
+  "link.title.Project": {
+    "message": "Проект",
+    "description": "The title of the footer links column with title=Project in the footer"
+  },
+  "link.item.label.Installing": {
+    "message": "Установка",
+    "description": "The label of footer link with label=Installing linking to /docs/getting-started/installing"
+  },
+  "link.item.label.Troubleshooting": {
+    "message": "Решение проблем",
+    "description": "The label of footer link with label=Troubleshooting linking to /docs/troubleshooting"
+  },
+  "link.item.label.Your first mod": {
+    "message": "Первый мод",
+    "description": "The label of footer link with label=Your first mod linking to /docs/getting-started/first-mod"
+  },
+  "link.item.label.Mod lifecycle": {
+    "message": "Жизненный цикл мода",
+    "description": "The label of footer link with label=Mod lifecycle linking to /docs/concepts/lifecycle"
+  },
+  "link.item.label.Examples": {
+    "message": "Примеры",
+    "description": "The label of footer link with label=Examples linking to https://github.com/FibonacciFox/Mjolnir/tree/main/examples"
+  },
+  "link.item.label.Architecture": {
+    "message": "Архитектура",
+    "description": "The label of footer link with label=Architecture linking to /docs/architecture"
+  },
+  "link.item.label.Building from source": {
+    "message": "Сборка из исходников",
+    "description": "The label of footer link with label=Building from source linking to /docs/contributing/building"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/FibonacciFox/Mjolnir"
+  },
+  "copyright": {
+    "message": "Mjolnir распространяется по лицензии MIT. ASKA — игра Sand Sailor Studio; Mjolnir с ней не связан.",
+    "description": "The footer copyright"
+  }
+}

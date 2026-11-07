@@ -21,6 +21,7 @@ const config: Config = {
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
+  onBrokenAnchors: 'throw',
   markdown: {
     hooks: {
       onBrokenMarkdownLinks: 'throw',
@@ -29,7 +30,11 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'ru'],
+    localeConfigs: {
+      en: {label: 'English', htmlLang: 'en'},
+      ru: {label: 'Русский', htmlLang: 'ru'},
+    },
   },
 
   headTags: [
@@ -79,6 +84,7 @@ const config: Config = {
         {type: 'docSidebar', sidebarId: 'docs', position: 'left', label: 'Docs'},
         {to: '/docs/getting-started/first-mod', label: 'First mod', position: 'left'},
         {to: '/docs/guides/ui/overview', label: 'Guides', position: 'left'},
+        {type: 'localeDropdown', position: 'right'},
         {href: `${repository}/releases`, label: 'Download', position: 'right'},
         {href: repository, label: 'GitHub', position: 'right'},
       ],

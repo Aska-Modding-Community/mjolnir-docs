@@ -1,0 +1,30 @@
+{
+  "title": {
+    "message": "Mjolnir",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Mjolnir",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Docs": {
+    "message": "Документация",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.First mod": {
+    "message": "Первый мод",
+    "description": "Navbar item with label First mod"
+  },
+  "item.label.Guides": {
+    "message": "Руководства",
+    "description": "Navbar item with label Guides"
+  },
+  "item.label.Download": {
+    "message": "Скачать",
+    "description": "Navbar item with label Download"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}
