@@ -530,8 +530,8 @@
     "description": "Single player, hosting, joining a host with the same mods"
   },
   "landing.status.works.2": {
-    "message": "Интерфейс, игрок, контент, персонажи, жители, часы мира, мультиплеер, консоль",
-    "description": "UI, player, content, characters, residents, world clock, multiplayer, console"
+    "message": "Интерфейс, игрок, контент, персонажи, жители, анимации, часы мира, мультиплеер, консоль",
+    "description": "UI, player, content, characters, residents, animations, world clock, multiplayer, console"
   },
   "landing.status.works.3": {
     "message": "Interop генерируется локально и заново после обновлений игры",
@@ -568,5 +568,13 @@
   "landing.modules.net.text": {
     "message": "Проверка модов при входе, каналы сообщений между модами игроков.",
     "description": "Mod check on join, message channels between players’ mods."
+  },
+  "landing.modules.anim": {
+    "message": "Анимации",
+    "description": "Animations"
+  },
+  "landing.modules.anim.text": {
+    "message": "Клипы игры и свои на игроке и жителях, эмоции, кости.",
+    "description": "The game’s clips and your own on the player and villagers, emotes, bones."
   }
 }

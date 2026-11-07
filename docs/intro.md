@@ -25,6 +25,7 @@ Tested: single player, hosting a world, and the mod check between a host and a c
 | Give a mod settings or texts in the player's language | [Config](concepts/config.md), [Localization](concepts/localization.md) |
 | Build windows, HUD elements or menu entries | [User interface](guides/ui/overview.md) |
 | Add items, recipes, buildings or effects | [Items and recipes](guides/content/items-and-recipes.md) |
+| Play animations on the player or villagers | [Animations](guides/animations.md) |
 | Send data between players | [Multiplayer](guides/network.md) |
 | Know how the loader works | [Architecture](architecture.md) |
 | Build Mjolnir itself | [Building from source](contributing/building.md) |
@@ -35,10 +36,11 @@ A mod references the main library `Mjolnir.SDK` and only the modules it uses, ea
 
 | Assembly | Namespace | What it gives |
 |---|---|---|
-| `Mjolnir.SDK` | `Mjolnir.SDK` | `Mod` and its lifecycle, manifests and dependencies, TOML config, localization, bindable values, the main-thread `Dispatcher`, character sheets, console commands |
+| `Mjolnir.SDK` | `Mjolnir.SDK` | `Mod` and its lifecycle, manifests and dependencies, TOML config, localization, bindable values, the main-thread `Dispatcher`, character sheets and animators, console commands |
 | `Mjolnir.SDK.UI` | `Mjolnir.SDK.UI` | Windows, dialogs, HUD elements and markers, notifications, menu entries, tabs in the game's own windows, hotkeys, controls cloned from the game's interface |
 | `Mjolnir.SDK.Player` | `Mjolnir.SDK.Player` | The local player: spawn and death, health, stamina, food, water, warmth, stamina costs, position and teleport |
 | `Mjolnir.SDK.Content` | `Mjolnir.SDK.Content` | Items, recipes, buildings, status effects, item models from AssetBundles, the item catalog |
+| `Mjolnir.SDK.Animation` | `Mjolnir.SDK.Animation` | Animations and masks of a mod's own from its AssetBundle; connects `CharacterAnimator` to the game |
 | `Mjolnir.SDK.Net` | `Mjolnir.SDK.Net` | The players of a session and message channels between their mods. Every session checks that a joining player's mods match the host's |
 | `Mjolnir.SDK.AI` | `Mjolnir.SDK.AI` | The settlement's villagers and jobs of a mod's own |
 | `Mjolnir.SDK.World` | `Mjolnir.SDK.World` | The world's clock |

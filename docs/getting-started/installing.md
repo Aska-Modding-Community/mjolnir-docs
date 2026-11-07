@@ -66,6 +66,7 @@ HUD, and the developer console's key.
 | `Mjolnir/Config/mjolnir.toml` | Mjolnir's own settings |
 | `Mjolnir/Config/mod-list.json` | The mods you turned off |
 | `Mjolnir/interop/` | The generated view of the game's code, for this game build |
+| `Mjolnir/rigs/` | The characters' skeletons, for the mod kit |
 | `Mjolnir/cache/` | Hashes of the game's files and the generator's log |
 
 ## Start once without mods

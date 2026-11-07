@@ -28,6 +28,10 @@ The console is English only: its answers and the item names it takes and shows.
 | `uneffect <effect>` | Takes a status effect off the player |
 | `villager [count]` | Spawns villagers in front of the player |
 | `villagers` | Lists the world's villagers: what they do and where |
+| `anims [words]` | Lists the animations whose names contain the words |
+| `anim <animation> [loop] [upper] [move] [villager]` | Plays an animation on the player, or on the nearest villager |
+| `animstop [villager]` | Stops it |
+| `emote <sit\|wave\|cheer\|skal> [villager]` | Plays one of the game's emotes |
 
 Words are split by spaces; a word containing spaces goes in double quotes: `give Item_Wood_Sticks 5` gives five
 sticks.

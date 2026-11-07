@@ -26,6 +26,7 @@ A `Resident` is one villager, the same object while it lives:
 | `Activity` | What it does: a mod job's full name `<mod id>.<job>`, else the game's own quest (`WorkstationIdleQuest`, `VillagerSocialQuest`…) |
 | `ModJob` | The mod job it does now, or `null` |
 | `Sheet` | Its [character sheet](characters.md) |
+| `Animator` | Its [animator](animations.md) |
 
 Read residents on the main thread: in callbacks, a job's steps, or the events.
 
@@ -78,6 +79,7 @@ public sealed class GreetMod : Mod
 | `MoveTo(place, distance)` | Walks to the place, asked when the step starts, until within `distance` metres. It gives up after a minute, and ends after 3 s standing still near the place, since villagers walking to one spot stop each other short |
 | `Wait(duration)` | Stays where it is |
 | `Do(action)` | Runs the action once, on the main thread |
+| `Play(animation, options, duration)` | Plays an animation where the villager stands; over when it ends, or when `duration` is up. See [Animations](animations.md#villagers) |
 
 After its last step the job ends and the villager picks again. To keep a job from running again at once, lower its
 priority yourself with a cooldown or a done flag, as above.

@@ -28,7 +28,7 @@ public sealed class Lightfoot : Mod
     }
 }`;
 
-type IconName = 'window' | 'player' | 'chest' | 'village' | 'sun' | 'runes' | 'console' | 'anvil' | 'net';
+type IconName = 'window' | 'player' | 'chest' | 'village' | 'sun' | 'runes' | 'console' | 'anvil' | 'net' | 'motion';
 
 function Icon({name}: {name: IconName}): ReactNode {
   const paths: Record<IconName, ReactNode> = {
@@ -78,6 +78,12 @@ function Icon({name}: {name: IconName}): ReactNode {
       <>
         <path d="M3 7h14c0 3-2 5-5 5H9l-1 3h8v4H6v-4l1-3C4.8 12 3 10 3 7z" />
         <path d="M17 7h4" />
+      </>
+    ),
+    motion: (
+      <>
+        <circle cx="13" cy="4" r="2" />
+        <path d="M11 8 8 13l4 2-1 6M11 8l4 3 4-1M8 13H4" />
       </>
     ),
     net: (
@@ -189,6 +195,7 @@ function Modules(): ReactNode {
     {icon: 'village', name: t('modules.residents', 'Residents'), to: '/docs/guides/residents', text: t('modules.residents.text', 'Villagers and custom jobs scheduled by priority.')},
     {icon: 'sun', name: t('modules.world', 'World'), to: '/docs/guides/world', text: t('modules.world.text', 'World clock: hour, day and night, time stop.')},
     {icon: 'console', name: t('modules.console', 'Console'), to: '/docs/guides/console', text: t('modules.console.text', 'Custom commands alongside give, tp, time and stats.')},
+    {icon: 'motion', name: t('modules.anim', 'Animations'), to: '/docs/guides/animations', text: t('modules.anim.text', 'The game’s clips and your own on the player and villagers, emotes, bones.')},
     {icon: 'net', name: t('modules.net', 'Multiplayer'), to: '/docs/guides/network', text: t('modules.net.text', 'Mod check on join, message channels between players’ mods.')},
     {icon: 'anvil', name: t('modules.kit', 'Mod kit'), to: '/docs/guides/content/models', text: t('modules.kit.text', 'Unity project matching the game\u2019s version and render pipeline.')},
   ];
@@ -285,7 +292,7 @@ function Status(): ReactNode {
             <span className={styles.statusTitle}>{t('status.works', 'Available')}</span>
             <ul>
               <li>{t('status.works.1', 'Single player, hosting, joining a host with the same mods')}</li>
-              <li>{t('status.works.2', 'UI, player, content, characters, residents, world clock, multiplayer, console')}</li>
+              <li>{t('status.works.2', 'UI, player, content, characters, residents, animations, world clock, multiplayer, console')}</li>
               <li>{t('status.works.3', 'Interop generated locally and regenerated after game updates')}</li>
             </ul>
           </div>

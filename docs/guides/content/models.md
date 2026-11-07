@@ -48,6 +48,19 @@ Mjolnir/Mods/TwineMod/
 └─ bundles/models
 ```
 
+## Animations
+
+Clips and masks for [animations](../animations.md#a-mods-own-animations) are made on the game's own skeletons:
+
+1. Start the game with Mjolnir once and load a world with villagers. Mjolnir writes each character's skeleton (bone
+   names and bind pose, nothing else of the game) to `Mjolnir/rigs/<rig>.rig` as the character appears.
+2. In the kit, run **Mjolnir → Import Rigs**. It reads them into `Assets/Mjolnir/Rigs/<rig>.prefab` (`aska` for the
+   player, `peasant_male` and `peasant_female` for villagers), each with an Animator and a generic avatar, and makes
+   Mjolnir's masks again. The kit finds the game's folder from `MJOLNIR_GAME_DIR`, a folder picked before, or Steam's
+   records, and asks when it finds none. The imported folder is the game's, so it stays out of git.
+3. Animate a rig in the Animation window, or give imported clips its avatar. Put the clips and masks into
+   `Assets/Mods/<mod>/<bundle>/` and build the bundles as for models.
+
 ## Batch builds
 
 `tools/build-bundles.ps1` in the repository runs the kit in batch mode and copies the examples' bundles into

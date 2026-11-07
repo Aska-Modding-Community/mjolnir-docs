@@ -66,6 +66,7 @@ ASKA/
 | `Mjolnir/Config/mjolnir.toml` | Собственные настройки Mjolnir |
 | `Mjolnir/Config/mod-list.json` | Моды, которые вы выключили |
 | `Mjolnir/interop/` | Сгенерированное представление кода игры для этой сборки игры |
+| `Mjolnir/rigs/` | Скелеты персонажей для mod kit |
 | `Mjolnir/cache/` | Хеши файлов игры и лог генератора |
 
 ## Запуск один раз без модов {/* #start-once-without-mods */}

@@ -49,6 +49,7 @@ Hud.Add(bar, HudAnchor.BottomLeft);
 Food and water change every frame. The SDK watches a stat in the game only while a mod listens to it.
 
 `LocalPlayer.Sheet` is the character's whole [character sheet](characters.md): characteristics, skills and effects.
+`LocalPlayer.Animator` plays [animations](animations.md) on it.
 
 ## Stamina costs
 
