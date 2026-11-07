@@ -108,7 +108,5 @@ int sticks = Items.Give("Item_Wood_Sticks", 5);  // a game item by asset name
 room. `Items.CanGive` tells whether items can be given now.
 
 :::note[Not done yet]
-- A client joining a host: the network sends an item as its index in the game's list, so every peer needs the same
-  mods' items. The handshake that will check this is not done yet.
-- A recipe added after a station is up reaches it only at the next load.
+A recipe added after a station is up reaches it only at the next load.
 :::

@@ -15,7 +15,7 @@ A healthy start logs, in order:
 [Info ] [Native] Mjolnir.Native attached to Aska.exe
 [Info ] [Native] GameAssembly.dll loaded via LoadLibraryW("GameAssembly.dll")
 [Info ] [Native] il2cpp_init detour installed
-[Info ] [Core] Mjolnir.Core 0.2.0.0 on .NET 10.0.9
+[Info ] [Core] Mjolnir.Core 0.3.0.0 on .NET 10.0.9
 [Info ] [Interop] Initialising HarmonyX 2.16.1.0
 [Info ] [Interop] Il2CppInterop started for Unity 6000.3.12 (503 ms)
 [Info ] [Mods] Loaded My Mod (author.mymod) 1.0.0 in 12 ms     one line per mod, in load order
@@ -41,6 +41,7 @@ A mod's own lines carry its name: `[My Mod] …`. A mod that cannot load logs wh
 | The progress window comes after every game update | Expected: the interop is generated once per game build |
 | Warnings that the game build differs, after a game update | Mjolnir runs, but mods that patch the game directly may not fit the new build until they are updated |
 | A setting changed in the file is back as it was | The game writes changed settings when it quits. Edit config files while the game is not running |
+| "Unable to join the session" when joining a world | Your mods differ from the host's. The message lists the mods to turn on or off and the versions that differ; change them in the Mjolnir window and restart the game |
 | The menu comes about two minutes late | The game waits for its online login before the main menu: the game's behavior, not Mjolnir's |
 
 ## The game closes without a word in the log

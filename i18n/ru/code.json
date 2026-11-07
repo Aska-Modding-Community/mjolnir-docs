@@ -1,23 +1,18 @@
 {
   "landing.code.events": {
-    "message": "События «до» с {cancel} и изменяемыми аргументами",
-    "description": "Pre-events with {cancel} and mutable arguments"
+    "message": "События «до» с {cancel} и изменяемыми аргументами"
   },
   "landing.players.unpack": {
-    "message": "{verb} архив релиза в папку с {exe}.",
-    "description": "{verb} the release archive into the folder with {exe}."
+    "message": "{verb} архив релиза в папку с {exe}."
   },
   "landing.players.start": {
-    "message": "{verb} игру из Steam. Первый запуск генерирует interop под вашу сборку игры, около 30 с.",
-    "description": "{verb} the game from Steam. The first launch generates interop for your game build, about 30 s."
+    "message": "{verb} игру из Steam. Первый запуск генерирует interop под вашу сборку игры, около 30 с."
   },
   "landing.players.mods": {
-    "message": "{verb} в {folder}, по папке на мод. Включаются и выключаются в меню Mjolnir в игре.",
-    "description": "{verb} to {folder}, one folder per mod. Turn them on and off in the in-game Mjolnir menu."
+    "message": "{verb} в {folder}, по папке на мод. Включаются и выключаются в меню Mjolnir в игре."
   },
   "landing.players.uninstall": {
-    "message": "Удаление — удалить {dll}. Один запуск без модов — параметр {flag}.",
-    "description": "To uninstall, delete {dll}. To launch once without mods, pass {flag}."
+    "message": "Удаление — удалить {dll}. Один запуск без модов — параметр {flag}."
   },
   "theme.ErrorPageContent.title": {
     "message": "На странице произошёл сбой.",
@@ -531,12 +526,12 @@
     "description": "Available"
   },
   "landing.status.works.1": {
-    "message": "Одиночная игра и хост мира",
-    "description": "Single player and hosted worlds"
+    "message": "Одиночная игра, хост, вход к хосту с теми же модами",
+    "description": "Single player, hosting, joining a host with the same mods"
   },
   "landing.status.works.2": {
-    "message": "Интерфейс, игрок, контент, персонажи, жители, часы мира, консоль",
-    "description": "UI, player, content, characters, residents, world clock, console"
+    "message": "Интерфейс, игрок, контент, персонажи, жители, часы мира, мультиплеер, консоль",
+    "description": "UI, player, content, characters, residents, world clock, multiplayer, console"
   },
   "landing.status.works.3": {
     "message": "Interop генерируется локально и заново после обновлений игры",
@@ -547,14 +542,10 @@
     "description": "Planned"
   },
   "landing.status.todo.1": {
-    "message": "Подключение клиентов к хосту с модами",
-    "description": "Clients joining a modded host"
+    "message": "Проверка работ жителей и модификаторов на подключившихся клиентах",
+    "description": "Villager jobs and stat modifiers checked on joined clients"
   },
   "landing.status.todo.2": {
-    "message": "Проверка совместимости модов (handshake)",
-    "description": "Mod compatibility handshake"
-  },
-  "landing.status.todo.3": {
     "message": "Свои модели построек",
     "description": "Custom building models"
   },
@@ -569,5 +560,13 @@
   "landing.meta.description": {
     "message": "Mjolnir — загрузчик модов и C# SDK для ASKA.",
     "description": "Mjolnir is a mod loader and C# SDK for ASKA."
+  },
+  "landing.modules.net": {
+    "message": "Мультиплеер",
+    "description": "Multiplayer"
+  },
+  "landing.modules.net.text": {
+    "message": "Проверка модов при входе, каналы сообщений между модами игроков.",
+    "description": "Mod check on join, message channels between players’ mods."
   }
 }

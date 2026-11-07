@@ -117,9 +117,12 @@ derived from load order. They are the same on every machine and every start, as 
 
 ## Multiplayer
 
-The game's networking is Photon Fusion. Mjolnir is tested in single player and when hosting a world. Not done yet:
+The game's networking is Photon Fusion; the game itself knows nothing of mods. `Mjolnir.SDK.Net` adds the rest:
 
-- clients joining a host with mods;
-- the mod-compatibility handshake, which will compare the mods of a host and a client, using each mod's `Network`
-  declaration;
-- messages of a mod's own between peers.
+- The host announces its Mjolnir version in the session's properties. A joining client sends the host its mods, and
+  the host accepts it or refuses it with its own list. Only `Everyone` mods count, and Mjolnir by major and minor
+  version.
+- Mods' messages ride the game's reliable data under a header of Mjolnir's own (`AKLN`), with the sender's id; the
+  game's own packets pass through untouched. Messages travel only between players that passed the check.
+
+See [Multiplayer](guides/network.md).

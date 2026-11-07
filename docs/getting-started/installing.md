@@ -81,6 +81,7 @@ Delete `version.dll` from the game's folder; the game then starts as if Mjolnir 
 too to remove the mods, their settings and the log.
 
 :::note
-Multiplayer with mods is tested only when hosting a world. Joining someone else's world with mods on is not supported
-yet.
+To join a world, turn on the same mods as the host, at the same versions. Otherwise the game does not let you in and
+the main menu lists which mods to turn on or off. Mods that change only your own game, such as the camera or the
+interface, never count.
 :::

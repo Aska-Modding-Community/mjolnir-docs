@@ -28,7 +28,7 @@ public sealed class Lightfoot : Mod
     }
 }`;
 
-type IconName = 'window' | 'player' | 'chest' | 'village' | 'sun' | 'runes' | 'console' | 'anvil';
+type IconName = 'window' | 'player' | 'chest' | 'village' | 'sun' | 'runes' | 'console' | 'anvil' | 'net';
 
 function Icon({name}: {name: IconName}): ReactNode {
   const paths: Record<IconName, ReactNode> = {
@@ -78,6 +78,14 @@ function Icon({name}: {name: IconName}): ReactNode {
       <>
         <path d="M3 7h14c0 3-2 5-5 5H9l-1 3h8v4H6v-4l1-3C4.8 12 3 10 3 7z" />
         <path d="M17 7h4" />
+      </>
+    ),
+    net: (
+      <>
+        <circle cx="5" cy="12" r="2.5" />
+        <circle cx="19" cy="5" r="2.5" />
+        <circle cx="19" cy="19" r="2.5" />
+        <path d="M7.3 11 16.7 6.1M7.3 13l9.4 4.9" />
       </>
     ),
   };
@@ -181,6 +189,7 @@ function Modules(): ReactNode {
     {icon: 'village', name: t('modules.residents', 'Residents'), to: '/docs/guides/residents', text: t('modules.residents.text', 'Villagers and custom jobs scheduled by priority.')},
     {icon: 'sun', name: t('modules.world', 'World'), to: '/docs/guides/world', text: t('modules.world.text', 'World clock: hour, day and night, time stop.')},
     {icon: 'console', name: t('modules.console', 'Console'), to: '/docs/guides/console', text: t('modules.console.text', 'Custom commands alongside give, tp, time and stats.')},
+    {icon: 'net', name: t('modules.net', 'Multiplayer'), to: '/docs/guides/network', text: t('modules.net.text', 'Mod check on join, message channels between players’ mods.')},
     {icon: 'anvil', name: t('modules.kit', 'Mod kit'), to: '/docs/guides/content/models', text: t('modules.kit.text', 'Unity project matching the game\u2019s version and render pipeline.')},
   ];
   return (
@@ -275,17 +284,16 @@ function Status(): ReactNode {
           <div>
             <span className={styles.statusTitle}>{t('status.works', 'Available')}</span>
             <ul>
-              <li>{t('status.works.1', 'Single player and hosted worlds')}</li>
-              <li>{t('status.works.2', 'UI, player, content, characters, residents, world clock, console')}</li>
+              <li>{t('status.works.1', 'Single player, hosting, joining a host with the same mods')}</li>
+              <li>{t('status.works.2', 'UI, player, content, characters, residents, world clock, multiplayer, console')}</li>
               <li>{t('status.works.3', 'Interop generated locally and regenerated after game updates')}</li>
             </ul>
           </div>
           <div>
             <span className={styles.statusTitle}>{t('status.todo', 'Planned')}</span>
             <ul>
-              <li>{t('status.todo.1', 'Clients joining a modded host')}</li>
-              <li>{t('status.todo.2', 'Mod compatibility handshake')}</li>
-              <li>{t('status.todo.3', 'Custom building models')}</li>
+              <li>{t('status.todo.1', 'Villager jobs and stat modifiers checked on joined clients')}</li>
+              <li>{t('status.todo.2', 'Custom building models')}</li>
             </ul>
           </div>
         </div>

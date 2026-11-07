@@ -36,8 +36,8 @@ public sealed class MyMod : Mod
 A mod with an invalid id or version is not loaded; the log gives the reason.
 
 :::note
-`Network` is recorded but not yet enforced: the handshake that compares mods between a host and a joining client is
-not done yet.
+Every multiplayer session compares the `Everyone` mods of a joining client with the host's. See
+[Multiplayer](../guides/network.md#the-mod-check).
 :::
 
 ### Dependencies

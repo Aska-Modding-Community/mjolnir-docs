@@ -47,6 +47,7 @@ const sidebars: SidebarsConfig = {
         'guides/characters',
         'guides/residents',
         'guides/world',
+        'guides/network',
         'guides/console',
       ],
     },
