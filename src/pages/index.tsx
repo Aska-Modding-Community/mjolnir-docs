@@ -264,7 +264,7 @@ function Players(): ReactNode {
 
 function Status(): ReactNode {
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${styles.sectionFjord}`}>
       <div className={styles.containerNarrow}>
         <Heading as="h2" className={styles.h2Center}>{t('status.title', 'Where it stands')}</Heading>
         <div className={styles.rule}><Diamond /><span /><Diamond /></div>

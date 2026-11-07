@@ -18,10 +18,15 @@
   padding: 5.5rem 1.5rem 6.5rem;
   text-align: center;
   color: var(--mj-bone);
+  /* A northern night behind the hero; the dark veil keeps the text above 4.5:1 wherever it lands. */
   background:
-    radial-gradient(ellipse 70% 60% at 50% 30%, rgba(253, 172, 0, 0.12), transparent 70%),
-    var(--mj-pattern),
-    linear-gradient(180deg, #0b0a09 0%, var(--mj-ink) 100%);
+    radial-gradient(ellipse 55% 45% at 50% 52%, rgba(7, 8, 10, 0.55), transparent 75%),
+    linear-gradient(180deg, rgba(7, 8, 10, 0.25) 0%, rgba(7, 8, 10, 0.05) 50%, rgba(10, 13, 15, 0.9) 100%),
+    url('../../static/img/bg/hero.svg') center bottom / cover no-repeat,
+    #07090c;
+  min-height: min(92vh, 860px);
+  display: flex;
+  align-items: center;
   overflow: hidden;
 }
 
@@ -50,6 +55,9 @@
 }
 
 .heroInner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
   max-width: 880px;
   margin: 0 auto;
 }
@@ -266,6 +274,15 @@
   padding: 6rem 0 5.5rem;
   color: #ece4df;
   background: var(--mj-pattern), var(--mj-ink);
+}
+
+/* The last dark band ends on a fjord at dusk. */
+.sectionFjord {
+  padding-bottom: 12rem;
+  background:
+    url('../../static/img/bg/fjord.svg') center bottom / 100% auto no-repeat,
+    var(--mj-pattern),
+    var(--mj-ink);
 }
 
 .h2,
