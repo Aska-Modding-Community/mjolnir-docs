@@ -7,21 +7,28 @@ title: Architecture
 Mjolnir has three parts: a native proxy that gets it into the game process, a closed .NET runtime that loads mods,
 and the SDK, the only API mods see.
 
-```text
-Aska.exe
- └─ UnityPlayer.dll ── imports ──► version.dll            Mjolnir.Native (C++): a proxy of the system library
-                                    │ detours il2cpp_init
-                                    ▼
-                                  CoreCLR (Mjolnir/dotnet)
-                                    │
-                                    ▼
-                                  Mjolnir.Core             closed runtime: interop, Harmony, mod loading, fault isolation
-                                    │ loads mods through internal contracts
-                                    ▼
-                                  Mjolnir.SDK + modules    the only API mods see
-                                    │
-                                    ▼
-                                  Mjolnir/Mods/<mod>/*.dll
+```mermaid
+flowchart TB
+    subgraph game["ASKA"]
+        direction LR
+        exe["Aska.exe"] --> player["UnityPlayer.dll"] --> asm["GameAssembly.dll<br/><small>IL2CPP code</small>"]
+    end
+    subgraph mjolnir["Mjolnir"]
+        direction LR
+        proxy["<b>version.dll</b><br/><small>Mjolnir.Native</small>"] --> clr["<b>CoreCLR</b><br/><small>.NET 10</small>"] --> core["<b>Mjolnir.Core</b><br/><small>interop · HarmonyX · isolation</small>"] --> sdk["<b>Mjolnir.SDK</b><br/><small>and its modules</small>"]
+    end
+    subgraph mods["Mods"]
+        direction LR
+        mod["<b>Mjolnir/Mods/&lt;mod&gt;/*.dll</b><br/><small>one load context per folder</small>"]
+    end
+    game -- "UnityPlayer.dll imports version.dll; il2cpp_init is detoured" --> mjolnir
+    mjolnir -- "the only API mods see" --> mods
+    class exe,player,asm game
+    class proxy,clr,core,sdk mj
+    class mod mod
+    classDef game fill:#1d2124,stroke:#66737a,color:#dfe5e8
+    classDef mj fill:#231c10,stroke:#fdac00,stroke-width:2px,color:#f8f2f0
+    classDef mod fill:#15211b,stroke:#74c29a,stroke-width:2px,color:#eaf6ef
 ```
 
 ## The boot chain

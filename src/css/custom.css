@@ -241,6 +241,67 @@ a > code {
   letter-spacing: 0;
 }
 
+/*
+ * Diagrams: the nodes carry their own colours (classDef), the rest follows the page: lines and labels in the page's
+ * muted text, groups as a faint dashed frame.
+ */
+.docusaurus-mermaid-container {
+  margin: 1.5rem 0 2rem;
+  text-align: center;
+}
+
+.docusaurus-mermaid-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.docusaurus-mermaid-container .flowchart-link,
+.docusaurus-mermaid-container .edgePath .path {
+  stroke: var(--ifm-color-emphasis-600) !important;
+  stroke-width: 1.5px;
+}
+
+.docusaurus-mermaid-container marker path,
+.docusaurus-mermaid-container .arrowheadPath {
+  fill: var(--ifm-color-emphasis-600) !important;
+  stroke: var(--ifm-color-emphasis-600) !important;
+}
+
+.docusaurus-mermaid-container .edgeLabel,
+.docusaurus-mermaid-container .edgeLabel rect,
+.docusaurus-mermaid-container .edgeLabel p,
+.docusaurus-mermaid-container .labelBkg {
+  background-color: var(--ifm-background-color) !important;
+  fill: var(--ifm-background-color) !important;
+  color: var(--ifm-color-emphasis-700) !important;
+  font-size: 12px;
+}
+
+.docusaurus-mermaid-container .cluster rect {
+  fill: transparent !important;
+  stroke: var(--ifm-color-emphasis-400) !important;
+  stroke-dasharray: 5 4;
+  rx: 6px;
+}
+
+.docusaurus-mermaid-container .cluster-label,
+.docusaurus-mermaid-container .cluster-label span,
+.docusaurus-mermaid-container .cluster-label p {
+  color: var(--ifm-color-emphasis-700) !important;
+  font-family: var(--mj-font-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.docusaurus-mermaid-container .node rect {
+  rx: 4px;
+}
+
+.docusaurus-mermaid-container .nodeLabel small {
+  font-size: 11px;
+  opacity: 0.75;
+}
+
 /* Admonitions take the amber frame. */
 .alert--info,
 .alert--note {

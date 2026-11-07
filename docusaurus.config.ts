@@ -23,6 +23,7 @@ const config: Config = {
   onBrokenLinks: 'throw',
   onBrokenAnchors: 'throw',
   markdown: {
+    mermaid: true,
     hooks: {
       onBrokenMarkdownLinks: 'throw',
     },
@@ -48,6 +49,8 @@ const config: Config = {
       },
     },
   ],
+
+  themes: ['@docusaurus/theme-mermaid'],
 
   presets: [
     [
@@ -117,6 +120,14 @@ const config: Config = {
         },
       ],
       copyright: `Mjolnir is MIT-licensed. ASKA is a game by Sand Sailor Studio; Mjolnir is not affiliated with it.`,
+    },
+    mermaid: {
+      // Colours come from the diagrams' own classes and custom.css, so one look serves both colour modes.
+      theme: {light: 'base', dark: 'base'},
+      options: {
+        fontFamily: 'Lato, PT Sans, system-ui, sans-serif',
+        flowchart: {curve: 'basis', nodeSpacing: 22, rankSpacing: 40, padding: 12, diagramPadding: 4},
+      },
     },
     prism: {
       theme: prismThemes.github,

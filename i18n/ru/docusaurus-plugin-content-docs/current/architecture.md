@@ -7,21 +7,28 @@ title: Архитектура
 Mjolnir состоит из трёх частей: нативного прокси, который вводит его в процесс игры, закрытого рантайма .NET, который
 загружает моды, и SDK — единственного API, который видят моды.
 
-```text
-Aska.exe
- └─ UnityPlayer.dll ── импорт ──► version.dll            Mjolnir.Native (C++): прокси системной библиотеки
-                                    │ перехватывает il2cpp_init
-                                    ▼
-                                  CoreCLR (Mjolnir/dotnet)
-                                    │
-                                    ▼
-                                  Mjolnir.Core             закрытый рантайм: interop, Harmony, загрузка модов, изоляция ошибок
-                                    │ загружает моды через внутренние контракты
-                                    ▼
-                                  Mjolnir.SDK + модули     единственный API, который видят моды
-                                    │
-                                    ▼
-                                  Mjolnir/Mods/<mod>/*.dll
+```mermaid
+flowchart TB
+    subgraph game["ASKA"]
+        direction LR
+        exe["Aska.exe"] --> player["UnityPlayer.dll"] --> asm["GameAssembly.dll<br/><small>код IL2CPP</small>"]
+    end
+    subgraph mjolnir["Mjolnir"]
+        direction LR
+        proxy["<b>version.dll</b><br/><small>Mjolnir.Native</small>"] --> clr["<b>CoreCLR</b><br/><small>.NET 10</small>"] --> core["<b>Mjolnir.Core</b><br/><small>interop · HarmonyX · изоляция</small>"] --> sdk["<b>Mjolnir.SDK</b><br/><small>и его модули</small>"]
+    end
+    subgraph mods["Моды"]
+        direction LR
+        mod["<b>Mjolnir/Mods/&lt;mod&gt;/*.dll</b><br/><small>свой контекст загрузки на папку</small>"]
+    end
+    game -- "UnityPlayer.dll импортирует version.dll; il2cpp_init перехвачен" --> mjolnir
+    mjolnir -- "единственный API, который видят моды" --> mods
+    class exe,player,asm game
+    class proxy,clr,core,sdk mj
+    class mod mod
+    classDef game fill:#1d2124,stroke:#66737a,color:#dfe5e8
+    classDef mj fill:#231c10,stroke:#fdac00,stroke-width:2px,color:#f8f2f0
+    classDef mod fill:#15211b,stroke:#74c29a,stroke-width:2px,color:#eaf6ef
 ```
 
 ## Цепочка загрузки {/* #the-boot-chain */}
