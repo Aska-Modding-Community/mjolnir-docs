@@ -21,6 +21,10 @@ npm start
 `npm start` serves the site with live reload. `npm run build` writes the static site to `build/` and fails on broken
 links.
 
+Each push to `main` builds the site and publishes it to
+[aska-modding-community.github.io/mjolnir-docs](https://aska-modding-community.github.io/mjolnir-docs/)
+(`.github/workflows/deploy.yml`).
+
 ## Layout
 
 | Path | Contents |
@@ -30,6 +34,7 @@ links.
 | `src/css/custom.css` | The theme: colours, fonts, the navbar and footer |
 | `static/img/` | The logo |
 | `docusaurus.config.ts` | Site settings, navbar, footer, code highlighting |
+| `.github/workflows/deploy.yml` | Builds and publishes the site to GitHub Pages |
 
 ## Writing
 
