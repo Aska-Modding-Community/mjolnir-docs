@@ -111,7 +111,7 @@ function Hero(): ReactNode {
         </div>
         <div className={styles.plate}>
           <p className={styles.lead}>
-            {t('hero.lead', 'Write ASKA mods in C# on .NET 10: events, bindable state and builders for UI, players, content and villagers. HarmonyX for everything else.')}
+            {t('hero.lead', 'Write ASKA mods in C# on .NET 10: events, bindable state and builders for UI, players, content and villagers.')}
           </p>
           <span className={styles.plateLabel}>{t('hero.plate', '0.x · Single player and hosted worlds')}</span>
           <div className={styles.actions}>

@@ -351,8 +351,8 @@
     "description": "Mod loader and C# SDK for ASKA"
   },
   "landing.hero.lead": {
-    "message": "Моды для ASKA на C# и .NET 10: события, привязываемое состояние и билдеры для интерфейса, игрока, контента и жителей. Для всего остального — HarmonyX.",
-    "description": "Write ASKA mods in C# on .NET 10: events, bindable state and builders for UI, players, content and villagers. HarmonyX for everything else."
+    "message": "Моды для ASKA на C# и .NET 10: события, привязываемое состояние и билдеры для интерфейса, игрока, контента и жителей.",
+    "description": "Write ASKA mods in C# on .NET 10: events, bindable state and builders for UI, players, content and villagers."
   },
   "landing.hero.plate": {
     "message": "0.x · Одиночная игра и хост",
