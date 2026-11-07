@@ -1,0 +1,66 @@
+---
+title: Troubleshooting
+---
+
+# Troubleshooting
+
+## The log
+
+`Mjolnir/LogOutput.log` in the game's folder holds the log of Mjolnir and of every mod. It is appended to on each
+start, never cleared, so read from the last line that says `Mjolnir.Native attached`.
+
+A healthy start logs, in this order:
+
+```text
+[Info ] [Native] Mjolnir.Native attached to Aska.exe
+[Info ] [Native] GameAssembly.dll loaded via LoadLibraryW("GameAssembly.dll")
+[Info ] [Native] il2cpp_init detour installed
+[Info ] [Core] Mjolnir.Core 0.2.0.0 on .NET 10.0.9
+[Info ] [Interop] Initialising HarmonyX 2.16.1.0
+[Info ] [Interop] Il2CppInterop started for Unity 6000.3.12 (503 ms)
+[Info ] [Mods] Loaded My Mod (author.mymod) 1.0.0 in 12 ms     one line per mod, in load order
+[Info ] [Mods] Mods loaded: 3 of 3
+[Info ] [Native] Bootstrap.Start returned 0
+[Info ] [PhaseB] Phase B started by Internal_ActiveSceneChanged, active scene '', frame 0 (497 ms)
+```
+
+Each line starts with its time, left out here. At the first start, and after a game or Mjolnir update, `[Interop]`
+lines between them say the interop assemblies are being generated, and how long it took.
+
+Each mod's own lines carry its name: `[My Mod] …`. A mod that cannot load says why:
+`[Mods] <mod>: not loaded, <reason>`.
+
+## Common problems
+
+| What you see | Why, and what to do |
+|---|---|
+| No Mjolnir button in the menus, nothing in the log | `version.dll` is not next to `Aska.exe`, or the game was started with `--no-mods`, or `Mjolnir/disable` exists |
+| The game starts without mods after the progress window | The interop generation failed or was stopped. It runs again at the next start; its log is `Mjolnir/cache/interop-gen.log` |
+| A mod is "not loaded: …" in the Mods window | A dependency is missing, at a wrong version, or turned off. The reason names it |
+| A mod is "disabled after an error" | It threw an exception. The log has the exception with its stack; report it to the mod's author |
+| The progress window comes after every game update | Expected: the interop is generated again for each game build, once |
+| Warnings that the game build differs, after a game update | Mjolnir runs, but mods that patch the game directly may not fit the new build until they are updated |
+| A setting changed in the file is back as it was | The game writes changed settings when it quits. Edit config files while the game is not running |
+| The menu comes about two minutes late | The game waits for its online login before the main menu. This is the game's, not Mjolnir's |
+
+## The game closes without a word in the log
+
+A fatal error of the .NET runtime bypasses every handler. Look in the Windows event log: **Event Viewer → Windows
+Logs → Application**, entries from `.NET Runtime` or `Application Error` at the time the game closed.
+
+## Start without mods
+
+To find out whether a problem is Mjolnir's at all:
+
+- launch with `--no-mods` (Steam: **ASKA → Properties → Launch options**), or
+- create an empty file `Mjolnir/disable`,
+
+then remove it again. To rule out one mod, turn it off in the Mods window, or move its folder out of `Mjolnir/Mods`.
+
+## Reporting a problem
+
+Open an issue on [GitHub](https://github.com/FibonacciFox/Mjolnir/issues) with:
+
+- `Mjolnir/LogOutput.log`, from the last `Mjolnir.Native attached` line;
+- the Mjolnir version (the Mods window's title shows it) and the mods installed;
+- whether it happens in single player, when hosting, or when joining.

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#FDAC00" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+  <title>Mjolnir</title>
+  <circle cx="32" cy="32" r="30" stroke-width="2"/>
+  <path d="M14 15 H50 L47 31 H17 Z"/>
+  <path d="M22 20 L26 26 L32 20 L38 26 L42 20"/>
+  <path d="M29 31 V48 M35 31 V48"/>
+  <path d="M29 37 H35 M29 42 H35"/>
+  <path d="M28 48 H36 L32 54 Z"/>
+</svg>

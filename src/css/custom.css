@@ -1,0 +1,208 @@
+/*
+ * Mjolnir's look: the dark, carved and parchment palette of a Viking settlement.
+ * Primitive tokens first, then the theme's semantic ones for each colour mode.
+ */
+
+:root {
+  /* Primitives */
+  --mj-ink: #121110;
+  --mj-ink-raised: #1b1a18;
+  --mj-coal: #201e1d;
+  --mj-ash: #3a3633;
+  --mj-bone: #f8f2f0;
+  --mj-parchment: #eee4da;
+  --mj-parchment-deep: #e2d4c8;
+  --mj-amber: #fdac00;
+  --mj-amber-hover: #ffc23d;
+  --mj-amber-deep: #8a5800;
+  --mj-muted-dark: #b9aea6;
+  --mj-muted-light: #5c524b;
+
+  --mj-font-display: 'Germania One', 'Georgia', serif;
+  --mj-font-body: 'Lato', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mj-font-code: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  --mj-radius: 3px;
+  --mj-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* A carved pattern of arrowheads, faint on dark wood. */
+  --mj-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.045' stroke-width='2'%3E%3Cpath d='M0 12 L12 0 L24 12 L36 0 L48 12'/%3E%3Cpath d='M0 36 L12 24 L24 36 L36 24 L48 36'/%3E%3C/g%3E%3C/svg%3E");
+  /* A torn edge, used as a mask along the top and bottom of parchment bands. */
+  --mj-torn: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='16' viewBox='0 0 240 16' preserveAspectRatio='none'%3E%3Cpath d='M0 16 L0 9 L9 6 L17 10 L26 4 L35 8 L44 3 L52 9 L63 5 L71 11 L80 6 L91 8 L99 2 L108 7 L118 5 L126 10 L137 4 L145 8 L156 6 L164 11 L173 3 L183 7 L192 5 L200 10 L211 6 L219 9 L229 4 L240 8 L240 16 Z' fill='%23000'/%3E%3C/svg%3E");
+
+  /* Theme: light mode reads as parchment */
+  --ifm-color-primary: #8a5800;
+  --ifm-color-primary-dark: #7c4f00;
+  --ifm-color-primary-darker: #754b00;
+  --ifm-color-primary-darkest: #603e00;
+  --ifm-color-primary-light: #986100;
+  --ifm-color-primary-lighter: #9f6500;
+  --ifm-color-primary-lightest: #b47300;
+
+  --ifm-background-color: var(--mj-bone);
+  --ifm-background-surface-color: var(--mj-parchment);
+  --ifm-font-color-base: var(--mj-coal);
+  --ifm-color-emphasis-600: var(--mj-muted-light);
+  --ifm-font-family-base: var(--mj-font-body);
+  --ifm-heading-font-family: var(--mj-font-display);
+  --ifm-heading-font-weight: 400;
+  --ifm-font-family-monospace: var(--mj-font-code);
+  --ifm-code-font-size: 90%;
+  --ifm-line-height-base: 1.65;
+  --ifm-global-radius: var(--mj-radius);
+  --ifm-navbar-background-color: var(--mj-ink);
+  --ifm-navbar-link-color: var(--mj-bone);
+  --ifm-navbar-link-hover-color: var(--mj-amber);
+  --ifm-toc-border-color: var(--mj-parchment-deep);
+  --ifm-hr-border-color: var(--mj-parchment-deep);
+  --ifm-table-stripe-background: rgba(32, 30, 29, 0.035);
+  --docusaurus-highlighted-code-line-bg: rgba(138, 88, 0, 0.12);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #fdac00;
+  --ifm-color-primary-dark: #e49b00;
+  --ifm-color-primary-darker: #d79200;
+  --ifm-color-primary-darkest: #b17800;
+  --ifm-color-primary-light: #ffb81f;
+  --ifm-color-primary-lighter: #ffbe2e;
+  --ifm-color-primary-lightest: #ffcc5c;
+
+  --ifm-background-color: var(--mj-ink);
+  --ifm-background-surface-color: var(--mj-ink-raised);
+  --ifm-font-color-base: #ece4df;
+  --ifm-color-emphasis-600: var(--mj-muted-dark);
+  --ifm-toc-border-color: var(--mj-ash);
+  --ifm-hr-border-color: var(--mj-ash);
+  --ifm-table-stripe-background: rgba(255, 255, 255, 0.025);
+  --docusaurus-highlighted-code-line-bg: rgba(253, 172, 0, 0.12);
+}
+
+/* The page: carved wood in the dark, plain parchment in the light. */
+[data-theme='dark'] body {
+  background-image: var(--mj-pattern);
+}
+
+h1,
+h2,
+h3,
+.navbar__title,
+.menu__list-item-collapsible > .menu__link--sublist,
+.footer__title {
+  letter-spacing: 0.02em;
+}
+
+.markdown h1 {
+  font-size: 2.6rem;
+  text-transform: uppercase;
+}
+
+.markdown h2 {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--ifm-hr-border-color);
+}
+
+.markdown h3 {
+  font-size: 1.35rem;
+}
+
+/* Navbar: a dark bar with an ornamental rule under it, as on the game's own pages. */
+.navbar {
+  border-bottom: 2px solid var(--mj-amber);
+  box-shadow: none;
+}
+
+.navbar__title {
+  font-family: var(--mj-font-display);
+  font-weight: 400;
+  font-size: 1.45rem;
+  text-transform: uppercase;
+  color: var(--mj-bone);
+}
+
+.navbar__link {
+  font-family: var(--mj-font-display);
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.navbar .navbar__toggle,
+.navbar .clean-btn {
+  color: var(--mj-bone);
+}
+
+/* Sidebar */
+.menu__link {
+  border-radius: var(--mj-radius);
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  border-left: 3px solid var(--ifm-color-primary);
+  font-weight: 700;
+}
+
+/* Code: no ligatures, so => and != read as typed. */
+code {
+  border: none;
+}
+
+code,
+pre {
+  font-variant-ligatures: none;
+}
+
+.theme-code-block {
+  border: 1px solid var(--ifm-toc-border-color);
+}
+
+/* Tables */
+.markdown table {
+  display: table;
+  width: 100%;
+}
+
+.markdown th {
+  font-family: var(--mj-font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Admonitions take the amber frame. */
+.alert--info,
+.alert--note {
+  --ifm-alert-border-color: var(--ifm-color-primary);
+}
+
+/* Footer */
+.footer--dark {
+  --ifm-footer-background-color: #0c0b0a;
+  background-image: var(--mj-pattern);
+  border-top: 2px solid var(--mj-amber);
+}
+
+.footer__title {
+  font-family: var(--mj-font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--mj-amber);
+}
+
+/* Focus stays visible everywhere. */
+:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
