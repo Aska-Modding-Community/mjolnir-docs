@@ -268,6 +268,14 @@
   background: var(--mj-pattern), var(--mj-ink);
 }
 
+/* The boot chain sits on a carved circle of runes. */
+.sectionRunes {
+  background:
+    linear-gradient(180deg, rgba(18, 17, 16, 0.25), rgba(18, 17, 16, 0.25)),
+    url('../../static/img/bg/runes.svg') center / cover no-repeat,
+    var(--mj-ink);
+}
+
 .h2,
 .h2Center {
   margin: 0 0 0.75rem;
@@ -389,6 +397,10 @@
 
 .parchment {
   padding: 6rem 0;
+  /* The wide parchment bands carry the faint lines of an old map; the narrow band under the hero stays plain. */
+  background:
+    url('../../static/img/bg/parchment.svg') center / cover no-repeat,
+    var(--mj-parchment);
 }
 
 .grid {

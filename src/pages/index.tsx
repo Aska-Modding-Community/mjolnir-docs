@@ -207,7 +207,7 @@ function Boot(): ReactNode {
     {name: 'SDK', text: t('boot.sdk', 'Gives mods events, bindables and builders. A rename in the game is fixed here, not in every mod.')},
   ];
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${styles.sectionRunes}`}>
       <div className={styles.container}>
         <Heading as="h2" className={styles.h2Center}>{t('boot.title', 'From the first library to your mod')}</Heading>
         <div className={styles.rule}><Diamond /><span /><Diamond /></div>

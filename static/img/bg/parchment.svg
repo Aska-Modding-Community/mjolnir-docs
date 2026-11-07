@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <title>Old parchment with the lines of a map</title>
+  <defs>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="noise"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.43  0 0 0 0 0.3  0 0 0 0 0.16  0 0 0 0.09 0"/>
+    </filter>
+    <filter id="stains" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.004" numOctaves="3" seed="3"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.32  0 0 0 0 0.18  0 0 0 0.22 -0.05"/>
+    </filter>
+    <radialGradient id="edge" cx="0.5" cy="0.5" r="0.75">
+      <stop offset="0.6" stop-color="#6e4c28" stop-opacity="0"/>
+      <stop offset="1" stop-color="#6e4c28" stop-opacity="0.18"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="#eee4da"/>
+  <rect width="1600" height="900" filter="url(#stains)"/>
+  <rect width="1600" height="900" filter="url(#grain)"/>
+
+  <!-- Contour lines of a coast, as on an old map -->
+  <g fill="none" stroke="#6e4c28" stroke-opacity="0.11" stroke-width="1.4">
+    <path d="M-20 160 C 160 120, 260 210, 420 170 S 700 90, 860 150 S 1120 260, 1300 190 S 1540 120, 1640 170"/>
+    <path d="M-20 190 C 170 150, 270 240, 430 200 S 710 120, 870 180 S 1130 290, 1310 220 S 1550 150, 1640 200"/>
+    <path d="M-20 222 C 180 182, 280 272, 440 232 S 720 152, 880 212 S 1140 322, 1320 252 S 1560 182, 1640 232"/>
+    <path d="M-20 700 C 200 660, 330 760, 520 720 S 860 640, 1040 700 S 1360 800, 1640 730"/>
+    <path d="M-20 735 C 210 695, 340 795, 530 755 S 870 675, 1050 735 S 1370 835, 1640 765"/>
+    <path d="M-20 770 C 220 730, 350 830, 540 790 S 880 710, 1060 770 S 1380 870, 1640 800"/>
+  </g>
+
+  <!-- A compass rose, low in a corner -->
+  <g transform="translate(1440 560)" fill="none" stroke="#6e4c28" stroke-opacity="0.16" stroke-width="1.5">
+    <circle r="90"/>
+    <circle r="70"/>
+    <path d="M0 -110 L12 -12 L110 0 L12 12 L0 110 L-12 12 L-110 0 L-12 -12 Z"/>
+    <path d="M0 -70 L0 70 M-70 0 L70 0" stroke-dasharray="3 6"/>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#edge)"/>
+</svg>
