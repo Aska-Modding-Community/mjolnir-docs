@@ -207,7 +207,7 @@ function Boot(): ReactNode {
     {name: 'SDK', text: t('boot.sdk', 'Gives mods events, bindables and builders. A rename in the game is fixed here, not in every mod.')},
   ];
   return (
-    <section className={`${styles.section} ${styles.sectionRunes}`}>
+    <section className={styles.section}>
       <div className={styles.container}>
         <Heading as="h2" className={styles.h2Center}>{t('boot.title', 'From the first library to your mod')}</Heading>
         <div className={styles.rule}><Diamond /><span /><Diamond /></div>
@@ -264,7 +264,7 @@ function Players(): ReactNode {
 
 function Status(): ReactNode {
   return (
-    <section className={`${styles.section} ${styles.sectionFjord}`}>
+    <section className={styles.section}>
       <div className={styles.containerNarrow}>
         <Heading as="h2" className={styles.h2Center}>{t('status.title', 'Where it stands')}</Heading>
         <div className={styles.rule}><Diamond /><span /><Diamond /></div>
