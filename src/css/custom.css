@@ -18,8 +18,13 @@
   --mj-muted-dark: #b9aea6;
   --mj-muted-light: #5c524b;
 
-  --mj-font-display: 'Germania One', 'Ruslan Display', 'Georgia', serif;
-  --mj-font-body: 'Lato', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /*
+   * One stack for every language. Germania One and Lato have no Cyrillic, so the browser takes Cyrillic letters from
+   * the next font: Oswald, loaded at 600 only, whose condensed caps match Germania's height and weight, and PT Sans,
+   * a humanist sans like Lato. Latin words in Russian text keep the English look.
+   */
+  --mj-font-display: 'Germania One', 'Oswald', 'Georgia', serif;
+  --mj-font-body: 'Lato', 'PT Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mj-font-code: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
 
   --mj-radius: 3px;
@@ -57,15 +62,6 @@
   --ifm-hr-border-color: var(--mj-parchment-deep);
   --ifm-table-stripe-background: rgba(32, 30, 29, 0.035);
   --docusaurus-highlighted-code-line-bg: rgba(138, 88, 0, 0.12);
-}
-
-/*
- * Germania One and Lato have no Cyrillic: the Russian site sets its headings in Ruslan Display, carved in the same
- * spirit, and its text in PT Sans, a humanist sans made for Cyrillic.
- */
-html[lang='ru'] {
-  --mj-font-display: 'Ruslan Display', 'Georgia', serif;
-  --mj-font-body: 'PT Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
 [data-theme='dark'] {
