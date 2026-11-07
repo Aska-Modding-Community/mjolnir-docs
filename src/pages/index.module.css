@@ -15,13 +15,20 @@
 
 .hero {
   position: relative;
-  padding: 5.5rem 1.5rem 6.5rem;
+  display: flex;
+  min-height: clamp(720px, calc(100vh - 60px), 960px);
+  padding: 4.5rem 1.5rem 4.5rem;
   text-align: center;
   color: var(--mj-bone);
+  /*
+   * The art fills the hero. Two veils keep the text above 4.5:1: the sky darkens towards the top, where the title
+   * stands, and the moss towards the bottom, where the call to action stands; the hammer between them stays clear.
+   */
   background:
-    radial-gradient(ellipse 70% 60% at 50% 30%, rgba(253, 172, 0, 0.12), transparent 70%),
-    var(--mj-pattern),
-    linear-gradient(180deg, #0b0a09 0%, var(--mj-ink) 100%);
+    linear-gradient(180deg, rgba(8, 9, 11, 0.78) 0%, rgba(8, 9, 11, 0.35) 30%, rgba(8, 9, 11, 0) 46%,
+      rgba(8, 9, 11, 0) 62%, rgba(8, 9, 11, 0.55) 80%, rgba(12, 11, 10, 0.95) 100%),
+    var(--mj-hero-art) center 72% / cover no-repeat,
+    #0b0c0e;
   overflow: hidden;
 }
 
@@ -50,14 +57,20 @@
 }
 
 .heroInner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
   max-width: 880px;
   margin: 0 auto;
 }
 
-.emblem {
-  display: block;
-  margin: 0 auto 1.25rem;
-  filter: drop-shadow(0 0 24px rgba(253, 172, 0, 0.35));
+.heroTop {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75);
 }
 
 .kicker {
@@ -73,7 +86,7 @@
   margin: 0.1rem 0 1rem;
   font-family: var(--mj-font-display);
   font-weight: 400;
-  font-size: clamp(4rem, 13vw, 9rem);
+  font-size: clamp(3.5rem, 10vw, 7.5rem);
   line-height: 0.95;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -82,9 +95,9 @@
 }
 
 .lead {
-  max-width: 640px;
-  margin: 0 auto 2.25rem;
-  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.6;
   color: #ddd2cb;
 }
@@ -96,7 +109,8 @@
   border: 2px solid var(--mj-amber);
   outline: 1px solid rgba(253, 172, 0, 0.35);
   outline-offset: 5px;
-  background: rgba(18, 17, 16, 0.85);
+  background: rgba(14, 13, 12, 0.82);
+  backdrop-filter: blur(3px);
 }
 
 .plateLabel {

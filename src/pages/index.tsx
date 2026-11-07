@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type {CSSProperties, ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Translate, {translate} from '@docusaurus/Translate';
@@ -99,17 +99,20 @@ function t(id: string, message: string): string {
 }
 
 function Hero(): ReactNode {
-  const emblem = useBaseUrl('/img/logo.svg');
+  // The art's hammer is the hero's emblem: the title stands over the sky, the call to action over the moss, and the
+  // hammer between them stays in view.
+  const art = useBaseUrl('/img/hero.webp');
   return (
-    <header className={styles.hero}>
+    <header className={styles.hero} style={{'--mj-hero-art': `url(${art})`} as CSSProperties}>
       <div className={styles.heroInner}>
-        <img className={styles.emblem} src={emblem} alt="" width="120" height="120" />
-        <p className={styles.kicker}>{t('hero.kicker', 'Mod loader and C# SDK for ASKA')}</p>
-        <Heading as="h1" className={styles.title}>Mjolnir</Heading>
-        <p className={styles.lead}>
-          {t('hero.lead', 'Write ASKA mods in C# on .NET 10: events, bindable state and builders for UI, players, content and villagers. HarmonyX for everything else.')}
-        </p>
+        <div className={styles.heroTop}>
+          <p className={styles.kicker}>{t('hero.kicker', 'Mod loader and C# SDK for ASKA')}</p>
+          <Heading as="h1" className={styles.title}>Mjolnir</Heading>
+        </div>
         <div className={styles.plate}>
+          <p className={styles.lead}>
+            {t('hero.lead', 'Write ASKA mods in C# on .NET 10: events, bindable state and builders for UI, players, content and villagers. HarmonyX for everything else.')}
+          </p>
           <span className={styles.plateLabel}>{t('hero.plate', '0.x · Single player and hosted worlds')}</span>
           <div className={styles.actions}>
             <Link className={styles.primary} to="/docs/getting-started/first-mod">{t('hero.write', 'Get started')}</Link>
