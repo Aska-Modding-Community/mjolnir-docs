@@ -28,7 +28,7 @@ public sealed class Lightfoot : Mod
     }
 }`;
 
-type IconName = 'window' | 'player' | 'chest' | 'village' | 'sun' | 'runes' | 'console' | 'anvil' | 'net' | 'motion';
+type IconName = 'window' | 'player' | 'chest' | 'village' | 'sun' | 'runes' | 'console' | 'anvil' | 'net' | 'motion' | 'swords' | 'globe';
 
 function Icon({name}: {name: IconName}): ReactNode {
   const paths: Record<IconName, ReactNode> = {
@@ -84,6 +84,18 @@ function Icon({name}: {name: IconName}): ReactNode {
       <>
         <circle cx="13" cy="4" r="2" />
         <path d="M11 8 8 13l4 2-1 6M11 8l4 3 4-1M8 13H4" />
+      </>
+    ),
+    swords: (
+      <>
+        <path d="M14.5 17.5 3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2" />
+        <path d="M14.5 6.5 18 3h3v3l-3.5 3.5M5 14l4 4M7 17l-3 3M3 19l2 2" />
+      </>
+    ),
+    globe: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z" />
       </>
     ),
     net: (
@@ -191,13 +203,15 @@ function Modules(): ReactNode {
     {icon: 'window', name: t('modules.ui', 'UI'), to: '/docs/guides/ui/overview', text: t('modules.ui.text', 'Windows, HUD, menus and tabs in the game\u2019s own windows, built from its UI.')},
     {icon: 'player', name: t('modules.player', 'Player'), to: '/docs/guides/player', text: t('modules.player.text', 'Spawn and death events, vitals, stamina costs, teleport.')},
     {icon: 'chest', name: t('modules.content', 'Content'), to: '/docs/guides/content/items-and-recipes', text: t('modules.content.text', 'Items, recipes, buildings, status effects, models.')},
-    {icon: 'runes', name: t('modules.characters', 'Characters'), to: '/docs/guides/characters', text: t('modules.characters.text', 'Attributes, skills, effects; health, blows and deaths of anyone.')},
+    {icon: 'runes', name: t('modules.characters', 'Characters'), to: '/docs/guides/characters', text: t('modules.characters.text', 'Attributes, modifiers, skills, experience, status effects.')},
+    {icon: 'swords', name: t('modules.combat', 'Combat'), to: '/docs/guides/combat', text: t('modules.combat.text', 'Health, blows and deaths of the player, villagers and creatures; damage changed or cancelled.')},
     {icon: 'village', name: t('modules.residents', 'Residents'), to: '/docs/guides/residents', text: t('modules.residents.text', 'Villagers and custom jobs scheduled by priority.')},
-    {icon: 'sun', name: t('modules.world', 'World'), to: '/docs/guides/world', text: t('modules.world.text', 'World clock: hour, day and night, time stop.')},
-    {icon: 'console', name: t('modules.console', 'Console'), to: '/docs/guides/console', text: t('modules.console.text', 'Custom commands alongside give, tp, time and stats.')},
     {icon: 'motion', name: t('modules.anim', 'Animations'), to: '/docs/guides/animations', text: t('modules.anim.text', 'The game’s clips and your own on the player and villagers, emotes, bones.')},
+    {icon: 'sun', name: t('modules.world', 'World'), to: '/docs/guides/world', text: t('modules.world.text', 'World clock: hour, day and night, time stop.')},
+    {icon: 'globe', name: t('modules.l10n', 'Localization'), to: '/docs/concepts/localization', text: t('modules.l10n.text', 'Mod strings in the player’s language, overrides of the game’s own texts.')},
+    {icon: 'console', name: t('modules.console', 'Console'), to: '/docs/guides/console', text: t('modules.console.text', 'Custom commands alongside give, tp, time and stats.')},
     {icon: 'net', name: t('modules.net', 'Multiplayer'), to: '/docs/guides/network', text: t('modules.net.text', 'Mod check on join, message channels between players’ mods.')},
-    {icon: 'anvil', name: t('modules.kit', 'Mod kit'), to: '/docs/guides/mod-kit', text: t('modules.kit.text', 'Unity project matching the game\u2019s version and render pipeline.')},
+    {icon: 'anvil', name: t('modules.kit', 'Mod kit'), to: '/docs/guides/mod-kit', text: t('modules.kit.text', 'Unity project for models, animations and masks on the game\u2019s own skeletons.')},
   ];
   return (
     <section className={styles.parchment}>

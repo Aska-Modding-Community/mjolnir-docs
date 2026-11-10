@@ -442,8 +442,8 @@
     "description": "Characters"
   },
   "landing.modules.characters.text": {
-    "message": "Атрибуты, навыки, эффекты; здоровье, удары и смерти любого персонажа.",
-    "description": "Attributes, skills, effects; health, blows and deaths of anyone."
+    "message": "Атрибуты, модификаторы, навыки, опыт, эффекты состояния.",
+    "description": "Attributes, modifiers, skills, experience, status effects."
   },
   "landing.modules.residents": {
     "message": "Жители",
@@ -474,8 +474,8 @@
     "description": "Mod kit"
   },
   "landing.modules.kit.text": {
-    "message": "Проект Unity под версию игры и её конвейер рендера.",
-    "description": "Unity project matching the game’s version and render pipeline."
+    "message": "Проект Unity для моделей, анимаций и масок на скелетах самой игры.",
+    "description": "Unity project for models, animations and masks on the game’s own skeletons."
   },
   "landing.boot.title": {
     "message": "Цепочка загрузки",
@@ -576,5 +576,21 @@
   "landing.modules.anim.text": {
     "message": "Клипы игры и свои на игроке и жителях, эмоции, кости.",
     "description": "The game’s clips and your own on the player and villagers, emotes, bones."
+  },
+  "landing.modules.combat": {
+    "message": "Бой",
+    "description": "Combat"
+  },
+  "landing.modules.combat.text": {
+    "message": "Здоровье, удары и смерти игрока, жителей и существ; урон можно изменить или отменить.",
+    "description": "Health, blows and deaths of the player, villagers and creatures; damage changed or cancelled."
+  },
+  "landing.modules.l10n": {
+    "message": "Локализация",
+    "description": "Localization"
+  },
+  "landing.modules.l10n.text": {
+    "message": "Строки мода на языке игрока, замена собственных текстов игры.",
+    "description": "Mod strings in the player’s language, overrides of the game’s own texts."
   }
 }
