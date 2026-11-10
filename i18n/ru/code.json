@@ -442,8 +442,8 @@
     "description": "Characters"
   },
   "landing.modules.characters.text": {
-    "message": "Атрибуты, модификаторы, навыки, опыт, эффекты состояния.",
-    "description": "Attributes, modifiers, skills, experience, status effects."
+    "message": "Атрибуты, навыки, эффекты; здоровье, удары и смерти любого персонажа.",
+    "description": "Attributes, skills, effects; health, blows and deaths of anyone."
   },
   "landing.modules.residents": {
     "message": "Жители",
@@ -530,8 +530,8 @@
     "description": "Single player, hosting, joining a host with the same mods"
   },
   "landing.status.works.2": {
-    "message": "Интерфейс, игрок, контент, персонажи, жители, анимации, часы мира, мультиплеер, консоль",
-    "description": "UI, player, content, characters, residents, animations, world clock, multiplayer, console"
+    "message": "Интерфейс, игрок, контент, персонажи, бой, жители, анимации, часы мира, мультиплеер, консоль",
+    "description": "UI, player, content, characters, combat, residents, animations, world clock, multiplayer, console"
   },
   "landing.status.works.3": {
     "message": "Interop генерируется локально и заново после обновлений игры",

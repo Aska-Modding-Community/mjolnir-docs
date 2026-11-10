@@ -32,6 +32,10 @@ The console is English only: its answers and the item names it takes and shows.
 | `anim <animation> [loop] [upper] [move] [villager]` | Plays an animation on the player, or on the nearest villager |
 | `animstop [villager]` | Stops it |
 | `emote <sit\|wave\|cheer\|skal> [villager]` | Plays one of the game's emotes |
+| `combatants [radius]` | Lists the players, villagers, pets, creatures and dens near the player |
+| `hurt <amount> [near]` | Damages the player, or strikes the nearest other combatant as the player |
+| `heal [amount] [near]` | Gives the player, or the nearest other combatant, health back |
+| `kill` | Kills the nearest other combatant within 30 m |
 
 Words are split by spaces; a word containing spaces goes in double quotes: `give Item_Wood_Sticks 5` gives five
 sticks.

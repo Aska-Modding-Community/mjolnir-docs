@@ -26,6 +26,8 @@ Tested: single player, hosting a world, and the mod check between a host and a c
 | Build windows, HUD elements or menu entries | [User interface](guides/ui/overview.md) |
 | Add items, recipes, buildings or effects | [Items and recipes](guides/content/items-and-recipes.md) |
 | Play animations on the player or villagers | [Animations](guides/animations.md) |
+| Deal or change damage, follow deaths | [Combat](guides/combat.md) |
+| Make models, animations and masks | [The mod kit](guides/mod-kit.md) |
 | Send data between players | [Multiplayer](guides/network.md) |
 | Know how the loader works | [Architecture](architecture.md) |
 | Build Mjolnir itself | [Building from source](contributing/building.md) |
@@ -36,7 +38,7 @@ A mod references the main library `Mjolnir.SDK` and only the modules it uses, ea
 
 | Assembly | Namespace | What it gives |
 |---|---|---|
-| `Mjolnir.SDK` | `Mjolnir.SDK` | `Mod` and its lifecycle, manifests and dependencies, TOML config, localization, bindable values, the main-thread `Dispatcher`, character sheets and animators, console commands |
+| `Mjolnir.SDK` | `Mjolnir.SDK` | `Mod` and its lifecycle, manifests and dependencies, TOML config, localization, bindable values, the main-thread `Dispatcher`, character sheets, animators and combatants, console commands |
 | `Mjolnir.SDK.UI` | `Mjolnir.SDK.UI` | Windows, dialogs, HUD elements and markers, notifications, menu entries, tabs in the game's own windows, hotkeys, controls cloned from the game's interface |
 | `Mjolnir.SDK.Player` | `Mjolnir.SDK.Player` | The local player: spawn and death, health, stamina, food, water, warmth, stamina costs, position and teleport |
 | `Mjolnir.SDK.Content` | `Mjolnir.SDK.Content` | Items, recipes, buildings, status effects, item models from AssetBundles, the item catalog |
@@ -45,6 +47,7 @@ A mod references the main library `Mjolnir.SDK` and only the modules it uses, ea
 | `Mjolnir.SDK.AI` | `Mjolnir.SDK.AI` | The settlement's villagers and jobs of a mod's own |
 | `Mjolnir.SDK.World` | `Mjolnir.SDK.World` | The world's clock |
 | `Mjolnir.SDK.Stats` | (none) | Connects `CharacterSheet` to the game; it has no public types |
+| `Mjolnir.SDK.Combat` | (none) | Connects `Combatant` and `Combatants` to the game: blows before and after they land, deaths and their killer; it has no public types |
 
 Module public signatures use only .NET, Unity and TextMeshPro types, never the game's. A game rename is fixed in the
 SDK, and mods keep working.

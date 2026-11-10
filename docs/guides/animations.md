@@ -40,7 +40,7 @@ it and comes back as it ends.
 | `Duration` | the clip's length | How long it plays, fade out included; with `Loop`, until stopped |
 | `Mask` | whole body | The bones it moves, such as `AnimationMask.UpperBody` |
 | `RootMotion` | `false` | The clip moves the character through the game's movement, which keeps it to the ground and stops it at walls |
-| `MoveSpeed` | 0 for the whole body, 1 with a mask | How much of the player's own walking goes through, from 0 to 1. Villagers are not held |
+| `MoveSpeed` | 0 for the whole body, 1 with a mask | How much of the character's own walking goes through, from 0 to 1: the player's, or a villager's on its way |
 
 `AnimationMask.UpperBody` is the spine, neck, head and arms; the pelvis and the legs keep the game's animation.
 
@@ -72,18 +72,22 @@ next frame; events and `At` actions run on the main thread.
   it to the other players. `false` without the character.
 - `Bone(name)` gives a bone of the character's own skeleton, such as `Bip001 R Hand`, `Bip001 Head` or
   `Bone hand_weapon`, to put a mod's effect on. `null` without the character or such a bone.
-- `Rig` names the skeleton: `aska` (the player), `peasant_male`, `peasant_female`. The game's characters share one
-  skeleton, so a clip of one plays on the others; their proportions differ, so a clip made for the player may look a
-  little off on a villager.
+- `Rig` names the skeleton, as the [mod kit](mod-kit.md#the-games-skeletons) does: `ragnar` or `aska` (the player's
+  two characters), `peasant_male`, `peasant_female` (villagers). The bones' names are the same on all four, so a clip
+  of one plays on the others; their proportions differ, so a clip made for the player may look a little off on a
+  villager.
 
 ## Villagers
 
-A villager's own mind goes on while an animation plays on it: it still walks, works and carries. So:
+A whole-body animation holds a character where it is, the player and a villager alike; one through a mask lets it
+walk. A villager's own mind goes on meanwhile: held on its way, it stands and then walks on; at work, it goes on working
+under the animation. So:
 
-- to have it stop and act (bow, dance, cast where it stands), give it a job with a `Play` step. The job takes it from
-  what it was doing by priority, and gives it back after;
-- for a gesture without leaving its work, such as a wave while walking, play it through `AnimationMask.UpperBody`;
-- a whole-body animation played directly suits a villager that stands anyway: one that walks slides along in its pose.
+- to take it from what it does for as long as wanted (bow, dance, cast where it stands), give it a job with a `Play`
+  step. The job takes it by priority and gives it back after;
+- for a short pause on its way, such as a bow to someone it meets, play a whole-body animation directly: it stops,
+  plays and walks on;
+- for a gesture without stopping, such as a wave while walking, play it through `AnimationMask.UpperBody`.
 
 ```csharp
 Residents.AddJob("wave_back", priority: _ => 12f)
@@ -95,7 +99,8 @@ animation plays until then). Another quest taking the villager stops it. See [Re
 
 ## A mod's own animations
 
-Clips are made on the game's skeleton in the [mod kit](content/models.md#animations) and shipped in an AssetBundle.
+Clips are made on the game's skeletons in the [mod kit](mod-kit.md#making-animations), in Unity, Blender or from
+Mixamo, and shipped in an AssetBundle. The game's own clips are played by name and never shipped.
 
 ```csharp title="BowMod.cs"
 using Mjolnir.SDK;
@@ -125,8 +130,9 @@ public sealed class BowMod : Mod
   (`master/Bip001/…`); the kit makes them.
 - Add both in `OnLoad`. Adding the same name again returns the one already added.
 
-The example mod `Mjolnir.AnimationsExample` bows with a key (villagers nearby bow back through a job), dashes forward
-with root motion and waves while walking.
+The example mod `Mjolnir.AnimationsExample` plays only the game's own clips: F9 raises a toast (`aska_idle_skal`) and
+villagers within 12 m toast back through a job, F10 dodges forward with root motion (`aska_dodge_front`), F11 waves
+while walking through the upper-body mask (`aska_wave`).
 
 ## Multiplayer
 

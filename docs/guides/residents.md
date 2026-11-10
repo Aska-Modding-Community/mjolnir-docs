@@ -27,6 +27,7 @@ A `Resident` is one villager, the same object while it lives:
 | `ModJob` | The mod job it does now, or `null` |
 | `Sheet` | Its [character sheet](characters.md) |
 | `Animator` | Its [animator](animations.md) |
+| `Combatant` | It in [combat](combat.md): health, damage, death |
 
 Read residents on the main thread: in callbacks, a job's steps, or the events.
 

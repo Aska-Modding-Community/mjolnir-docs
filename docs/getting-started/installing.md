@@ -55,7 +55,8 @@ Turning off a mod that others need asks first. Turning on a mod whose dependenci
 The choice is saved in `Mjolnir/Config/mod-list.json`.
 
 The **Settings** button in the window's footer opens Mjolnir's own settings: the interface scale of menus and of the
-HUD, and the developer console's key.
+HUD, the developer console's key, and two options for the mod kit: the game's characters' models and the game's
+animations (see [The mod kit](../guides/mod-kit.md#the-games-skeletons)).
 
 ## Files Mjolnir writes
 
@@ -66,7 +67,7 @@ HUD, and the developer console's key.
 | `Mjolnir/Config/mjolnir.toml` | Mjolnir's own settings |
 | `Mjolnir/Config/mod-list.json` | The mods you turned off |
 | `Mjolnir/interop/` | The generated view of the game's code, for this game build |
-| `Mjolnir/rigs/` | The characters' skeletons, for the mod kit |
+| `Mjolnir/ModKit/` | The game's skeletons for the [mod kit](../guides/mod-kit.md), and its people's models and clips when the kit's settings are on. For this computer only |
 | `Mjolnir/cache/` | Hashes of the game's files and the generator's log |
 
 ## Start once without mods

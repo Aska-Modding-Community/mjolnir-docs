@@ -49,7 +49,8 @@ Hud.Add(bar, HudAnchor.BottomLeft);
 Еда и вода меняются каждый кадр. SDK следит за характеристикой в игре, только пока её слушает мод.
 
 `LocalPlayer.Sheet` — весь [лист персонажа](characters.md): базовые характеристики, навыки и эффекты.
-`LocalPlayer.Animator` проигрывает на нём [анимации](animations.md).
+`LocalPlayer.Animator` проигрывает на нём [анимации](animations.md), а `LocalPlayer.Combatant` — он же в
+[бою](combat.md).
 
 ## Расход выносливости {/* #stamina-costs */}
 
