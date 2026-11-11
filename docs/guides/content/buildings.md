@@ -12,7 +12,7 @@ hammer. In the world it is the mod's object, with its own name, id, texts, pictu
 ModBuilding altar = Buildings.Add("altar", icon: "items/altar.png")
                              .WithModel("bundles/models", "Altar")
                              .WithCategory("Categ_Blueprints_Totems")
-                             .WithGroundLevelling(true)
+                             .WithGroundLevelling()
                              .Needs("Item_Stone_Raw", 4);
 ```
 
@@ -83,7 +83,7 @@ Buildings.Add("twine_arch", basedOn: "Item_Decoration_ArchFlimsy", icon: "items/
 | Method | What |
 |---|---|
 | `WithCategory(category)` | The build menu's tab, by the game's asset name: `Categ_Blueprints_Decoration`, `Categ_Blueprints_Structures`, `Categ_Blueprints_Storage`, `Categ_Blueprints_Furniture`, `Categ_Blueprints_Totems`, `Categ_Blueprints_ExteriorLights`. The base's without it |
-| `WithGroundLevelling(levels)` | `true` places a plan the player digs with a hoe first, as the game's lanterns and houses; `false` starts the first stage at once. The base's rule without it |
+| `WithGroundLevelling(levels)` | Without an argument or with `true`, places a plan the player digs with a hoe first, as the game's lanterns and houses. `false` starts the first stage as soon as the building is placed, as the game's decorations. Without the call, the building does what its base does |
 | `WithBuildEffort(effort)` | The hammer work each stage takes. The game's stages take `ModBuilding.DefaultBuildEffort`, 10 |
 
 To let the player or villagers use a building, put an [interaction](../interactions.md) on it.

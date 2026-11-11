@@ -13,7 +13,7 @@ title: Постройки
 ModBuilding altar = Buildings.Add("altar", icon: "items/altar.png")
                              .WithModel("bundles/models", "Altar")
                              .WithCategory("Categ_Blueprints_Totems")
-                             .WithGroundLevelling(true)
+                             .WithGroundLevelling()
                              .Needs("Item_Stone_Raw", 4);
 ```
 
@@ -84,7 +84,7 @@ Buildings.Add("twine_arch", basedOn: "Item_Decoration_ArchFlimsy", icon: "items/
 | Метод | Что |
 |---|---|
 | `WithCategory(category)` | Вкладка меню строительства по имени ассета игры: `Categ_Blueprints_Decoration`, `Categ_Blueprints_Structures`, `Categ_Blueprints_Storage`, `Categ_Blueprints_Furniture`, `Categ_Blueprints_Totems`, `Categ_Blueprints_ExteriorLights`. Без него — вкладка основы |
-| `WithGroundLevelling(levels)` | `true` сначала ставит план, который игрок вскапывает мотыгой, как у фонарей и домов игры; `false` начинает первую стадию сразу. Без него — как у основы |
+| `WithGroundLevelling(levels)` | Без аргумента или с `true` сначала ставит план, который игрок вскапывает мотыгой, как у фонарей и домов игры. `false` начинает первую стадию сразу, как только постройка размещена, как у украшений игры. Без вызова постройка делает то же, что её основа |
 | `WithBuildEffort(effort)` | Работа молотом на каждую стадию. Стадии игры требуют `ModBuilding.DefaultBuildEffort`, 10 |
 
 Чтобы игрок или жители могли пользоваться постройкой, добавьте на неё [взаимодействие](../interactions.md).
