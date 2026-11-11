@@ -47,6 +47,7 @@ const sidebars: SidebarsConfig = {
         'guides/characters',
         'guides/combat',
         'guides/residents',
+        'guides/interactions',
         'guides/animations',
         'guides/mod-kit',
         'guides/world',

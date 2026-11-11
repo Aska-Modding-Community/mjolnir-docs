@@ -81,6 +81,7 @@ public sealed class GreetMod : Mod
 | `Wait(duration)` | Stays where it is |
 | `Do(action)` | Runs the action once, on the main thread |
 | `Play(animation, options, duration)` | Plays an animation where the villager stands; over when it ends, or when `duration` is up. See [Animations](animations.md#villagers) |
+| `Use(interaction, duration, animation, options)` | Walks up to an [interaction](interactions.md#villagers), waits for its turn and stays at it, then raises its `Used` |
 
 After its last step the job ends and the villager picks again. To keep a job from running again at once, lower its
 priority yourself with a cooldown or a done flag, as above.
@@ -110,5 +111,5 @@ taken again.
 
 :::note
 Villagers' minds run on the host of a world, which in single player is the player. A joined client is not checked yet.
-Interactions and decisions of a mod's own, and assigning villagers to workplaces, are not in the SDK yet.
+Decisions of a mod's own and assigning villagers to workplaces are not in the SDK yet.
 :::

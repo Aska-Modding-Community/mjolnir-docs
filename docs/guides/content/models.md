@@ -40,8 +40,5 @@ Mjolnir/Mods/TwineMod/
 - Scripts are left out of bundles: the game cannot run a mod's `MonoBehaviour` from a bundle.
 - **Mjolnir → Items → Render Item Icons** draws the selected prefab into a 256 × 256 picture for the item's icon.
 
-See [The mod kit](../mod-kit.md) for building and copying bundles.
-
-:::note[Not done yet]
-Models for buildings: a building is a network object, and a mod's building looks like its base for now.
-:::
+See [The mod kit](../mod-kit.md) for building and copying bundles, and [Buildings](buildings.md#look) for a
+building's model.

@@ -24,7 +24,8 @@ Tested: single player, hosting a world, and the mod check between a host and a c
 | Understand what a mod is and when its code runs | [Mod lifecycle](concepts/lifecycle.md) |
 | Give a mod settings or texts in the player's language | [Config](concepts/config.md), [Localization](concepts/localization.md) |
 | Build windows, HUD elements or menu entries | [User interface](guides/ui/overview.md) |
-| Add items, recipes, buildings or effects | [Items and recipes](guides/content/items-and-recipes.md) |
+| Add items, recipes or effects | [Items and recipes](guides/content/items-and-recipes.md) |
+| Add buildings, and things to do at them | [Buildings](guides/content/buildings.md), [Interactions](guides/interactions.md) |
 | Play animations on the player or villagers | [Animations](guides/animations.md) |
 | Deal or change damage, follow deaths | [Combat](guides/combat.md) |
 | Make models, animations and masks | [The mod kit](guides/mod-kit.md) |
@@ -41,10 +42,10 @@ A mod references the main library `Mjolnir.SDK` and only the modules it uses, ea
 | `Mjolnir.SDK` | `Mjolnir.SDK` | `Mod` and its lifecycle, manifests and dependencies, TOML config, localization, bindable values, the main-thread `Dispatcher`, character sheets, animators and combatants, console commands |
 | `Mjolnir.SDK.UI` | `Mjolnir.SDK.UI` | Windows, dialogs, HUD elements and markers, notifications, menu entries, tabs in the game's own windows, hotkeys, controls cloned from the game's interface |
 | `Mjolnir.SDK.Player` | `Mjolnir.SDK.Player` | The local player: spawn and death, health, stamina, food, water, warmth, stamina costs, position and teleport |
-| `Mjolnir.SDK.Content` | `Mjolnir.SDK.Content` | Items, recipes, buildings, status effects, item models from AssetBundles, the item catalog |
+| `Mjolnir.SDK.Content` | `Mjolnir.SDK.Content` | Items, recipes, buildings, status effects, models from AssetBundles, the item catalog |
 | `Mjolnir.SDK.Animation` | `Mjolnir.SDK.Animation` | Animations and masks of a mod's own from its AssetBundle; connects `CharacterAnimator` to the game |
 | `Mjolnir.SDK.Net` | `Mjolnir.SDK.Net` | The players of a session and message channels between their mods. Every session checks that a joining player's mods match the host's |
-| `Mjolnir.SDK.AI` | `Mjolnir.SDK.AI` | The settlement's villagers and jobs of a mod's own |
+| `Mjolnir.SDK.AI` | `Mjolnir.SDK.AI` | The settlement's villagers, jobs of a mod's own, interactions at buildings for the player and villagers |
 | `Mjolnir.SDK.World` | `Mjolnir.SDK.World` | The world's clock |
 | `Mjolnir.SDK.Stats` | (none) | Connects `CharacterSheet` to the game; it has no public types |
 | `Mjolnir.SDK.Combat` | (none) | Connects `Combatant` and `Combatants` to the game: blows before and after they land, deaths and their killer; it has no public types |
@@ -64,4 +65,6 @@ SDK, and mods keep working.
 | `Mjolnir.ItemsExample` | Items with models of their own, recipes by hand and at a workshop, a building, a console command |
 | `Mjolnir.StatsExample` | Experience and an effect of the mod's own |
 | `Mjolnir.VillagersExample` | A job villagers take |
+| `Mjolnir.AltarExample` | A building of its own: a model, a build menu tab, levelled ground, supplies, and a prayer the player says at it |
+| `Mjolnir.AnimationsExample` | The game's clips on the player and villagers: root motion, the upper-body mask, a job |
 | `Mjolnir.CheatInventory` | The item catalog in a searchable window |

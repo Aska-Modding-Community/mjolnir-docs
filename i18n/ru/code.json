@@ -434,8 +434,8 @@
     "description": "Content"
   },
   "landing.modules.content.text": {
-    "message": "Предметы, рецепты, постройки, эффекты состояния, модели.",
-    "description": "Items, recipes, buildings, status effects, models."
+    "message": "Предметы, рецепты, постройки по стадиям, эффекты состояния, модели.",
+    "description": "Items, recipes, buildings built in stages, status effects, models."
   },
   "landing.modules.characters": {
     "message": "Персонажи",
@@ -450,8 +450,8 @@
     "description": "Residents"
   },
   "landing.modules.residents.text": {
-    "message": "Жители поселения и свои работы по приоритету.",
-    "description": "Villagers and custom jobs scheduled by priority."
+    "message": "Жители, работы по приоритету, взаимодействия у построек.",
+    "description": "Villagers, jobs by priority, interactions at buildings."
   },
   "landing.modules.world": {
     "message": "Мир",
