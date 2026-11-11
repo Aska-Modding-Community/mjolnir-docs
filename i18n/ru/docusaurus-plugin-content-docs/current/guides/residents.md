@@ -1,5 +1,7 @@
 ---
 title: Жители и работы
+description: Жители поселения (Resident в SDK) и собственные работы мода.
+keywords: [житель, жители, villager, Villager, SSSGame.Villager, resident, Resident, Residents, работа, ResidentJob]
 ---
 
 # Жители и работы
@@ -7,7 +9,8 @@ title: Жители и работы
 `Mjolnir.SDK.AI` даёт модам жителей поселения и собственные работы, которые жители берут по приоритету среди задач
 самой игры. Подключите `Mjolnir.SDK.AI.dll` и добавьте `using Mjolnir.SDK.AI;`.
 
-SDK называет жителя **resident**: собственный тип игры называется `Villager`.
+Житель игры в SDK — это `Resident`. Собственный тип игры — `SSSGame.Villager`; другое имя не даёт им смешаться в
+моде, который использует оба.
 
 ## Жители {/* #residents */}
 

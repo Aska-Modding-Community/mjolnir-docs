@@ -1,13 +1,16 @@
 ---
-title: Residents and jobs
+title: Villagers and jobs
+description: The settlement's villagers (Resident in the SDK) and jobs of a mod's own.
+keywords: [villager, villagers, Villager, SSSGame.Villager, resident, Resident, Residents, job, ResidentJob]
 ---
 
-# Residents and jobs
+# Villagers and jobs
 
 `Mjolnir.SDK.AI` gives mods the settlement's villagers and jobs of their own, which villagers take by priority among
 the game's own tasks. Reference `Mjolnir.SDK.AI.dll` and add `using Mjolnir.SDK.AI;`.
 
-The SDK calls a villager a **resident**: the game's own type is named `Villager`.
+A villager of the game is a `Resident` in the SDK. The game's own type is `SSSGame.Villager`; a different name keeps
+the two apart in a mod that uses both.
 
 ## Residents
 

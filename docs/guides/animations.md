@@ -95,7 +95,7 @@ Residents.AddJob("wave_back", priority: _ => 12f)
 ```
 
 `ResidentJob.Play(animation, options, duration)` takes an `AnimationInfo`, or a name looked up when the step starts, as jobs are made in `OnLoad`. The step is over when the animation ends, or when `duration` is up (a looping
-animation plays until then). Another quest taking the villager stops it. See [Residents and jobs](residents.md).
+animation plays until then). Another quest taking the villager stops it. See [Villagers and jobs](residents.md).
 
 ## A mod's own animations
 

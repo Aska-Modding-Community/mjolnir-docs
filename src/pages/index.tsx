@@ -205,7 +205,7 @@ function Modules(): ReactNode {
     {icon: 'chest', name: t('modules.content', 'Content'), to: '/docs/guides/content/items-and-recipes', text: t('modules.content.text', 'Items, recipes, buildings built in stages, status effects, models.')},
     {icon: 'runes', name: t('modules.characters', 'Characters'), to: '/docs/guides/characters', text: t('modules.characters.text', 'Attributes, modifiers, skills, experience, status effects.')},
     {icon: 'swords', name: t('modules.combat', 'Combat'), to: '/docs/guides/combat', text: t('modules.combat.text', 'Health, blows and deaths of the player, villagers and creatures; damage changed or cancelled.')},
-    {icon: 'village', name: t('modules.residents', 'Residents'), to: '/docs/guides/residents', text: t('modules.residents.text', 'Villagers, jobs by priority, interactions at buildings.')},
+    {icon: 'village', name: t('modules.residents', 'Villagers'), to: '/docs/guides/residents', text: t('modules.residents.text', 'Villagers, jobs by priority, interactions at buildings.')},
     {icon: 'motion', name: t('modules.anim', 'Animations'), to: '/docs/guides/animations', text: t('modules.anim.text', 'The game’s clips and your own on the player and villagers, emotes, bones.')},
     {icon: 'sun', name: t('modules.world', 'World'), to: '/docs/guides/world', text: t('modules.world.text', 'World clock: hour, day and night, time stop.')},
     {icon: 'globe', name: t('modules.l10n', 'Localization'), to: '/docs/concepts/localization', text: t('modules.l10n.text', 'Mod strings in the player’s language, overrides of the game’s own texts.')},

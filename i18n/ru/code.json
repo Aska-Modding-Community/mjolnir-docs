@@ -447,7 +447,7 @@
   },
   "landing.modules.residents": {
     "message": "Жители",
-    "description": "Residents"
+    "description": "Villagers"
   },
   "landing.modules.residents.text": {
     "message": "Жители, работы по приоритету, взаимодействия у построек.",
