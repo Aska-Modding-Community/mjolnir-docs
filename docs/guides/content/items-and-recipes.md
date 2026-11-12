@@ -14,8 +14,8 @@ Game assets are referred to by asset name: `Item_Wood_Sticks`, `Item_Materials_B
 ## Items
 
 An item is a copy of a game item. It keeps the base's world model, kind, size and sounds; the mod gives it a name,
-a picture, a stack size and texts. For a weapon, a piece of armour or food, see
-[Weapons, armour and food](equipment.md).
+a picture, a stack size and texts. The base is a game item named with `basedOn`, or a plain one of a
+[kind](#kinds-of-items).
 
 ```csharp title="TwineMod.cs"
 using Mjolnir.SDK;
@@ -62,6 +62,41 @@ lore = "Coiled so it does not tangle."
 ```
 
 An omitted description or lore shows nothing. See [Localization](../../concepts/localization.md).
+
+## Kinds of items
+
+An item stands on a game item in one of two ways:
+
+| Call | Stands on | Use it for |
+|---|---|---|
+| `Items.Add(name, basedOn, icon, stackSize)` | The game item you name | An item like one particular game item: an iron axe, a longbow, a rope |
+| `Items.Add(name, kind, icon, stackSize)` | A plain game item of the `ItemKind` | A weapon, a piece of armour, food or a material, without naming a game item |
+
+The kind decides where the item goes in the inventory, how it is carried, held or worn, and what it does. The item
+has its base's picture, look, sounds and numbers until the mod gives its own. `ModItem.Kind` is the kind it was added
+with, `null` for one made with `basedOn`.
+
+```csharp
+ModItem sword = Items.Add("rune_sword", ItemKind.OneHandedWeapon, icon: "items/rune_sword.png").WithDamage(14, 18);
+ModItem hood = Items.Add("rune_hood", ItemKind.Helmet).WithArmor(60);
+ModItem cake = Items.Add("honey_cake", ItemKind.Food, stackSize: 5);
+```
+
+| `ItemKind` | What it is | Stands on | Takes besides `WithArmor`, `WithDurability`, `WithAttribute` |
+|---|---|---|---|
+| `Material` | A small crafting material, many to a slot | The rope | |
+| `LargeMaterial` | A long or heavy material carried on the back | The plank | |
+| `Food` | Eaten from the inventory | Berries | `AppliesWhenEaten` |
+| `OneHandedWeapon` | Held in the right hand, with a shield beside it | The iron sword | `WithDamage`, `AppliesOnHit`, `AppliesWhileEquipped` |
+| `TwoHandedWeapon` | Held in both hands | The two-handed iron sword | `WithDamage`, `AppliesOnHit`, `AppliesWhileEquipped` |
+| `Shield` | Held in the left hand | The crude round shield | `WithDamage`, `AppliesOnHit`, `AppliesWhileEquipped` |
+| `Bow` | Held in both hands, shoots arrows | The simple bow | `WithDamage`, `AppliesWhileEquipped` |
+| `Arrow` | Worn in the quiver | Wooden arrows | `WithDamage`, `AppliesWhileEquipped` |
+| `Helmet`, `Chest`, `Pants`, `Boots`, `Gloves`, `Cape` | Worn | The cloth set | `AppliesWhileEquipped` |
+
+A method a kind does not take throws `InvalidOperationException`. On an item made with `basedOn`, the base's own kind
+decides, and a method that does not fit writes a warning to the log. What each method does is in
+[Weapons, armour and food](equipment.md).
 
 ## Ids and saves
 

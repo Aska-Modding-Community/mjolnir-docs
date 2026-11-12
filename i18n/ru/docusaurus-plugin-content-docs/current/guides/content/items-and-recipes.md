@@ -14,7 +14,8 @@ title: Предметы и рецепты
 ## Предметы {/* #items */}
 
 Предмет — копия предмета игры. Он сохраняет модель основы в мире, её вид, размер и звуки; мод даёт ему имя, картинку,
-размер стопки и тексты. Об оружии, броне и еде — в [Оружии, броне и еде](equipment.md).
+размер стопки и тексты. Основа — предмет игры, названный в `basedOn`, или простой предмет одного из
+[видов](#kinds-of-items).
 
 ```csharp title="TwineMod.cs"
 using Mjolnir.SDK;
@@ -61,6 +62,41 @@ lore = "Coiled so it does not tangle."
 ```
 
 Пропущенные описание или лор ничего не показывают. См. [Локализация](../../concepts/localization.md).
+
+## Виды предметов {/* #kinds-of-items */}
+
+Предмет стоит на предмете игры одним из двух способов:
+
+| Вызов | Основа | Для чего |
+|---|---|---|
+| `Items.Add(name, basedOn, icon, stackSize)` | Названный предмет игры | Предмет, похожий на конкретный предмет игры: железный топор, длинный лук, верёвку |
+| `Items.Add(name, kind, icon, stackSize)` | Простой предмет игры вида `ItemKind` | Оружие, часть брони, еда или материал без имени предмета игры |
+
+Вид определяет, куда предмет попадает в инвентаре, как его носят, держат или надевают и что он делает. У предмета
+картинка, облик, звуки и числа основы, пока мод не задаст свои. `ModItem.Kind` — вид, с которым он добавлен, `null`
+для предмета, созданного через `basedOn`.
+
+```csharp
+ModItem sword = Items.Add("rune_sword", ItemKind.OneHandedWeapon, icon: "items/rune_sword.png").WithDamage(14, 18);
+ModItem hood = Items.Add("rune_hood", ItemKind.Helmet).WithArmor(60);
+ModItem cake = Items.Add("honey_cake", ItemKind.Food, stackSize: 5);
+```
+
+| `ItemKind` | Что это | Основа | Принимает, кроме `WithArmor`, `WithDurability`, `WithAttribute` |
+|---|---|---|---|
+| `Material` | Небольшой материал для крафта, много в одной ячейке | Верёвка | |
+| `LargeMaterial` | Длинный или тяжёлый материал, который носят на спине | Доска | |
+| `Food` | Съедается из инвентаря | Ягоды | `AppliesWhenEaten` |
+| `OneHandedWeapon` | В правой руке, рядом можно держать щит | Железный меч | `WithDamage`, `AppliesOnHit`, `AppliesWhileEquipped` |
+| `TwoHandedWeapon` | В обеих руках | Двуручный железный меч | `WithDamage`, `AppliesOnHit`, `AppliesWhileEquipped` |
+| `Shield` | В левой руке | Грубый круглый щит | `WithDamage`, `AppliesOnHit`, `AppliesWhileEquipped` |
+| `Bow` | В обеих руках, стреляет стрелами | Простой лук | `WithDamage`, `AppliesWhileEquipped` |
+| `Arrow` | В колчане | Деревянные стрелы | `WithDamage`, `AppliesWhileEquipped` |
+| `Helmet`, `Chest`, `Pants`, `Boots`, `Gloves`, `Cape` | Надеваются | Тканевый комплект | `AppliesWhileEquipped` |
+
+Метод, который вид не принимает, бросает `InvalidOperationException`. У предмета, созданного через `basedOn`, решает
+собственный вид основы, а неподходящий метод пишет предупреждение в лог. Что делает каждый метод — в
+[Оружии, броне и еде](equipment.md).
 
 ## Id и сохранения {/* #ids-and-saves */}
 
