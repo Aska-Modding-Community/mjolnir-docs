@@ -14,7 +14,8 @@ Game assets are referred to by asset name: `Item_Wood_Sticks`, `Item_Materials_B
 ## Items
 
 An item is a copy of a game item. It keeps the base's world model, kind, size and sounds; the mod gives it a name,
-a picture, a stack size and texts.
+a picture, a stack size and texts. For a weapon, a piece of armour or food, see
+[Weapons, armour and food](equipment.md).
 
 ```csharp title="TwineMod.cs"
 using Mjolnir.SDK;

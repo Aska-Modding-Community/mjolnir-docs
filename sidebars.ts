@@ -38,6 +38,7 @@ const sidebars: SidebarsConfig = {
           label: 'Content',
           items: [
             'guides/content/items-and-recipes',
+            'guides/content/equipment',
             'guides/content/buildings',
             'guides/content/effects',
             'guides/content/models',

@@ -49,11 +49,28 @@ A building without `WithModel` shows its base's look.
 |---|---|
 | `WithModel(bundle, asset)` | The building's model: a prefab from the mod's AssetBundle, built with the [mod kit](../mod-kit.md). Its origin stands on the building's place |
 | `WithConstructionModel(bundle, asset)` | A look for the stages under way, such as scaffolding or a frame. Without it the model stands for them |
+| `WithModel(bundle, asset, stage)` | What one stage builds, `0` the first |
+| `WithConstructionModel(bundle, asset, stage)` | One stage's look while it is under way. Without a model for the stage, it shows only then |
 
 While a stage is under way, the model shows in the game's construction material and tint: yellow while supplies are
 missing, green while it waits for the hammer. Once finished it shows as made. The game outlines the model under the
 player's look and shows the building's card. Its solid colliders are the model's own, and the building's footprint
 and the boxes the player's look finds are fitted around it. The placement preview carries the model too.
+
+With a model per stage the building grows as the game's houses do: the stage under way shows its model in the
+construction material, the stages built show theirs, and the stages to come show nothing. A building with stage
+models has no other model; one given with `WithModel(bundle, asset)` is left out, with a warning in the log.
+
+```csharp
+Buildings.Add("lodge", basedOn: "Item_Structures_BuilderHutL1")   // three stages: frame, walls, roof
+         .WithModel("bundles/lodge", "LodgeFrame", stage: 0)
+         .WithModel("bundles/lodge", "LodgeWalls", stage: 1)
+         .WithModel("bundles/lodge", "LodgeRoof", stage: 2)
+         .WithConstructionModel("bundles/lodge", "LodgeRoofScaffolding", stage: 2)
+         .Needs("Item_Wood_RawLog", 4, stage: 0)
+         .Needs("Item_Wood_Sticks", 6, stage: 1)
+         .Needs("Item_Wood_Bark", 8, stage: 2);
+```
 
 Materials take the game's shader of the same name, so use the game's shaders by name, such as `HDRP/Lit`.
 

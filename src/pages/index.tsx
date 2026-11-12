@@ -202,7 +202,7 @@ function Modules(): ReactNode {
   const modules: {icon: IconName; name: string; to: string; text: string}[] = [
     {icon: 'window', name: t('modules.ui', 'UI'), to: '/docs/guides/ui/overview', text: t('modules.ui.text', 'Windows, HUD, menus and tabs in the game\u2019s own windows, built from its UI.')},
     {icon: 'player', name: t('modules.player', 'Player'), to: '/docs/guides/player', text: t('modules.player.text', 'Spawn and death events, vitals, stamina costs, teleport.')},
-    {icon: 'chest', name: t('modules.content', 'Content'), to: '/docs/guides/content/items-and-recipes', text: t('modules.content.text', 'Items, recipes, buildings built in stages, status effects, models.')},
+    {icon: 'chest', name: t('modules.content', 'Content'), to: '/docs/guides/content/items-and-recipes', text: t('modules.content.text', 'Items, weapons, armour and food, recipes, buildings built in stages, effects, models.')},
     {icon: 'runes', name: t('modules.characters', 'Characters'), to: '/docs/guides/characters', text: t('modules.characters.text', 'Attributes, modifiers, skills, experience, status effects.')},
     {icon: 'swords', name: t('modules.combat', 'Combat'), to: '/docs/guides/combat', text: t('modules.combat.text', 'Health, blows and deaths of the player, villagers and creatures; damage changed or cancelled.')},
     {icon: 'village', name: t('modules.residents', 'Villagers'), to: '/docs/guides/residents', text: t('modules.residents.text', 'Villagers, jobs by priority, interactions at buildings.')},
@@ -306,7 +306,7 @@ function Status(): ReactNode {
             <span className={styles.statusTitle}>{t('status.works', 'Available')}</span>
             <ul>
               <li>{t('status.works.1', 'Single player, hosting, joining a host with the same mods')}</li>
-              <li>{t('status.works.2', 'UI, player, content, characters, combat, residents, animations, world clock, multiplayer, console')}</li>
+              <li>{t('status.works.2', 'UI, player, items, weapons and armour, buildings, characters, combat, villagers, interactions, animations, world clock, multiplayer, console')}</li>
               <li>{t('status.works.3', 'Interop generated locally and regenerated after game updates')}</li>
             </ul>
           </div>
@@ -314,7 +314,7 @@ function Status(): ReactNode {
             <span className={styles.statusTitle}>{t('status.todo', 'Planned')}</span>
             <ul>
               <li>{t('status.todo.1', 'Villager jobs and stat modifiers checked on joined clients')}</li>
-              <li>{t('status.todo.2', 'Custom building models')}</li>
+              <li>{t('status.todo.2', 'Worn models for armour, buildings with a function of their own')}</li>
             </ul>
           </div>
         </div>

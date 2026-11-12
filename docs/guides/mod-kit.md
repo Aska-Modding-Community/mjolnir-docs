@@ -23,11 +23,14 @@ picked before, or Steam's records, and asks when it finds none.
 
 - **Mjolnir → New Mod…** makes `Assets/Mods/<mod>/<bundle>/`. Name the mod's folder as in the game's `Mjolnir/Mods`.
   Each bundle folder becomes one AssetBundle with everything in it.
-- **Mjolnir → Build Bundles** builds them into `Build/Bundles/<mod>/<bundle>`.
+- **Mjolnir → Build Bundles** builds them into `Build/Bundles/<mod>/<bundle>`. Each bundle is built under its mod's
+  name, so two mods' bundles of one folder name, such as `models`, load in the game together. Rebuild bundles made
+  by an older kit.
 - **Mjolnir → Build and Copy to Game** also copies each bundle into `Mjolnir/Mods/<mod>/bundles/` of an installed mod,
   and rendered item icons into its `items/`. A file the running game keeps open is named instead of failing the build.
 - **Mjolnir → Check Mods** warns of what will not work in the game: a shader that is not `HDRP/…`, a script on a
-  prefab, a pivot away from its model, a clip's or a mask's bone that no skeleton of the game has. It also runs before
+  prefab, a pivot away from its model, a clip's or a mask's bone that no skeleton of the game has, bundles the game
+  would not load together. It also runs before
   every build. A click on its line in the Console shows the asset.
 
 `tools/build-bundles.ps1` in the repository runs the kit in batch mode. Unity locks an open project: close the editor
