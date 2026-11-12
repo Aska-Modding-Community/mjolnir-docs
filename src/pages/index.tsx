@@ -28,7 +28,7 @@ public sealed class Lightfoot : Mod
     }
 }`;
 
-type IconName = 'window' | 'player' | 'chest' | 'village' | 'sun' | 'runes' | 'console' | 'anvil' | 'net' | 'motion' | 'swords' | 'globe';
+type IconName = 'window' | 'player' | 'chest' | 'village' | 'sun' | 'runes' | 'console' | 'anvil' | 'net' | 'motion' | 'swords' | 'globe' | 'camera';
 
 function Icon({name}: {name: IconName}): ReactNode {
   const paths: Record<IconName, ReactNode> = {
@@ -90,6 +90,12 @@ function Icon({name}: {name: IconName}): ReactNode {
       <>
         <path d="M14.5 17.5 3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2" />
         <path d="M14.5 6.5 18 3h3v3l-3.5 3.5M5 14l4 4M7 17l-3 3M3 19l2 2" />
+      </>
+    ),
+    camera: (
+      <>
+        <path d="M3 8h4l2-3h6l2 3h4v11H3z" />
+        <circle cx="12" cy="13" r="3.5" />
       </>
     ),
     globe: (
@@ -208,8 +214,8 @@ function Modules(): ReactNode {
     {icon: 'village', name: t('modules.residents', 'Villagers'), to: '/docs/guides/residents', text: t('modules.residents.text', 'Villagers, jobs by priority, interactions at buildings.')},
     {icon: 'motion', name: t('modules.anim', 'Animations'), to: '/docs/guides/animations', text: t('modules.anim.text', 'The game’s clips and your own on the player and villagers, emotes, bones.')},
     {icon: 'sun', name: t('modules.world', 'World'), to: '/docs/guides/world', text: t('modules.world.text', 'World clock: hour, day and night, time stop.')},
+    {icon: 'camera', name: t('modules.camera', 'Camera'), to: '/docs/guides/camera', text: t('modules.camera.text', 'Reading the view, modifiers that add up, cameras of a mod\u2019s own with blends.')},
     {icon: 'globe', name: t('modules.l10n', 'Localization'), to: '/docs/concepts/localization', text: t('modules.l10n.text', 'Mod strings in the player’s language, overrides of the game’s own texts.')},
-    {icon: 'console', name: t('modules.console', 'Console'), to: '/docs/guides/console', text: t('modules.console.text', 'Custom commands alongside give, tp, time and stats.')},
     {icon: 'net', name: t('modules.net', 'Multiplayer'), to: '/docs/guides/network', text: t('modules.net.text', 'Mod check on join, message channels between players’ mods.')},
     {icon: 'anvil', name: t('modules.kit', 'Mod kit'), to: '/docs/guides/mod-kit', text: t('modules.kit.text', 'Unity project for models, animations and masks on the game\u2019s own skeletons.')},
   ];
@@ -306,7 +312,7 @@ function Status(): ReactNode {
             <span className={styles.statusTitle}>{t('status.works', 'Available')}</span>
             <ul>
               <li>{t('status.works.1', 'Single player, hosting, joining a host with the same mods')}</li>
-              <li>{t('status.works.2', 'UI, player, items, weapons and armour, buildings, characters, combat, villagers, interactions, animations, world clock, multiplayer, console')}</li>
+              <li>{t('status.works.2', 'UI, player, items, weapons and armour, buildings, characters, combat, villagers, interactions, animations, world clock, camera, multiplayer, console')}</li>
               <li>{t('status.works.3', 'Interop generated locally and regenerated after game updates')}</li>
             </ul>
           </div>

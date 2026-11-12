@@ -29,6 +29,7 @@ Tested: single player, hosting a world, and the mod check between a host and a c
 | Add buildings, and things to do at them | [Buildings](guides/content/buildings.md), [Interactions](guides/interactions.md) |
 | Play animations on the player or villagers | [Animations](guides/animations.md) |
 | Deal or change damage, follow deaths | [Combat](guides/combat.md) |
+| Change the camera, or show one of the mod's own | [Camera](guides/camera.md) |
 | Make models, animations and masks | [The mod kit](guides/mod-kit.md) |
 | Send data between players | [Multiplayer](guides/network.md) |
 | Know how the loader works | [Architecture](architecture.md) |
@@ -48,6 +49,7 @@ A mod references the main library `Mjolnir.SDK` and only the modules it uses, ea
 | `Mjolnir.SDK.Net` | `Mjolnir.SDK.Net` | The players of a session and message channels between their mods. Every session checks that a joining player's mods match the host's |
 | `Mjolnir.SDK.AI` | `Mjolnir.SDK.AI` | The settlement's villagers, jobs of a mod's own, interactions at buildings for the player and villagers |
 | `Mjolnir.SDK.World` | `Mjolnir.SDK.World` | The world's clock |
+| `Mjolnir.SDK.Camera` | `Mjolnir.SDK.Camera` | The player's camera: reading it, the screen and the world, modifiers of the game's cameras, cameras of a mod's own |
 | `Mjolnir.SDK.Stats` | (none) | Connects `CharacterSheet` to the game; it has no public types |
 | `Mjolnir.SDK.Combat` | (none) | Connects `Combatant` and `Combatants` to the game: blows before and after they land, deaths and their killer; it has no public types |
 

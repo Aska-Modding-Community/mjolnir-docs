@@ -530,8 +530,8 @@
     "description": "Single player, hosting, joining a host with the same mods"
   },
   "landing.status.works.2": {
-    "message": "Интерфейс, игрок, предметы, оружие и броня, постройки, персонажи, бой, жители, взаимодействия, анимации, часы мира, мультиплеер, консоль",
-    "description": "UI, player, items, weapons and armour, buildings, characters, combat, villagers, interactions, animations, world clock, multiplayer, console"
+    "message": "Интерфейс, игрок, предметы, оружие и броня, постройки, персонажи, бой, жители, взаимодействия, анимации, часы мира, камера, мультиплеер, консоль",
+    "description": "UI, player, items, weapons and armour, buildings, characters, combat, villagers, interactions, animations, world clock, camera, multiplayer, console"
   },
   "landing.status.works.3": {
     "message": "Interop генерируется локально и заново после обновлений игры",
@@ -592,5 +592,13 @@
   "landing.modules.l10n.text": {
     "message": "Строки мода на языке игрока, замена собственных текстов игры.",
     "description": "Mod strings in the player’s language, overrides of the game’s own texts."
+  },
+  "landing.modules.camera": {
+    "message": "Камера",
+    "description": "Camera"
+  },
+  "landing.modules.camera.text": {
+    "message": "Чтение вида, складывающиеся модификаторы, собственные камеры мода с плавными переходами.",
+    "description": "Reading the view, modifiers that add up, cameras of a mod’s own with blends."
   }
 }
