@@ -37,6 +37,16 @@ The console is English only: its answers and the item names it takes and shows.
 | `hurt <amount> [near]` | Damages the player, or strikes the nearest other combatant as the player |
 | `heal [amount] [near]` | Gives the player, or the nearest other combatant, health back |
 | `kill` | Kills the nearest other combatant within 30 m |
+| `ground [x z]` | The ground under the player or at a point: its height, kind, slope, biome and the water |
+| `raise [metres] [size]`, `lower [metres] [size]` | Raises or digs a square in front of the player |
+| `level [height\|~offset] [size]` | Levels a square in front of the player, by default to their feet |
+| `paint <natural\|dirt\|bedrock\|path\|road> [size]` | Makes a square in front of the player that kind of ground |
+| `clearveg [size]`, `grass [size]` | Clears the grass and bushes of a square, or gives it its natural ground and grass back |
+| `smooth [strength] [size]` | Smooths a square in front of the player |
+| `biome [name\|number] [size]` | Lists the biomes of this part of the world and the one here, or gives a square one of them |
+| `objects [radius] [name]` | Lists the trees, stones and plants of the world round the player |
+| `field [place [size]\|level\|finish\|remove]` | Lists the game's levelling fields, or places one, levels, finishes or takes away the nearest |
+| `undo` | Puts back the ground the console's last change changed |
 
 Words are split by spaces; a word containing spaces goes in double quotes: `give Item_Wood_Sticks 5` gives five
 sticks.

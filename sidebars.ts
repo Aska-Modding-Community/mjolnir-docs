@@ -52,6 +52,7 @@ const sidebars: SidebarsConfig = {
         'guides/animations',
         'guides/mod-kit',
         'guides/world',
+        'guides/terrain',
         'guides/camera',
         'guides/network',
         'guides/console',
