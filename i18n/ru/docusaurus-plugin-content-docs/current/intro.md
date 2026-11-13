@@ -21,6 +21,7 @@ Mjolnir — загрузчик модов и C# SDK для **ASKA** (Unity 6000.
 |---|---|
 | Играть с модами | [Установка](getting-started/installing.md), затем [Решение проблем](troubleshooting.md) |
 | Написать первый мод | [Ваш первый мод](getting-started/first-mod.md) |
+| Перенести плагин, написанный под BepInEx | [Переход с BepInEx](getting-started/from-bepinex.md) |
 | Понять, что такое мод и когда выполняется его код | [Жизненный цикл мода](concepts/lifecycle.md) |
 | Дать моду настройки или тексты на языке игрока | [Конфиг](concepts/config.md), [Локализация](concepts/localization.md) |
 | Делать окна, элементы HUD или пункты меню | [Пользовательский интерфейс](guides/ui/overview.md) |

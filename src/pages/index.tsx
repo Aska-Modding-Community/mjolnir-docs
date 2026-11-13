@@ -256,6 +256,9 @@ function Boot(): ReactNode {
       <div className={styles.container}>
         <Heading as="h2" className={styles.h2Center}>{t('boot.title', 'Boot chain')}</Heading>
         <div className={styles.rule}><Diamond /><span /><Diamond /></div>
+        <p className={styles.center}>
+          {t('boot.lead', 'Its own injection, its own runtime and its own API: four layers between the game’s native code and a mod.')}
+        </p>
         <ol className={styles.steps}>
           {steps.map((s, i) => (
             <li key={s.name} className={styles.step}>
@@ -267,6 +270,43 @@ function Boot(): ReactNode {
         </ol>
         <p className={styles.center}>
           <Link className={styles.textLink} to="/docs/architecture">{t('boot.more', 'Architecture →')}</Link>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Compare(): ReactNode {
+  return (
+    <section className={styles.section}>
+      <div className={styles.containerNarrow}>
+        <Heading as="h2" className={styles.h2Center}>{t('compare.title', 'Coming from BepInEx')}</Heading>
+        <div className={styles.rule}><Diamond /><span /><Diamond /></div>
+        <p className={styles.center}>
+          {t('compare.lead', 'Every ASKA mod published today is a BepInEx 6 IL2CPP plugin. The same C#, the same Harmony, a different platform under them.')}
+        </p>
+        <div className={styles.status}>
+          <div>
+            <span className={styles.statusTitle}>{t('compare.gain', 'What Mjolnir adds')}</span>
+            <ul>
+              <li>{t('compare.gain.1', 'Its own proxy and a private .NET 10 runtime, with interop generated for your game build')}</li>
+              <li>{t('compare.gain.2', 'Fault isolation: a failing mod is disabled alone, the game and the other mods carry on')}</li>
+              <li>{t('compare.gain.3', 'An SDK per area of the game, where renames are absorbed instead of breaking mods')}</li>
+              <li>{t('compare.gain.4', 'Mods declared, ordered and checked between host and client on join')}</li>
+            </ul>
+          </div>
+          <div>
+            <span className={styles.statusTitle}>{t('compare.keep', 'What a plugin keeps')}</span>
+            <ul>
+              <li>{t('compare.keep.1', 'The same HarmonyX attributes, prefixes and postfixes')}</li>
+              <li>{t('compare.keep.2', 'Config.Bind with the same shape, and the mod id it already has')}</li>
+              <li>{t('compare.keep.3', 'Raw Harmony wherever the SDK has no facade yet')}</li>
+              <li>{t('compare.keep.4', 'Most of the rest is deleted: the SDK already has it')}</li>
+            </ul>
+          </div>
+        </div>
+        <p className={styles.center}>
+          <Link className={styles.textLink} to="/docs/getting-started/from-bepinex">{t('compare.more', 'Porting a plugin →')}</Link>
         </p>
       </div>
     </section>
@@ -350,6 +390,7 @@ export default function Home(): ReactNode {
         <CodeSection />
         <Modules />
         <Boot />
+        <Compare />
         <Players />
         <Status />
       </main>

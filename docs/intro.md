@@ -21,6 +21,7 @@ Tested: single player, hosting a world, and the mod check between a host and a c
 |---|---|
 | Play with mods | [Installing](getting-started/installing.md), then [Troubleshooting](troubleshooting.md) |
 | Write your first mod | [Your first mod](getting-started/first-mod.md) |
+| Port a plugin you wrote for BepInEx | [Coming from BepInEx](getting-started/from-bepinex.md) |
 | Understand what a mod is and when its code runs | [Mod lifecycle](concepts/lifecycle.md) |
 | Give a mod settings or texts in the player's language | [Config](concepts/config.md), [Localization](concepts/localization.md) |
 | Build windows, HUD elements or menu entries | [User interface](guides/ui/overview.md) |

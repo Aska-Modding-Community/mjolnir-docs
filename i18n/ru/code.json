@@ -612,5 +612,61 @@
   "landing.modules.terrain.text": {
     "message": "Высоты, виды и биомы земли, изменения со снимками и контурами, деревья и камни мира.",
     "description": "Heights, kinds and biomes of the ground, changes with snapshots and outlines, the world’s trees and stones."
+  },
+  "landing.boot.lead": {
+    "message": "Собственное внедрение, собственный рантайм и собственный API: четыре слоя между нативным кодом игры и модом.",
+    "description": "Its own injection, its own runtime and its own API: four layers between the game’s native code and a mod."
+  },
+  "landing.compare.title": {
+    "message": "Переход с BepInEx",
+    "description": "Coming from BepInEx"
+  },
+  "landing.compare.lead": {
+    "message": "Все опубликованные сегодня моды ASKA — плагины BepInEx 6 IL2CPP. Тот же C#, тот же Harmony, другая платформа под ними.",
+    "description": "Every ASKA mod published today is a BepInEx 6 IL2CPP plugin. The same C#, the same Harmony, a different platform under them."
+  },
+  "landing.compare.gain": {
+    "message": "Что добавляет Mjolnir",
+    "description": "What Mjolnir adds"
+  },
+  "landing.compare.gain.1": {
+    "message": "Собственный прокси и приватный рантайм .NET 10, interop создаётся под вашу сборку игры",
+    "description": "Its own proxy and a private .NET 10 runtime, with interop generated for your game build"
+  },
+  "landing.compare.gain.2": {
+    "message": "Изоляция ошибок: упавший мод отключается один, игра и остальные моды работают дальше",
+    "description": "Fault isolation: a failing mod is disabled alone, the game and the other mods carry on"
+  },
+  "landing.compare.gain.3": {
+    "message": "SDK на каждую область игры: переименования поглощаются в нём, а не ломают моды",
+    "description": "An SDK per area of the game, where renames are absorbed instead of breaking mods"
+  },
+  "landing.compare.gain.4": {
+    "message": "Моды объявляются, упорядочиваются и сверяются между хостом и клиентом при подключении",
+    "description": "Mods declared, ordered and checked between host and client on join"
+  },
+  "landing.compare.keep": {
+    "message": "Что остаётся от плагина",
+    "description": "What a plugin keeps"
+  },
+  "landing.compare.keep.1": {
+    "message": "Те же атрибуты HarmonyX, префиксы и постфиксы",
+    "description": "The same HarmonyX attributes, prefixes and postfixes"
+  },
+  "landing.compare.keep.2": {
+    "message": "Config.Bind той же формы и уже имеющийся идентификатор мода",
+    "description": "Config.Bind with the same shape, and the mod id it already has"
+  },
+  "landing.compare.keep.3": {
+    "message": "Сырой Harmony везде, где у SDK ещё нет фасада",
+    "description": "Raw Harmony wherever the SDK has no facade yet"
+  },
+  "landing.compare.keep.4": {
+    "message": "Остальное по большей части удаляется: в SDK это уже есть",
+    "description": "Most of the rest is deleted: the SDK already has it"
+  },
+  "landing.compare.more": {
+    "message": "Перенос плагина →",
+    "description": "Porting a plugin →"
   }
 }

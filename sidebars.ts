@@ -7,7 +7,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Getting started',
       collapsed: false,
-      items: ['getting-started/installing', 'getting-started/first-mod'],
+      items: ['getting-started/installing', 'getting-started/first-mod', 'getting-started/from-bepinex'],
     },
     {
       type: 'category',
