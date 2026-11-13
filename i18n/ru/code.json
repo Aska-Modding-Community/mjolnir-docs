@@ -618,55 +618,95 @@
     "description": "Its own injection, its own runtime and its own API: four layers between the game’s native code and a mod."
   },
   "landing.compare.title": {
-    "message": "Переход с BepInEx",
-    "description": "Coming from BepInEx"
+    "message": "Почему Mjolnir",
+    "description": "Why Mjolnir"
   },
   "landing.compare.lead": {
-    "message": "Тот же C#, тот же Harmony, другая платформа под ними. Перенос плагина — это в основном удаление кода, который уже есть в SDK.",
-    "description": "The same C#, the same Harmony, a different platform under them. Porting a plugin is mostly deleting code the SDK already has."
-  },
-  "landing.compare.gain": {
-    "message": "Что добавляет Mjolnir",
-    "description": "What Mjolnir adds"
-  },
-  "landing.compare.gain.1": {
-    "message": "Собственный прокси и приватный рантайм .NET 10, interop создаётся под вашу сборку игры",
-    "description": "Its own proxy and a private .NET 10 runtime, with interop generated for your game build"
-  },
-  "landing.compare.gain.2": {
-    "message": "Изоляция ошибок: упавший мод отключается один, игра и остальные моды работают дальше",
-    "description": "Fault isolation: a failing mod is disabled alone, the game and the other mods carry on"
-  },
-  "landing.compare.gain.3": {
-    "message": "SDK на каждую область игры: переименования поглощаются в нём, а не ломают моды",
-    "description": "An SDK per area of the game, where renames are absorbed instead of breaking mods"
-  },
-  "landing.compare.gain.4": {
-    "message": "Моды объявляются, упорядочиваются и сверяются между хостом и клиентом при подключении",
-    "description": "Mods declared, ordered and checked between host and client on join"
-  },
-  "landing.compare.keep": {
-    "message": "Что остаётся от плагина",
-    "description": "What a plugin keeps"
-  },
-  "landing.compare.keep.1": {
-    "message": "Те же атрибуты HarmonyX, префиксы и постфиксы",
-    "description": "The same HarmonyX attributes, prefixes and postfixes"
-  },
-  "landing.compare.keep.2": {
-    "message": "Config.Bind той же формы и уже имеющийся идентификатор мода",
-    "description": "Config.Bind with the same shape, and the mod id it already has"
-  },
-  "landing.compare.keep.3": {
-    "message": "Сырой Harmony везде, где у SDK ещё нет фасада",
-    "description": "Raw Harmony wherever the SDK has no facade yet"
-  },
-  "landing.compare.keep.4": {
-    "message": "Остальное по большей части удаляется: в SDK это уже есть",
-    "description": "Most of the rest is deleted: the SDK already has it"
+    "message": "Тот же C#, тот же Harmony. Меняется платформа под ними.",
+    "description": "The same C#, the same Harmony. What changes is the platform under them."
   },
   "landing.compare.more": {
     "message": "Перенос плагина →",
     "description": "Porting a plugin →"
+  },
+  "landing.compare.them": {
+    "message": "Плагин BepInEx",
+    "description": "A BepInEx plugin"
+  },
+  "landing.compare.us": {
+    "message": "Мод Mjolnir",
+    "description": "A Mjolnir mod"
+  },
+  "landing.compare.runtime": {
+    "message": "Рантайм",
+    "description": "Runtime"
+  },
+  "landing.compare.runtime.them": {
+    "message": ".NET 6",
+    "description": ".NET 6"
+  },
+  "landing.compare.runtime.us": {
+    "message": ".NET 10, приватный, рядом с игрой; interop создаётся под вашу сборку игры",
+    "description": ".NET 10, private, beside the game, with interop generated for your game build"
+  },
+  "landing.compare.api": {
+    "message": "API игры",
+    "description": "The game’s API"
+  },
+  "landing.compare.api.them": {
+    "message": "Каждый плагин патчит игру сам",
+    "description": "Every plugin patches the game itself"
+  },
+  "landing.compare.api.us": {
+    "message": "SDK на каждую область: игрок, интерфейс, контент, жители, бой, анимации, рельеф, камера, сеть",
+    "description": "An SDK per area: player, interface, content, villagers, combat, animations, terrain, camera, network"
+  },
+  "landing.compare.update": {
+    "message": "После обновления игры",
+    "description": "After a game update"
+  },
+  "landing.compare.update.them": {
+    "message": "Переименованный тип игры правится в каждом моде, который его трогал",
+    "description": "A renamed game type is fixed in every mod that touched it"
+  },
+  "landing.compare.update.us": {
+    "message": "Переименование поглощается в SDK; моды не трогаются",
+    "description": "The rename is absorbed in the SDK; mods are not touched"
+  },
+  "landing.compare.fault": {
+    "message": "Упавший мод",
+    "description": "A mod that throws"
+  },
+  "landing.compare.fault.them": {
+    "message": "Каждый плагин отвечает за себя сам",
+    "description": "Every plugin guards itself"
+  },
+  "landing.compare.fault.us": {
+    "message": "Любой вызов платформы в мод обёрнут: падает — отключается он один, игра и остальные работают дальше",
+    "description": "Every call the platform makes into a mod is wrapped: that mod is disabled alone, the game and the others carry on"
+  },
+  "landing.compare.mp": {
+    "message": "Мультиплеер",
+    "description": "Multiplayer"
+  },
+  "landing.compare.mp.them": {
+    "message": "Загрузчик ничего не знает о модах",
+    "description": "The loader knows nothing about mods"
+  },
+  "landing.compare.mp.us": {
+    "message": "Моды сверяются между хостом и клиентом при подключении, каналы между модами, одинаковые id контента на всех машинах",
+    "description": "Mods checked between host and client on join, channels between mods, content ids that match on every machine"
+  },
+  "landing.compare.player": {
+    "message": "Игроку",
+    "description": "For the player"
+  },
+  "landing.compare.player.them": {
+    "message": "Список и настройки — отдельным плагином",
+    "description": "A list and settings come as another plugin"
+  },
+  "landing.compare.player.us": {
+    "message": "Одно окно в игре: моды включаются и выключаются, их настройки и их тексты на языке игрока",
+    "description": "One window in the game: mods turned on and off, their settings, their text in the player’s language"
   }
 }

@@ -277,33 +277,65 @@ function Boot(): ReactNode {
 }
 
 function Compare(): ReactNode {
+  const them = t('compare.them', 'A BepInEx plugin');
+  const us = t('compare.us', 'A Mjolnir mod');
+  const rows = [
+    {
+      topic: t('compare.runtime', 'Runtime'),
+      them: t('compare.runtime.them', '.NET 6'),
+      us: t('compare.runtime.us', '.NET 10, private, beside the game, with interop generated for your game build'),
+    },
+    {
+      topic: t('compare.api', 'The game’s API'),
+      them: t('compare.api.them', 'Every plugin patches the game itself'),
+      us: t('compare.api.us', 'An SDK per area: player, interface, content, villagers, combat, animations, terrain, camera, network'),
+    },
+    {
+      topic: t('compare.update', 'After a game update'),
+      them: t('compare.update.them', 'A renamed game type is fixed in every mod that touched it'),
+      us: t('compare.update.us', 'The rename is absorbed in the SDK; mods are not touched'),
+    },
+    {
+      topic: t('compare.fault', 'A mod that throws'),
+      them: t('compare.fault.them', 'Every plugin guards itself'),
+      us: t('compare.fault.us', 'Every call the platform makes into a mod is wrapped: that mod is disabled alone, the game and the others carry on'),
+    },
+    {
+      topic: t('compare.mp', 'Multiplayer'),
+      them: t('compare.mp.them', 'The loader knows nothing about mods'),
+      us: t('compare.mp.us', 'Mods checked between host and client on join, channels between mods, content ids that match on every machine'),
+    },
+    {
+      topic: t('compare.player', 'For the player'),
+      them: t('compare.player.them', 'A list and settings come as another plugin'),
+      us: t('compare.player.us', 'One window in the game: mods turned on and off, their settings, their text in the player’s language'),
+    },
+  ];
   return (
     <section className={styles.section}>
       <div className={styles.containerNarrow}>
-        <Heading as="h2" className={styles.h2Center}>{t('compare.title', 'Coming from BepInEx')}</Heading>
+        <Heading as="h2" className={styles.h2Center}>{t('compare.title', 'Why Mjolnir')}</Heading>
         <div className={styles.rule}><Diamond /><span /><Diamond /></div>
         <p className={styles.center}>
-          {t('compare.lead', 'The same C#, the same Harmony, a different platform under them. Porting a plugin is mostly deleting code the SDK already has.')}
+          {t('compare.lead', 'The same C#, the same Harmony. What changes is the platform under them.')}
         </p>
-        <div className={styles.status}>
-          <div>
-            <span className={styles.statusTitle}>{t('compare.gain', 'What Mjolnir adds')}</span>
-            <ul>
-              <li>{t('compare.gain.1', 'Its own proxy and a private .NET 10 runtime, with interop generated for your game build')}</li>
-              <li>{t('compare.gain.2', 'Fault isolation: a failing mod is disabled alone, the game and the other mods carry on')}</li>
-              <li>{t('compare.gain.3', 'An SDK per area of the game, where renames are absorbed instead of breaking mods')}</li>
-              <li>{t('compare.gain.4', 'Mods declared, ordered and checked between host and client on join')}</li>
-            </ul>
+        <div className={styles.compare}>
+          <div className={styles.compareHead}>
+            <span />
+            <span>{them}</span>
+            <span className={styles.compareMine}>{us}</span>
           </div>
-          <div>
-            <span className={styles.statusTitle}>{t('compare.keep', 'What a plugin keeps')}</span>
-            <ul>
-              <li>{t('compare.keep.1', 'The same HarmonyX attributes, prefixes and postfixes')}</li>
-              <li>{t('compare.keep.2', 'Config.Bind with the same shape, and the mod id it already has')}</li>
-              <li>{t('compare.keep.3', 'Raw Harmony wherever the SDK has no facade yet')}</li>
-              <li>{t('compare.keep.4', 'Most of the rest is deleted: the SDK already has it')}</li>
-            </ul>
-          </div>
+          {rows.map((row) => (
+            <div key={row.topic} className={styles.compareRow}>
+              <span className={styles.compareTopic}>{row.topic}</span>
+              <span className={styles.compareCell}>
+                <b aria-hidden="true">{them}</b>{row.them}
+              </span>
+              <span className={`${styles.compareCell} ${styles.compareMine}`}>
+                <b aria-hidden="true">{us}</b>{row.us}
+              </span>
+            </div>
+          ))}
         </div>
         <p className={styles.center}>
           <Link className={styles.textLink} to="/docs/getting-started/from-bepinex">{t('compare.more', 'Porting a plugin →')}</Link>

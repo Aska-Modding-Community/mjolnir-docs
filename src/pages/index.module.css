@@ -628,6 +628,56 @@
   color: #d9cec7;
 }
 
+/* Why Mjolnir: a row per thing, the plugin's side and the mod's. */
+
+.compare {
+  margin-bottom: 2.25rem;
+  border: 2px solid var(--mj-ash);
+  background: var(--mj-ink-raised);
+}
+
+.compareHead,
+.compareRow {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 1.25rem;
+  padding: 0.9rem 1.4rem;
+}
+
+.compareHead {
+  font-family: var(--mj-font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #bfb4ad;
+  border-bottom: 2px solid var(--mj-ash);
+}
+
+.compareHead .compareMine {
+  color: var(--mj-amber);
+}
+
+.compareRow + .compareRow {
+  border-top: 1px solid rgba(217, 206, 199, 0.14);
+}
+
+.compareTopic {
+  font-weight: 700;
+  color: var(--mj-bone);
+}
+
+.compareCell {
+  color: #b3a9a2;
+}
+
+.compareRow .compareMine {
+  color: #ece4df;
+}
+
+.compareCell b {
+  display: none;
+}
+
 /* Smaller screens */
 
 @media (max-width: 1200px) {
@@ -674,5 +724,32 @@
   .primary,
   .secondary {
     width: 100%;
+  }
+}
+
+@media (max-width: 860px) {
+  .compareHead {
+    display: none;
+  }
+
+  .compareRow,
+  .compareRow + .compareRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+    padding: 1.1rem 1.2rem;
+  }
+
+  .compareCell b {
+    display: block;
+    margin-bottom: 0.15rem;
+    font-family: var(--mj-font-display);
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8f847d;
+  }
+
+  .compareRow .compareMine b {
+    color: var(--mj-amber);
   }
 }
