@@ -104,7 +104,7 @@ itself, never the SDK.
 |---|---|---|
 | `Mjolnir.Core` | Bootstrap, interop, Harmony, scanning, dependency resolution, isolation. Closed: mods never use its API | the engine's `Il2Cppmscorlib` and `UnityEngine.CoreModule` only |
 | `Mjolnir.SDK` | The main library: `Mod`, manifests, config, localization, bindables, the dispatcher, character sheets, the console | Core |
-| `Mjolnir.SDK.<Area>` | One module per area of the game: UI, Player, Content, AI, World, Stats | the main library and the game's interop |
+| `Mjolnir.SDK.<Area>` | One module per area of the game: UI, Player, Content, AI, World, Stats, Net, Animation, Combat, Camera, Terrain | the main library and the game's interop |
 
 - Modules reach Core only through the main library, and never each other. What every module needs (threads,
   localization, character sheets, the console's registry) lives in the main library.

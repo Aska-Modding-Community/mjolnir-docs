@@ -58,8 +58,8 @@ powershell -File tools/deploy.ps1 -Examples
 | `-SkipBuild` | Устанавливает уже собранные результаты |
 | `-Uninstall` | Удаляет только `version.dll` |
 
-Один нативный прокси собирается командой `tools/build-native.cmd x64-release`, которая сама настраивает окружение
-компилятора.
+Отдельно нативный прокси собирается командой `tools/build-native.cmd x64-release`, которая сама настраивает
+окружение компилятора.
 
 ## Тесты {/* #tests */}
 
@@ -88,7 +88,7 @@ powershell -File tools/package.ps1
 
 Скрипт собирает всё в Release и пишет `artifacts/package/Mjolnir-<version>.zip` с его `.sha256`. В корне архива только
 `version.dll` и `Mjolnir/` (`core`, `interopgen`, `dotnet`, пустая `Mods`, `licenses`, лицензия и README), но никогда
-не interop-сборки, тестовые моды, примеры, конфиги и логи. Лицензия каждого стороннего компонента кладётся в
+не interop-сборки, тестовые моды, примеры, конфиги и логи. Лицензия каждого стороннего компонента попадает в
 `Mjolnir/licenses`, перечень — в `THIRD-PARTY-NOTICES.txt`; пакет без лицензии или известного источника останавливает
 скрипт.
 

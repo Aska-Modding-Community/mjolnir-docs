@@ -15,7 +15,7 @@ line.Bind(UiTextBlock.TextProperty, () => $"{LocalPlayer.Stamina.Value:0} stamin
 Hud.Add(line, HudAnchor.TopRight);
 ```
 
-| Член | Что |
+| Свойство или метод | Что |
 |---|---|
 | `Hud.Add(element, anchor)` | Элемент в углу HUD: `TopLeft`, `TopCenter`, `TopRight`, `BottomLeft`, `BottomRight` |
 | `Hud.AddAt(element, () => position, offset)` | Элемент над точкой мира, за которой он следует. Скрывается, пока точка позади камеры или за пределами экрана |
@@ -108,7 +108,7 @@ ConfigEntry<KeyGesture> key = Config.Bind("Keys", "Window", KeyGesture.Parse("F7
 System.IDisposable hotkey = HotKeys.Add(key, () => Notify.Message("F7"));
 ```
 
-`HotKeys.Add` принимает `KeyGesture` или привязываемое значение с ним, например запись конфига, которую игрок
+`HotKeys.Add` принимает `KeyGesture` или привязываемое значение с ним, например настройку конфига, которую игрок
 переназначает в окне модов. Сочетание срабатывает только ровно со своими модификаторами и никогда — пока игрок печатает
 в текстовом поле. Чтобы убрать горячую клавишу, освободите результат.
 

@@ -9,7 +9,7 @@ title: Элементы управления и панели
 
 ## Текст и ввод {/* #text-and-input */}
 
-| Элемент управления | Что | Основные члены |
+| Элемент управления | Что | Основные свойства и события |
 |---|---|---|
 | `UiTextBlock` | Текст или строка с текстом справа | `Text`, `Foreground`, `TextAlignment`, `TextWrapping` |
 | `UiSectionHeader` | Заголовок раздела в стиле игры | `Text` |
@@ -42,7 +42,7 @@ volume.ValueChanged += (_, e) => Log.Info($"Volume {e.NewValue:0.##}");
 
 ## Прогресс и картинки {/* #progress-and-pictures */}
 
-| Элемент управления | Что | Основные члены |
+| Элемент управления | Что | Основные свойства и события |
 |---|---|---|
 | `UiProgressBar` | Полоса здоровья HUD | `Value`, `Minimum`, `Maximum`, `Foreground`, `ShowProgressText`, `ProgressTextFormat` |
 | `UiProgressRing` | Кольцо еды HUD. Его `Width` — диаметр | то же и `Icon` |
@@ -64,7 +64,7 @@ var icon = new UiImage { Source = new Bitmap(System.IO.Path.Combine(folder, "ite
 
 ## Панели {/* #panels */}
 
-| Панель | Что | Основные члены |
+| Панель | Что | Основные свойства и события |
 |---|---|---|
 | `UiStackPanel` | Дочерние элементы в столбец или в ряд | `Orientation`, `Spacing`, `Children` |
 | `UiGrid` | Дочерние элементы по столбцам, ряд за рядом | `ColumnDefinitions` (`"*,220"`, `"Auto,2*,100"`), `ColumnSpacing`, `RowSpacing` |
@@ -93,7 +93,7 @@ var footer = new UiGrid
 
 ## Элементы и выбор {/* #items-and-selection */}
 
-| Элемент управления | Что | Основные члены |
+| Элемент управления | Что | Основные свойства и события |
 |---|---|---|
 | `UiItemsControl` | По элементу на каждый элемент коллекции | `ItemsSource`, `ItemTemplate`, `ItemsPanel` |
 | `UiListBox` | То же в строках слотов сохранений игры, с выбором | `SelectedIndex`, `SelectedItem`, `SelectionChanged` |
