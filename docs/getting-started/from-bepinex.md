@@ -4,9 +4,9 @@ title: Coming from BepInEx
 
 # Coming from BepInEx
 
-Every ASKA mod published today is built on BepInEx 6 IL2CPP. Mjolnir is a loader of its own, with its own runtime and
-its own API: a BepInEx plugin does not run under Mjolnir, and a Mjolnir mod does not run under BepInEx. Porting one is
-mostly deleting code — what a plugin had to patch for itself, the SDK already has.
+Mjolnir is a loader of its own, with its own runtime and its own API: a BepInEx plugin does not run under Mjolnir, and
+a Mjolnir mod does not run under BepInEx. Most of what you know carries over — the same C#, the same Harmony — and
+porting a plugin is mostly deleting code: what it had to patch for itself, the SDK already has.
 
 ## What stays the same
 
@@ -107,7 +107,6 @@ either loader, launch the game with `--no-mods`.
 
 ## What BepInEx still gives you
 
-BepInEx runs on hundreds of games, is installed by mod managers such as Thunderstore Mod Manager and r2modman, and
-every published ASKA mod is written against it. Mjolnir is for ASKA alone, is installed by unpacking an archive into
-the game's folder, and its ecosystem is as old as this documentation. Pick it for what the platform adds, not because
-a plugin cannot be written without it.
+BepInEx runs on hundreds of games and is installed by mod managers such as Thunderstore Mod Manager and r2modman.
+Mjolnir is for ASKA alone, is installed by unpacking an archive into the game's folder, and its ecosystem is as old
+as this documentation. Pick it for what the platform adds, not because a plugin cannot be written without it.

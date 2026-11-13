@@ -622,8 +622,8 @@
     "description": "Coming from BepInEx"
   },
   "landing.compare.lead": {
-    "message": "Все опубликованные сегодня моды ASKA — плагины BepInEx 6 IL2CPP. Тот же C#, тот же Harmony, другая платформа под ними.",
-    "description": "Every ASKA mod published today is a BepInEx 6 IL2CPP plugin. The same C#, the same Harmony, a different platform under them."
+    "message": "Тот же C#, тот же Harmony, другая платформа под ними. Перенос плагина — это в основном удаление кода, который уже есть в SDK.",
+    "description": "The same C#, the same Harmony, a different platform under them. Porting a plugin is mostly deleting code the SDK already has."
   },
   "landing.compare.gain": {
     "message": "Что добавляет Mjolnir",

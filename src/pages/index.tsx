@@ -283,7 +283,7 @@ function Compare(): ReactNode {
         <Heading as="h2" className={styles.h2Center}>{t('compare.title', 'Coming from BepInEx')}</Heading>
         <div className={styles.rule}><Diamond /><span /><Diamond /></div>
         <p className={styles.center}>
-          {t('compare.lead', 'Every ASKA mod published today is a BepInEx 6 IL2CPP plugin. The same C#, the same Harmony, a different platform under them.')}
+          {t('compare.lead', 'The same C#, the same Harmony, a different platform under them. Porting a plugin is mostly deleting code the SDK already has.')}
         </p>
         <div className={styles.status}>
           <div>
