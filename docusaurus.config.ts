@@ -2,7 +2,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-const repository = 'https://github.com/FibonacciFox/Mjolnir';
+const repository = 'https://github.com/Aska-Modding-Community/Mjolnir';
 const docsRepository = 'https://github.com/Aska-Modding-Community/mjolnir-docs';
 
 const config: Config = {

@@ -9,7 +9,7 @@ Mjolnir устанавливается в папку игры и не меняе
 ## Установка {/* #install */}
 
 1. Скачайте `Mjolnir-<version>.zip` со страницы
-   [релизов](https://github.com/FibonacciFox/Mjolnir/releases). Файл `.sha256` рядом с каждым архивом проверяет
+   [релизов](https://github.com/Aska-Modding-Community/Mjolnir/releases). Файл `.sha256` рядом с каждым архивом проверяет
    загрузку.
 2. Распакуйте его в папку игры, ту, где лежит `Aska.exe`. В Steam: **ASKA → Управление → Просмотреть локальные файлы**.
    В архиве только `version.dll` и папка `Mjolnir/`.

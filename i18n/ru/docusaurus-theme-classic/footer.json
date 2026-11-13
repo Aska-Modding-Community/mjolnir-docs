@@ -29,7 +29,7 @@
   },
   "link.item.label.Examples": {
     "message": "Примеры",
-    "description": "The label of footer link with label=Examples linking to https://github.com/FibonacciFox/Mjolnir/tree/main/examples"
+    "description": "The label of footer link with label=Examples linking to https://github.com/Aska-Modding-Community/Mjolnir/tree/main/examples"
   },
   "link.item.label.Architecture": {
     "message": "Архитектура",
@@ -41,7 +41,7 @@
   },
   "link.item.label.GitHub": {
     "message": "GitHub",
-    "description": "The label of footer link with label=GitHub linking to https://github.com/FibonacciFox/Mjolnir"
+    "description": "The label of footer link with label=GitHub linking to https://github.com/Aska-Modding-Community/Mjolnir"
   },
   "copyright": {
     "message": "Mjolnir распространяется по лицензии MIT. ASKA — игра Sand Sailor Studio; Mjolnir с ней не связан.",

@@ -60,7 +60,7 @@ then remove it. To rule out one mod, turn it off in the Mods window or move its 
 
 ## Reporting a problem
 
-Open an issue on [GitHub](https://github.com/FibonacciFox/Mjolnir/issues) with:
+Open an issue on [GitHub](https://github.com/Aska-Modding-Community/Mjolnir/issues) with:
 
 - `Mjolnir/LogOutput.log`, from the last `Mjolnir.Native attached` line;
 - the Mjolnir version (the Mods window's title shows it) and the mods installed;

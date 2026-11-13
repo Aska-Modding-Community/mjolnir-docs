@@ -60,7 +60,7 @@ title: Решение проблем
 
 ## Как сообщить о проблеме {/* #reporting-a-problem */}
 
-Откройте issue на [GitHub](https://github.com/FibonacciFox/Mjolnir/issues), приложив:
+Откройте issue на [GitHub](https://github.com/Aska-Modding-Community/Mjolnir/issues), приложив:
 
 - `Mjolnir/LogOutput.log`, начиная с последней строки `Mjolnir.Native attached`;
 - версию Mjolnir (её показывает заголовок окна модов) и установленные моды;

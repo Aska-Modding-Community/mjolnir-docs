@@ -1,6 +1,6 @@
 # Mjolnir documentation
 
-The documentation of [Mjolnir](https://github.com/FibonacciFox/Mjolnir), a mod loader and C# modding SDK for
+The documentation of [Mjolnir](https://github.com/Aska-Modding-Community/Mjolnir), a mod loader and C# modding SDK for
 **ASKA**, and the site that presents it: a landing page and the docs, built with Docusaurus.
 
 ## Reading

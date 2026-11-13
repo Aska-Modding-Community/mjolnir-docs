@@ -9,7 +9,7 @@ Mjolnir installs into the game's folder and changes no game file. Removing one f
 ## Install
 
 1. Download `Mjolnir-<version>.zip` from the
-   [releases](https://github.com/FibonacciFox/Mjolnir/releases). The `.sha256` file beside each archive checks the
+   [releases](https://github.com/Aska-Modding-Community/Mjolnir/releases). The `.sha256` file beside each archive checks the
    download.
 2. Unpack it into the game's folder, the one with `Aska.exe`. In Steam: **ASKA → Manage → Browse local files**.
    The archive holds only `version.dll` and a `Mjolnir/` folder.
