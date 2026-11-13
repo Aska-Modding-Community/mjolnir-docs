@@ -374,7 +374,7 @@
     "description": "First mod"
   },
   "landing.paths.forge.text": {
-    "message": "Библиотека классов и один класс, собранные против вашей установки.",
+    "message": "Библиотека классов с одним классом и ссылками на установленный Mjolnir.",
     "description": "A class library, one class, built against your install."
   },
   "landing.paths.inside": {
