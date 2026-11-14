@@ -30,13 +30,14 @@ public sealed class MyMod : Mod
 | version | `Major[.Minor[.Patch[.Revision]]]`. A `-prerelease` or `+build` suffix is allowed and ignored when comparing |
 | `Description` | One line under the mod's name in the Mods window |
 | `Author` | Shown next to the version |
-| `Network` | Who needs the mod in multiplayer: `Everyone` (the default), `ClientOnly` or `ServerOnly` |
+| `Network` | Who needs the mod in multiplayer: `ClientOnly` (the default), `Everyone` or `ServerOnly` |
 | `Icon` | A PNG or JPG relative to the folder of the mod's `.dll`. Without it, an `icon.png` there is used. Without that, the window shows the name's first letter |
 
 A mod with an invalid id or version is not loaded; the log gives the reason.
 
 :::note
-Every multiplayer session compares the `Everyone` mods of a joining client with the host's. See
+Every multiplayer session compares the `Everyone` mods of a joining client with the host's. A mod is `ClientOnly`
+until it says otherwise; one with content of its own declares `Everyone`. See
 [Multiplayer](../guides/network.md#the-mod-check).
 :::
 

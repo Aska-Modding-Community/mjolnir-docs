@@ -11,12 +11,13 @@ The check runs whether or not a mod references the module. To send messages, ref
 ## The mod check
 
 When a client joins a host, both compare the mods every player needs: those whose manifest declares
-`NetworkCompatibility.Everyone`, the default.
+`NetworkCompatibility.Everyone`. A mod is `ClientOnly` until it says otherwise, so a mod of one player's own
+keeps nobody out of a session.
 
 | Declared | Checked |
 |---|---|
 | `Everyone` | Both players have it, with the same version |
-| `ClientOnly`, `ServerOnly` | Never: these mods are one player's own |
+| `ClientOnly` (the default), `ServerOnly` | Never: these mods are one player's own |
 | Mjolnir itself | Same major and minor version |
 
 - A client whose mods match joins and is announced to mods on every machine.
@@ -27,8 +28,11 @@ When a client joins a host, both compare the mods every player needs: those whos
 - A client of a host without Mjolnir leaves when it has mods every player needs.
 - A client that gets no answer from a host with Mjolnir within 30 s leaves.
 
-Declare `ClientOnly` for a mod that changes only what its player sees (camera, interface) and `ServerOnly` for one
-that runs only on the host (rules, admin tools), so it never keeps anyone out.
+Declare `Everyone` for a mod every player must have: one with content of its own (items, recipes, buildings,
+effects), or one whose messages the other players are expected to answer. Its ids travel between the players, and
+a session whose players disagree about them drifts apart with nobody told why. `ClientOnly`, the default, is for a
+mod that changes only what its player sees (camera, interface, hotkeys), and `ServerOnly` for one that runs on the
+host alone (the session's rules, admin tools); neither ever keeps anyone out.
 
 ## Players
 
