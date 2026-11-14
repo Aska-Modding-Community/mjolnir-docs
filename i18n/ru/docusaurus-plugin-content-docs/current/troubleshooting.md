@@ -15,7 +15,7 @@ title: Решение проблем
 [Info ] [Native] Mjolnir.Native attached to Aska.exe
 [Info ] [Native] GameAssembly.dll loaded via LoadLibraryW("GameAssembly.dll")
 [Info ] [Native] il2cpp_init detour installed
-[Info ] [Core] Mjolnir.Core 0.3.0.0 on .NET 10.0.9
+[Info ] [Core] Mjolnir.Core 0.4.0.0 on .NET 10.0.9
 [Info ] [Interop] Initialising HarmonyX 2.16.1.0
 [Info ] [Interop] Il2CppInterop started for Unity 6000.3.12 (503 ms)
 [Info ] [Mods] Loaded My Mod (author.mymod) 1.0.0 in 12 ms     по строке на мод, в порядке загрузки
