@@ -43,6 +43,26 @@ A mod's own lines carry its name: `[My Mod] …`. A mod that cannot load logs wh
 | A setting changed in the file is back as it was | The game writes changed settings when it quits. Edit config files while the game is not running |
 | "Unable to join the session" when joining a world | Your mods differ from the host's. The message lists the mods to turn on or off and the versions that differ; change them in the Mjolnir window and restart the game |
 | The menu comes about two minutes late | The game waits for its online login before the main menu: the game's behavior, not Mjolnir's |
+| The Mods window says another loader is installed | Two mod loaders cannot share one game. See [Another mod loader beside Mjolnir](#another-mod-loader-beside-mjolnir) |
+
+## Another mod loader beside Mjolnir
+
+Mjolnir and another mod loader cannot share one game. The engine loads both, but only one of them starts; the other
+stops without a word of its own, and its mods simply do nothing. The game itself runs as usual — one side's mods are
+just absent, with no error to find.
+
+Mjolnir says so when it sees one: a line in `Mjolnir/LogOutput.log` and an amber line over the list in the Mods
+window, naming what it found. It recognises BepInEx and Unity Doorstop (`winhttp.dll` with `doorstop_config.ini` or
+`.doorstop_version` in the game's folder) and MelonLoader (its `MelonLoader` folder; its own `version.dll` is the
+file Mjolnir ships, so Mjolnir has taken its place).
+
+Keep one of the two:
+
+- to keep Mjolnir, remove the other loader's files from the game's folder;
+- to go back to the other loader, delete `version.dll`, which uninstalls Mjolnir, and reinstall it.
+
+A mod manager may install a loader without asking: Vortex's ASKA extension installs BepInEx when it starts managing
+the game, so a Mjolnir install can gain a second loader on its own.
 
 ## The game closes without a word in the log
 
