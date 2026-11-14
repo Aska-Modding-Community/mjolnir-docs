@@ -86,7 +86,8 @@ public sealed class MyFirstMod : Mod
 ```
 
 - `[ModManifest]` gives the mod its id, name and version. The id names its config file and seeds its content ids: never
-  change it after release.
+  change it after release. `Platform = ">=0.4 <0.5"` says which Mjolnir versions the mod works with; see
+  [the manifest](../concepts/lifecycle.md#the-manifest).
 - `OnLoad` runs once, before the game's engine is up: the place for settings, event subscriptions and content. See
   [Mod lifecycle](../concepts/lifecycle.md).
 - `Config.Bind` declares a setting, saved to `Mjolnir/Config/author.myfirstmod.toml`. With a range, the Mods window

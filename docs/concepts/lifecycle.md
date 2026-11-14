@@ -12,6 +12,7 @@ class is a library: it can sit in a mod's folder and be referenced by the mod.
 
 ```csharp
 [ModManifest("author.mymod", "My Mod", "1.2.0",
+             Platform = ">=0.4 <0.5",
              Description = "What it does, in one line.",
              Author = "Author",
              Network = NetworkCompatibility.Everyone,
@@ -28,12 +29,22 @@ public sealed class MyMod : Mod
 | id | The mod's stable identity: its config file's name, what other mods depend on, the seed of its content ids. Letters, digits, `.`, `_` and `-`, starting with a letter or digit, compared without case. `author.mod` by convention. `mjolnir` is reserved |
 | name | What the player sees. An empty name falls back to the id |
 | version | `Major[.Minor[.Patch[.Revision]]]`. A `-prerelease` or `+build` suffix is allowed and ignored when comparing |
+| `Platform` | Which Mjolnir versions the mod works with, a range written as a dependency's: `">=0.4 <0.5"`. Any version when not given |
 | `Description` | One line under the mod's name in the Mods window |
 | `Author` | Shown next to the version |
 | `Network` | Who needs the mod in multiplayer: `ClientOnly` (the default), `Everyone` or `ServerOnly` |
 | `Icon` | A PNG or JPG relative to the folder of the mod's `.dll`. Without it, an `icon.png` there is used. Without that, the window shows the name's first letter |
 
 A mod with an invalid id or version is not loaded; the log gives the reason.
+
+### Which Mjolnir the mod needs
+
+A mod is built against one Mjolnir and may meet another in the game: the loader, the SDK and every module carry
+one platform version, and while it is 0.x a new minor version can change the API the mod was built against.
+
+`Platform` says which versions the mod works with. A mod outside the range is not loaded at all, and the log and
+the Mods window say which version it needs and which is installed — instead of the mod loading and failing later,
+on the first type or member that changed. A mod that gives no range works with any version.
 
 :::note
 Every multiplayer session compares the `Everyone` mods of a joining client with the host's. A mod is `ClientOnly`
