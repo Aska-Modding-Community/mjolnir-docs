@@ -10,7 +10,8 @@ the game's render pipeline.
 
 ## Setting up
 
-1. Install Unity **6000.3.12f1** through Unity Hub and open `unity/Mjolnir.ModKit` with it.
+1. Install Unity **6000.3.12f1** through Unity Hub and open `unity/Mjolnir.ModKit` with it. The first import takes a
+   while: HDRP compiles its shaders.
 2. **Mjolnir → Kit Window** opens by itself the first time. It lists what the kit needs, each missing step with the
    button that fixes it: the right Unity version, HDRP in linear colour, the game found, Mjolnir installed in it, the
    game's skeletons imported. It also lists your mods and their bundles, and the kit's tools.
@@ -32,6 +33,9 @@ picked before, or Steam's records, and asks when it finds none.
   prefab, a pivot away from its model, a clip's or a mask's bone that no skeleton of the game has, bundles the game
   would not load together. It also runs before
   every build. A click on its line in the Console shows the asset.
+
+The asset tools are on the Project window's context menu too, under **Mjolnir**: Preview Animation, Render Item Icons,
+New Mask from Clip and Keep Every Bone act on the selected asset.
 
 `tools/build-bundles.ps1` in the repository runs the kit in batch mode. Unity locks an open project: close the editor
 first, or build from its menu and run the script with `-SkipBuild`.
