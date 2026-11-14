@@ -20,6 +20,9 @@ const config: Config = {
   projectName: 'mjolnir-docs',
   trailingSlash: false,
 
+  // The code repository, for the pages that link it (the landing's download button).
+  customFields: {repository},
+
   onBrokenLinks: 'throw',
   onBrokenAnchors: 'throw',
   markdown: {

@@ -357,6 +357,10 @@
     "message": "Начать",
     "description": "Get started"
   },
+  "landing.hero.download": {
+    "message": "Скачать",
+    "description": "Download"
+  },
   "landing.hero.install": {
     "message": "Установить",
     "description": "Install"

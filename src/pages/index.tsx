@@ -1,6 +1,7 @@
 import type {CSSProperties, ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Translate, {translate} from '@docusaurus/Translate';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
@@ -140,6 +141,8 @@ function Hero(): ReactNode {
   // The art's hammer is the hero's emblem: the title stands over the sky, the call to action over the moss, and the
   // hammer between them stays in view.
   const art = useBaseUrl('/img/hero.webp');
+  const {siteConfig} = useDocusaurusContext();
+  const releases = `${siteConfig.customFields.repository as string}/releases/latest`;
   return (
     <header className={styles.hero} style={{'--mj-hero-art': `url(${art})`} as CSSProperties}>
       <div className={styles.heroInner}>
@@ -154,6 +157,7 @@ function Hero(): ReactNode {
           <span className={styles.plateLabel}>{t('hero.plate', '0.x · Single player and hosted worlds')}</span>
           <div className={styles.actions}>
             <Link className={styles.primary} to="/docs/getting-started/first-mod">{t('hero.write', 'Get started')}</Link>
+            <Link className={styles.secondary} href={releases}>{t('hero.download', 'Download')}</Link>
             <Link className={styles.secondary} to="/docs/getting-started/installing">{t('hero.install', 'Install')}</Link>
           </div>
         </div>
