@@ -7,6 +7,10 @@ title: Items and recipes
 `Mjolnir.SDK.Content` adds a mod's own items, recipes, buildings and status effects. Reference
 `Mjolnir.SDK.Content.dll` and add `using Mjolnir.SDK.Content;`. Add everything in `OnLoad`.
 
+A mod that adds content is needed by every player of a multiplayer session: Mjolnir marks it so as it adds the
+first item, and a player whose mods differ from the host's is refused when joining. See
+[Multiplayer](../network.md).
+
 Game assets are referred to by asset name: `Item_Wood_Sticks`, `Item_Materials_BasicRope`,
 `Item_Structures_WorkshopL0`. The console command `items <words>` lists them; see
 [Developer console](../console.md).

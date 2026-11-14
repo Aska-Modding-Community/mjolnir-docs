@@ -94,10 +94,9 @@ Step by step:
 5. **Drop the patches the SDK covers.** The player's vitals and stamina costs, the interface, items, recipes,
    buildings, villagers and their jobs, combat, animations, the camera and the terrain are facades with events: see
    the guides. Raw Harmony stays available through `Mod.Harmony` for everything else.
-6. **Multiplayer.** A mod is `ClientOnly` until it says otherwise. Declare the mod's
-   [compatibility](../guides/network.md) as `Everyone` when every player must have it — content of its own, or
-   messages the others answer — so a session with mismatched mods is refused with a list of what differs, instead
-   of breaking later.
+6. **Multiplayer.** A mod is `ClientOnly` until it says otherwise, and one that adds content of its own is raised to
+   `Everyone`: a session with mismatched mods is then refused with a list of what differs, instead of breaking
+   later. Declare the mod's [compatibility](../guides/network.md) yourself for anything else every player must have.
 7. **Ship it.** One folder under `Mjolnir/Mods/`, holding the mod's `.dll` and its own files. Nothing of the
    platform is copied there: a copy of an SDK assembly in a mod's folder is ignored.
 

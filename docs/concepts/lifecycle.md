@@ -37,7 +37,7 @@ A mod with an invalid id or version is not loaded; the log gives the reason.
 
 :::note
 Every multiplayer session compares the `Everyone` mods of a joining client with the host's. A mod is `ClientOnly`
-until it says otherwise; one with content of its own declares `Everyone`. See
+until it says otherwise, and one that adds content of its own is raised to `Everyone` as it adds it. See
 [Multiplayer](../guides/network.md#the-mod-check).
 :::
 

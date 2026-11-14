@@ -28,11 +28,15 @@ keeps nobody out of a session.
 - A client of a host without Mjolnir leaves when it has mods every player needs.
 - A client that gets no answer from a host with Mjolnir within 30 s leaves.
 
-Declare `Everyone` for a mod every player must have: one with content of its own (items, recipes, buildings,
-effects), or one whose messages the other players are expected to answer. Its ids travel between the players, and
-a session whose players disagree about them drifts apart with nobody told why. `ClientOnly`, the default, is for a
-mod that changes only what its player sees (camera, interface, hotkeys), and `ServerOnly` for one that runs on the
-host alone (the session's rules, admin tools); neither ever keeps anyone out.
+A mod that adds content of its own (items, recipes, buildings, effects) is raised to `Everyone` by the platform as
+it adds the first one, with a line in the log: its ids travel between the players, and a session whose players
+disagree about them drifts apart with nobody told why. Declare `Everyone` yourself for a mod whose messages the
+other players are expected to answer, or to say plainly that a mod belongs to every player.
+
+`ClientOnly`, the default, is for a mod that changes only what its player sees (camera, interface, hotkeys), and
+`ServerOnly` for one that runs on the host alone (the session's rules, admin tools); neither ever keeps anyone out.
+A mod that declares a mode keeps it even while adding content — only its author can tell whether that is right —
+and the log says what it means for a session.
 
 ## Players
 
