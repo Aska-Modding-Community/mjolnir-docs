@@ -68,6 +68,23 @@ var card = new UiItemCard { AssetName = "Item_Wood_Sticks" };
 row.ToolTip = new UiItemCard { AssetName = item.AssetName };
 ```
 
+Элемент управления со своей картинкой (`Icon`) может отдать карточку самой картинке. Тогда `ToolTipOnIcon` показывает карточку,
+только пока указатель на картинке, и ставит её справа от картинки — так же, как игра ставит свою карточку рядом
+со слотом под указателем:
+
+```csharp
+var row = new UiTextBox
+{
+    Header = item.DisplayName,
+    Icon = item.Icon,
+    ToolTip = new UiItemCard { AssetName = item.AssetName },
+    ToolTipOnIcon = true,
+};
+```
+
+Без `ToolTipOnIcon` карточка принадлежит всему элементу и встаёт рядом с указателем. Элемент без картинки его
+не замечает.
+
 Карточка не показывает прочность конкретной вещи в руках игрока и подсказки клавиш инвентаря (использовать,
 выбросить, в быстрый слот) — вне инвентаря они ничего не значат.
 

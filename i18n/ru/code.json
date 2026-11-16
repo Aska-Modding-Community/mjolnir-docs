@@ -605,6 +605,10 @@
     "message": "Чтение вида, складывающиеся модификаторы, собственные камеры мода с плавными переходами.",
     "description": "Reading the view, modifiers that add up, cameras of a mod’s own with blends."
   },
+  "landing.status.todo.4": {
+    "message": "Проверка после обновления игры: каких членов игры лишился модуль — в логе и окне модов",
+    "description": "A check after a game update: which game members a module has lost, in the log and the Mods window"
+  },
   "landing.status.todo.3": {
     "message": "Рубка деревьев с добычей, собственные растения и камни мода",
     "description": "Felling trees with their loot, plants and stones of a mod’s own"

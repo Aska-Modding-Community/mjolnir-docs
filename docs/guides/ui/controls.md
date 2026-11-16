@@ -68,6 +68,23 @@ card's frame around it:
 row.ToolTip = new UiItemCard { AssetName = item.AssetName };
 ```
 
+A control with a picture of its own (`Icon`) can give the card to the picture alone. `ToolTipOnIcon` then shows the card only
+while the pointer is on the picture, and stands it beside the picture, as the game's own card stands beside the
+slot under the pointer:
+
+```csharp
+var row = new UiTextBox
+{
+    Header = item.DisplayName,
+    Icon = item.Icon,
+    ToolTip = new UiItemCard { AssetName = item.AssetName },
+    ToolTipOnIcon = true,
+};
+```
+
+Without `ToolTipOnIcon` the card belongs to the whole control and stands beside the pointer. A control without a
+picture ignores it.
+
 The card leaves out the durability of one particular item in a player's hands, and the inventory's key hints (use,
 drop, quick bar), which mean nothing outside it.
 

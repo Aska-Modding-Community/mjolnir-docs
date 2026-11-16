@@ -125,6 +125,7 @@ Every element derives from `Control`:
 | `FontSize` | Inherited by everything inside, unless set there |
 | `Opacity` | From 0 to 1 |
 | `ToolTip` | A string shows the game's hover card, its first line as the title; an element is shown in the card |
+| `ToolTipOnIcon` | With an `Icon`: the card belongs to the picture — shown only over it, and placed beside it |
 | `Loaded` | Raised with the Unity `RectTransform` once a live copy exists |
 
 Rows (`HeaderedControl`: text boxes, toggles, sliders, steppers, combo boxes, buttons and text blocks) also take

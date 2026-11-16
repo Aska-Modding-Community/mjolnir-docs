@@ -133,3 +133,26 @@ The game's networking is Photon Fusion; the game itself knows nothing of mods. `
   game's own packets pass through untouched. Messages travel only between players that passed the check.
 
 See [Multiplayer](guides/network.md).
+
+## After a game update
+
+Mjolnir follows the installed build by itself: the interop assemblies are generated again as soon as the game's hashes
+change, and nothing in the loader or the SDK is bound to an address or a field offset — every type, method and field is
+resolved by name.
+
+What an update can still break is a name. When the game renames or changes a method a module patches, or a field it
+reads:
+
+- that module stops at its start, or patches fewer methods than it should, and says so in the log under its own source;
+  a call that fails later is logged there as well, and the game goes on;
+- only the module that lost the name is affected. The game, the other modules and every mod carry on, by the isolation
+  that handles a mod's own faults;
+- the fix lands in the SDK, in that module's game-facing code. Its public API does not change, so mods are not rebuilt
+  — that is what the SDK layer is for.
+
+### Not done yet
+
+The log says that the build differs from the one Mjolnir was built against, but not **what** differs: the missing names
+have to be read out of it, module by module. Planned: a check at the start that compares the game members the modules
+need against the installed build and reports the missing ones in one place — the log and the Mods window — and the same
+list offline, before the game is started.
