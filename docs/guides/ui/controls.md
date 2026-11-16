@@ -49,6 +49,27 @@ Value events fire on every change: from code, a binding or the player. `Click` f
 | `UiImage` | A picture | `Source` (a `Bitmap`), `Stretch` |
 | `UiSlot` | The inventory's item slot | `Icon`, `Count`, `FillFraction`, `IsSelected`, `Click`, `Command` |
 | `UiCard` | The deeds page's god card | `Image`, `Title`, `Subtitle`, `IsSelected`, `Click`, `Command`. `Width` scales it |
+| `UiItemCard` | The inventory's card of an item: its picture, name, tier, kind, lore and attributes | `AssetName` |
+
+### The game's card of an item
+
+`UiItemCard` draws the card the inventory shows under the pointer, for any item of the game's database — the player
+need not carry one. Name the item as the game does:
+
+```csharp
+var card = new UiItemCard { AssetName = "Item_Wood_Sticks" };
+```
+
+The name is a game asset name, an `ItemDefinition.AssetName` from the [item catalog](../content/catalog.md), or a
+mod's own `ModItem.AssetName`. As a hover card over a row or a slot, the card is drawn as it is, without the hover
+card's frame around it:
+
+```csharp
+row.ToolTip = new UiItemCard { AssetName = item.AssetName };
+```
+
+The card leaves out the durability of one particular item in a player's hands, and the inventory's key hints (use,
+drop, quick bar), which mean nothing outside it.
 
 `ProgressTextFormat` is a .NET format: `{0}` the value, `{1}` the percentage, `{2}` the minimum, `{3}` the maximum.
 

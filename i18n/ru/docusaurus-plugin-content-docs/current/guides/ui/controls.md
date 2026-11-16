@@ -49,6 +49,27 @@ volume.ValueChanged += (_, e) => Log.Info($"Volume {e.NewValue:0.##}");
 | `UiImage` | Картинка | `Source` (`Bitmap`), `Stretch` |
 | `UiSlot` | Слот предмета инвентаря | `Icon`, `Count`, `FillFraction`, `IsSelected`, `Click`, `Command` |
 | `UiCard` | Карточка бога со страницы деяний | `Image`, `Title`, `Subtitle`, `IsSelected`, `Click`, `Command`. `Width` масштабирует её |
+| `UiItemCard` | Инвентарная карточка предмета: картинка, имя, уровень, вид, лор и характеристики | `AssetName` |
+
+### Игровая карточка предмета {/* #the-games-card-of-an-item */}
+
+`UiItemCard` рисует ту карточку, которую инвентарь показывает под указателем, для любого предмета из базы игры —
+носить его игроку не нужно. Предмет называется так же, как его зовёт игра:
+
+```csharp
+var card = new UiItemCard { AssetName = "Item_Wood_Sticks" };
+```
+
+Имя — это имя ассета игры, `ItemDefinition.AssetName` из [каталога предметов](../content/catalog.md) или собственный
+`ModItem.AssetName` мода. Как всплывающая подсказка над строкой или слотом карточка рисуется как есть, без рамки
+подсказки вокруг:
+
+```csharp
+row.ToolTip = new UiItemCard { AssetName = item.AssetName };
+```
+
+Карточка не показывает прочность конкретной вещи в руках игрока и подсказки клавиш инвентаря (использовать,
+выбросить, в быстрый слот) — вне инвентаря они ничего не значат.
 
 `ProgressTextFormat` — формат .NET: `{0}` — значение, `{1}` — процент, `{2}` — минимум, `{3}` — максимум.
 
