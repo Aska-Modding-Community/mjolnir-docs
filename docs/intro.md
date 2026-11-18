@@ -31,6 +31,7 @@ Tested: single player, hosting a world, and the mod check between a host and a c
 | Play animations on the player or villagers | [Animations](guides/animations.md) |
 | Deal or change damage, follow deaths | [Combat](guides/combat.md) |
 | Raise, level or paint the ground, plant trees or lay a road | [Terrain](guides/terrain.md) |
+| Make a tool of the mod's own, worked with the mouse | [Mouse and keyboard](guides/ui/input.md), [Tools on the ground](guides/terrain.md#tools-on-the-ground) |
 | Change the camera, or show one of the mod's own | [Camera](guides/camera.md) |
 | Make models, animations and masks | [The mod kit](guides/mod-kit.md) |
 | Send data between players | [Multiplayer](guides/network.md) |
@@ -44,14 +45,14 @@ A mod references the main library `Mjolnir.SDK` and only the modules it uses, ea
 | Assembly | Namespace | What it gives |
 |---|---|---|
 | `Mjolnir.SDK` | `Mjolnir.SDK` | `Mod` and its lifecycle, manifests and dependencies, TOML config, localization, bindable values, the main-thread `Dispatcher`, character sheets, animators and combatants, console commands |
-| `Mjolnir.SDK.UI` | `Mjolnir.SDK.UI` | Windows, dialogs, HUD elements and markers, notifications, menu entries, tabs in the game's own windows, hotkeys, controls cloned from the game's interface |
+| `Mjolnir.SDK.UI` | `Mjolnir.SDK.UI` | Windows, dialogs, HUD elements and markers, notifications, menu entries, tabs in the game's own windows, hotkeys, the mouse and keyboard, the player's controls for a mod's tool, controls cloned from the game's interface |
 | `Mjolnir.SDK.Player` | `Mjolnir.SDK.Player` | The local player: spawn and death, health, stamina, food, water, warmth, stamina costs, position and teleport |
 | `Mjolnir.SDK.Content` | `Mjolnir.SDK.Content` | Items, weapons, armour and food, recipes, buildings, status effects, models from AssetBundles, the item catalog |
 | `Mjolnir.SDK.Animation` | `Mjolnir.SDK.Animation` | Animations and masks of a mod's own from its AssetBundle; connects `CharacterAnimator` to the game |
 | `Mjolnir.SDK.Net` | `Mjolnir.SDK.Net` | The players of a session and message channels between their mods. Every session checks that a joining player's mods match the host's |
 | `Mjolnir.SDK.AI` | `Mjolnir.SDK.AI` | The settlement's villagers, jobs of a mod's own, interactions at buildings for the player and villagers |
 | `Mjolnir.SDK.World` | `Mjolnir.SDK.World` | The world's clock |
-| `Mjolnir.SDK.Terrain` | `Mjolnir.SDK.Terrain` | The ground: its height, kind and biome, changes to it, snapshots, outlines and protected zones, the world's trees and stones to place, fell or clear, the villagers' levelling fields and road plans |
+| `Mjolnir.SDK.Terrain` | `Mjolnir.SDK.Terrain` | The ground: its height, kind and biome, changes to it, snapshots, outlines, grids and the ground under the cursor, protected zones, the world's trees and stones to place, fell or clear, the villagers' levelling fields and road plans |
 | `Mjolnir.SDK.Camera` | `Mjolnir.SDK.Camera` | The player's camera: reading it, the screen and the world, modifiers of the game's cameras, cameras of a mod's own |
 | `Mjolnir.SDK.Stats` | (none) | Connects `CharacterSheet` to the game; it has no public types |
 | `Mjolnir.SDK.Combat` | (none) | Connects `Combatant` and `Combatants` to the game: blows before and after they land, deaths and their killer; it has no public types |

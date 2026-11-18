@@ -30,7 +30,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: 'User interface',
-          items: ['guides/ui/overview', 'guides/ui/controls', 'guides/ui/binding', 'guides/ui/hud-and-menus'],
+          items: ['guides/ui/overview', 'guides/ui/controls', 'guides/ui/binding', 'guides/ui/hud-and-menus', 'guides/ui/input'],
         },
         'guides/player',
         {

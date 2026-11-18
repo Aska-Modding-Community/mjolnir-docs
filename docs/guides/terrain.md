@@ -268,11 +268,75 @@ loaded.
 | `Area` | The area outlined; setting it moves the outline |
 | `Color` | The line's colour |
 | `IsVisible` | Whether it is shown; a hidden outline keeps its area and colour |
+| `Height` | How high over the ground the line runs, 0 to 10 m; 0.3 by default, so the grass does not hide it |
+| `LineWidth` | How wide the edge's line is, over 0 to 2 m; 0.2 by default. The blend's line is 0.4 of it |
 | `Dispose()` | Takes it off the ground for good |
 
 The edge is one line, and the outer edge of a rectangle's or a circle's blend a thinner one. Properties may be set
 from any thread and are applied on the next frame. An outline goes when it is disposed or its mod is disabled after an
 error.
+
+## Tools on the ground
+
+A tool that works on the ground under the cursor needs two things beside the outline: where the cursor points, and a
+picture of what a change will do before it is made.
+
+### The ground under the cursor
+
+`Landscape.TryRaycast(ray, maxDistance, out point)` finds where a ray first meets the ground, within a centimetre. The
+ray under the cursor is `GameCamera.ScreenPointToRay(MouseInput.Position)` (the camera and UI modules;
+[Mouse and keyboard](ui/input.md)):
+
+```csharp
+Ray ray = GameCamera.ScreenPointToRay(MouseInput.Position);
+if (Landscape.TryRaycast(ray, Landscape.MaximumRayDistance, out Vector3 point))
+    brush.Area = LandscapeArea.Circle(point, radius);
+```
+
+Only the ground counts: buildings, trees and the game's invisible volumes do not stop the ray, so a brush lands on the
+ground behind a house rather than on its roof. `maxDistance` is over 0 and at most `MaximumRayDistance`, 2000 m. The
+answer is false for a ray that meets no loaded ground within the distance, a ray that starts under the ground, and a
+call off the main thread.
+
+### A grid of cells
+
+`Landscape.ShowGrid(center, columns, rows, cellSize, rotation)` draws a grid on the ground in the look of the game's
+levelling field: each cell framed, see-through, lying on the relief, the grass and the stones. The mod colours each cell
+to show what a change will do there:
+
+```csharp
+LandscapeGrid grid = Landscape.ShowGrid(point, columns: 8, rows: 8, cellSize: 1);
+for (int c = 0; c < grid.Columns; c++)
+    for (int r = 0; r < grid.Rows; r++)
+    {
+        Vector3 cell = grid.CellCenter(c, r);
+        if (!Landscape.TryGetHeight(cell.x, cell.z, out float ground)) continue;
+        float off = Mathf.Abs(ground - target);
+        if (off > 4) grid.MarkCell(c, r);                // too far to reach
+        else if (off > 0.05f) grid.SetCell(c, r, off / 4); // a shade: how much the ground moves
+        // else the cell stays empty: the ground is right already
+    }
+```
+
+| `LandscapeGrid` | What |
+|---|---|
+| `SetCell(column, row, fraction)` | A shade between `NearColor` (at 0) and `FarColor` (at 1) |
+| `MarkCell(column, row)` | The game's red, as the levelling field shows ground it cannot level. It cannot be recoloured |
+| `ClearCell(column, row)` | Only the cell's frame shows |
+| `Clear()` | Every cell empty |
+| `NearColor`, `FarColor` | The shades' colours; null, the default, for the game's own greens |
+| `Center` | The grid's middle; setting it moves the grid |
+| `Rotation` | How far it is turned about the vertical, in degrees, as a `LandscapeArea.Rectangle` is |
+| `CellCenter(column, row)` | The middle of a cell on the ground (y 0), the turn included |
+| `Columns`, `Rows`, `CellSize` | Its size, given when it was made |
+| `IsVisible` | Whether it is shown; a hidden grid keeps its cells |
+| `Dispose()` | Takes it off the ground for good |
+
+Columns run along x and rows along z before the grid is turned: cell (0, 0) is the corner at the lowest x and z. A grid
+has 1 to 256 columns and rows (`LandscapeGrid.MaximumCells`) of 0.25 to 16 m (`MinimumCellSize`, `MaximumCellSize`).
+Its properties and cells may be set from any thread; it is drawn again on the next frame. Like an outline, it is drawn on
+this machine only, in no save, hidden while no world is loaded or its middle is not loaded, and goes when it is
+disposed or its mod is disabled after an error.
 
 ## Protected zones
 
@@ -516,4 +580,5 @@ players — who need the same Mjolnir for it — and it holds after the world is
   a placed object, like a plan of a mod's width, needs the same Mjolnir on every player's machine.
 - A placed bush gives again, and a placed tree grows, only while a player is near: both wait where nobody comes.
 - Water: its level can be read, never changed.
+- A grid has one pair of shades: ground to fill and ground to cut cannot have colours of their own in one grid.
 :::
