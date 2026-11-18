@@ -224,7 +224,7 @@ function Modules(): ReactNode {
     {icon: 'village', name: t('modules.residents', 'Villagers'), to: '/docs/guides/residents', text: t('modules.residents.text', 'Villagers, jobs by priority, interactions at buildings.')},
     {icon: 'motion', name: t('modules.anim', 'Animations'), to: '/docs/guides/animations', text: t('modules.anim.text', 'The game’s clips and your own on the player and villagers, emotes, bones.')},
     {icon: 'sun', name: t('modules.world', 'World'), to: '/docs/guides/world', text: t('modules.world.text', 'World clock: hour, day and night, time stop.')},
-    {icon: 'terrain', name: t('modules.terrain', 'Terrain'), to: '/docs/guides/terrain', text: t('modules.terrain.text', 'Heights, kinds and biomes of the ground, changes with snapshots and outlines, the world’s trees and stones.')},
+    {icon: 'terrain', name: t('modules.terrain', 'Terrain'), to: '/docs/guides/terrain', text: t('modules.terrain.text', 'Heights, kinds and biomes, protected zones, roads, and the world’s trees and stones to place or fell.')},
     {icon: 'camera', name: t('modules.camera', 'Camera'), to: '/docs/guides/camera', text: t('modules.camera.text', 'Reading the view, modifiers that add up, cameras of a mod\u2019s own with blends.')},
     {icon: 'net', name: t('modules.net', 'Multiplayer'), to: '/docs/guides/network', text: t('modules.net.text', 'Mod check on join, message channels between players’ mods.')},
     {icon: 'anvil', name: t('modules.kit', 'Mod kit'), to: '/docs/guides/mod-kit', text: t('modules.kit.text', 'Unity project for models, animations and masks on the game\u2019s own skeletons.')},
@@ -403,7 +403,7 @@ function Status(): ReactNode {
             <ul>
               <li>{t('status.todo.1', 'Villager jobs, stat modifiers and terrain changes checked on joined clients')}</li>
               <li>{t('status.todo.2', 'Worn models for armour, buildings with a function of their own')}</li>
-              <li>{t('status.todo.3', 'Felling trees with their loot, plants and stones of a mod’s own')}</li>
+              <li>{t('status.todo.3', 'Trees that grow over time, and water a mod can change')}</li>
               <li>{t('status.todo.4', 'A check after a game update: which game members a module has lost, in the log and the Mods window')}</li>
             </ul>
           </div>

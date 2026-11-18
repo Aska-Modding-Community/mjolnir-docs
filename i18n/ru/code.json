@@ -610,16 +610,16 @@
     "description": "A check after a game update: which game members a module has lost, in the log and the Mods window"
   },
   "landing.status.todo.3": {
-    "message": "Рубка деревьев с добычей, собственные растения и камни мода",
-    "description": "Felling trees with their loot, plants and stones of a mod’s own"
+    "message": "Деревья, растущие со временем, и вода, которую может менять мод",
+    "description": "Trees that grow over time, and water a mod can change"
   },
   "landing.modules.terrain": {
     "message": "Рельеф",
     "description": "Terrain"
   },
   "landing.modules.terrain.text": {
-    "message": "Высоты, виды и биомы земли, изменения со снимками и контурами, деревья и камни мира.",
-    "description": "Heights, kinds and biomes of the ground, changes with snapshots and outlines, the world’s trees and stones."
+    "message": "Высоты, виды и биомы, запретные зоны, дороги и объекты мира — поставить или срубить.",
+    "description": "Heights, kinds and biomes, protected zones, roads, and the world’s trees and stones to place or fell."
   },
   "landing.boot.lead": {
     "message": "Собственное внедрение, собственный рантайм и собственный API: четыре слоя между нативным кодом игры и модом.",

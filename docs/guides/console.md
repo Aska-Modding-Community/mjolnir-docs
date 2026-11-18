@@ -45,6 +45,10 @@ The console is English only: its answers and the item names it takes and shows.
 | `smooth [strength] [size]` | Smooths a square in front of the player |
 | `biome [name\|number] [size]` | Lists the biomes of this part of the world and the one here, or gives a square one of them |
 | `objects [radius] [name]` | Lists the trees, stones and plants of the world round the player |
+| `objects clear [radius]`, `objects harvest [radius] [player]` | Takes them away, or harvests them with their loot; `player` strikes as the player |
+| `place [kind] [scale]` | Lists the kinds of the world a mod can place, or places one ahead of the player |
+| `road [place [length] [dirt]\|width <metres>\|build\|level\|remove]` | Lists the road plans, lays one ahead of the player, or widens, builds, paves or takes away the nearest |
+| `protect [size\|list\|clear]` | Protects a square in front of the player from the player's tools, the villagers and other mods, or lists or ends the console's zones |
 | `field [place [size]\|level\|finish\|remove]` | Lists the game's levelling fields, or places one, levels, finishes or takes away the nearest |
 | `undo` | Puts back the ground the console's last change changed |
 

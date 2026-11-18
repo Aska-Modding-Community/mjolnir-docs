@@ -201,6 +201,7 @@ Landscape.Shape(area, (dx, dz, now) =>
 | `ClearVegetation` | Whether the grass, bushes and saplings in the area go. The game clears them on every change of height; a change of kind keeps them |
 | `OnlyOn` | The only kind of ground the change touches: with `Natural`, a raise, a smoothing or a biome leaves the roads, paths and dug earth in the area as they are |
 | `Objects` | What becomes of the natural objects standing where the ground changes |
+| `Harvesting` | With `Objects = Harvest`, who strikes and what the game gives them (`HarvestOptions`); `null` for nobody |
 | `KeepOffBuildings` | Whether a building standing in the area refuses the change (`Blocked`). The game's own check does not look at buildings; the SDK does, unless this is false |
 | `UpdateNavigation` | Whether the villagers' and creatures' paths are worked out again for the new ground, as the game does |
 
@@ -273,6 +274,40 @@ The edge is one line, and the outer edge of a rectangle's or a circle's blend a 
 from any thread and are applied on the next frame. An outline goes when it is disposed or its mod is disabled after an
 error.
 
+## Protected zones
+
+`Landscape.Protect(area)` keeps an area's ground as it is: no change made on this machine reaches into it — neither
+the player's tools, the villagers', a building's footprint or field, the game's own, nor another mod's. The mod that
+made the zone still changes that ground itself. A zone lives in the mod's memory, not in the save.
+
+```csharp
+LandscapeZone shrine = Landscape.Protect(LandscapeArea.Circle(altar, 8));
+shrine.Refused += (_, e) => Log.Info($"{e.Source} tried to {e.Operation} at the shrine");
+// ...
+shrine.Dispose();   // the ground can be changed again
+```
+
+| `LandscapeZone` | What |
+|---|---|
+| `Area` | The ground it protects; setting it moves the zone |
+| `ModId` | The mod that made it, whose own changes it lets through |
+| `IsActive` | Whether it still protects its ground: `false` once disposed, or once its mod was disabled |
+| `Refused` | Raised with the change it refused, already cancelled |
+| `Dispose()` | Lets the ground be changed again |
+
+A change is refused when the rectangle it touches, its blend included, reaches the zone's own shape — the ground where
+the zone's area is at least half. The game then answers the player's or a villager's tool as it answers a place it
+will not dig, a mod's change is `Blocked`, and `Check` says so before anything is made. Reading is never refused.
+
+Only this machine's changes are seen: another player's game makes and sends its own, and a road plan's levelling is
+not seen at all. In a multiplayer game every player's game needs the zone.
+
+:::warning[Keep levelling fields out of a zone]
+The game marks a field's tile worked before its tool runs, so a refused blow still counts the tile as levelled: a
+field set down in a zone and worked by the villagers finishes with its ground untouched. `LevellingField.LevelNow`
+leaves out the tiles another mod's zone keeps.
+:::
+
 ## Events
 
 ```csharp
@@ -337,16 +372,28 @@ ground, nearest first.
 | `Position`, `HeightOverGround` | Where it stands, and how far above or below the ground under it |
 | `Health`, `Quantity` | What is left of it as the game counts a tree's or a deposit's, and how much of its resource is left |
 | `IsRemovable` | Whether a change of the ground takes it: a bush or a small stone does, a tree or a boulder does not |
+| `IsClearable` | Whether `Clear` takes it: a tree and a boulder too, as the game's own clearing allows |
 | `IsHarvestable`, `GatherCount` | Whether the player can gather or fell it, and how many items are left to gather by hand |
 | `IsGone` | Whether it is no longer in the world. Ask for the objects again rather than keeping one for long |
 | `Gather(charges)` | Gathers from it as a player picking by hand does: the items fall on the ground beside it, its quantity goes down, and the game tells the other players. Answers how many items it gave |
+| `Harvest(options)` | Fells or mines it as a woodcutter or a miner does, blow after blow, until nothing is left: a tree falls and its trunk is chopped, a stone clump gives its stone. The loot is the game's own and falls beside it, and no tool is needed |
 | `Remove()` | Takes it out of the world as a change of the ground does. A tree or a boulder stays |
+| `Clear()` | Takes it out whatever it is, a tree or a boulder too, and drops nothing. It does not come back: the save keeps it gone |
 | `Settle()` | Puts it on the ground under it, so a tree left in the air after a change stands on it again |
 | `MoveTo(position)` | Moves it anywhere, its look with it. The game's own checks of where a thing may stand are not made |
 
-A tree is felled with a tool, not gathered by hand, so `GatherCount` and `Gather` answer 0 for it. `Settle` and
-`MoveTo` are not sent over the network: the other players see the object where it stood until they load that part of
-the world again.
+A tree is felled, not gathered by hand, so `GatherCount` and `Gather` answer 0 for it. `Settle` and `MoveTo` are not
+sent over the network: the other players see the object where it stood until they load that part of the world again.
+
+`Harvest` works on what the game fells or mines — trees, stumps, trunks, stone clumps and deposits — and only on an
+object the game has brought up around the player. A berry bush, a crop or a nest is picked by hand (`Gather`), and a
+boulder of the scenery gives nothing at all: only `Clear` takes it.
+
+| `HarvestOptions` | What |
+|---|---|
+| `AsPlayer` | Whether the local player strikes: the game then gives them the experience of the work, its chance of a work injury and the harvest in their deeds. `false` by default — nobody strikes, the game gives none of it to anyone, and the loot falls all the same |
+| `AwardExperience`, `AllowInjuries` | With `AsPlayer`, whether the experience and the injuries come with it. Both true by default |
+| `ChopTrunk` | Whether the trunk a felled tree leaves lying is chopped into its logs, sticks and bark. True by default; the game lets a trunk be struck only a moment after it falls, so it is chopped a few seconds later |
 
 | `NaturalObjectKind` | What |
 |---|---|
@@ -365,6 +412,32 @@ the world again.
 | `Remove` | What the game does: the bushes, saplings and small stones a change takes are taken |
 | `Keep` | Nothing is taken: the objects stay where they stood, now over or under the new ground |
 | `Settle` | Nothing is taken: every object in the area is put on the new ground under it |
+| `Clear` | Every object is taken, trees and boulders too, and nothing is dropped; the items lying there stay |
+| `Harvest` | Every object is taken with its loot once the ground has changed: what the game harvests is harvested, what is picked by hand gives all it has, the rest is cleared. `LandscapeOptions.Harvesting` says who strikes |
+
+### Placing objects
+
+`NaturalObjects.Place` puts down a kind of the world: a tree, a bush, a crop, a stone, a boulder of the scenery. What
+is placed is felled, gathered or cleared as that kind is, is saved with the world and is sent to the other players,
+who need the same Mjolnir to see it.
+
+```csharp
+PlaceableKind? willow = NaturalObjects.FindKind("tree_willow");
+NaturalObject? young = NaturalObjects.Place("tree_willow", position, rotation: 30f, scale: 1.2f);
+```
+
+| `NaturalObjects` | What |
+|---|---|
+| `Kinds` | Every kind a mod can place: 70 of them, every kind the world grows but its grass. Ready as the game builds its item database, in the main menu already |
+| `FindKind(name)` | One by its name (`"tree_willow"`) or its asset name; `null` for none |
+| `Place(kind, position, rotation, scale)` | Puts one down, its y taken from the ground. The scale is at most `MaximumScale` (4); for a tree it is its age |
+
+| `PlaceableKind` | What |
+|---|---|
+| `Name`, `AssetName` | The game's name of the kind (`"tree_willow"`), and the name of what is placed (`"Mjolnir_World_tree_willow"`) |
+| `Kind` | A tree, an object, a large object or a plant |
+| `MinimumScale`, `MaximumScale` | The scales the world itself grows it at: a tree placed smaller stands as a young one |
+| `IsHarvestable`, `IsGathered` | Whether it is felled or mined, and whether it is picked by hand |
 
 ## Levelling fields
 
@@ -394,11 +467,47 @@ The game finishes a plan whose last tile is levelled, so a field is `IsGone` rig
 all and there is nothing left to `Finish`. `HeightDifference` is worked out from the ground as it was drawn, so after
 `LevelNow()` it follows only on the next frame.
 
+## Road plans
+
+A road plan is the line a player sets down with the road maker: the villagers bring what it needs, then level and pave
+it section by section. A mod lays one the same way, and may build and pave it at once.
+
+```csharp
+if (RoadPlans.Place([gate, bend, well]) is { } road)
+{
+    road.Width = 6f;    // wider than the game's own, on this machine
+    road.LevelNow();    // built, levelled and paved at once
+}
+```
+
+| `RoadPlans` | What |
+|---|---|
+| `All`, `Nearest(center, radius)` | The road plans of the loaded world, and the one nearest a point |
+| `Place(points, kind, width)` | Lays a plan through 2 to `MaximumPoints` (8) points, at most `MaximumSections` (96) sections of `SectionLength` (2 m) each. `kind` is `Road` by default, or `Dirt` for the game's levelling plan along a line, which levels a strip and leaves it bare earth. The road maker's own checks — its turns, its slope, the water — are not made |
+
+| `RoadPlan` | What |
+|---|---|
+| `Points`, `Kind` | Where it runs, and what it lays |
+| `Width` | How wide a strip each section levels. The game's road levels 3.5 m and paves about a metre less in its middle; a mod's width is from `MinimumWidth` (1 m) to `MaximumWidth` (16 m) |
+| `Sections`, `LevelledSections`, `IsLevelled` | How many sections it has, how many are levelled and paved, and whether all are |
+| `IsBuilt` | Whether the villagers have brought what it needs, or `Build` did it |
+| `IsGone` | Whether the plan is no longer in the world: the road finished, taken away, or out of the loaded part |
+| `Build()` | Builds it at once, as if the villagers had brought what it needs |
+| `LevelNow()` | Builds it if it is not built yet, then levels and paves every section left. Answers how many are done now |
+| `Remove()` | Takes the plan away, leaving the ground as it is |
+
+The game finishes a road whose last section is paved, so a plan is `IsGone` right after `LevelNow()` did them all. A
+section another mod's protected zone keeps is left as it is.
+
+`Width` belongs to this machine: the game keeps no width of its own for a plan, so it is neither saved nor sent. Once
+the world is loaded again, or on another player's machine, the plan levels the game's width until it is set again;
+the ground already paved stays as it is.
+
 :::note[Not done yet]
-- Checked in single player and in a hosted world; a joined client's view of a mod's changes is not checked yet.
-- Felling a tree with its loot. A mod can `Gather` what the player picks by hand, and `Remove` what a change of the
-  ground takes, but no blow of a tool can be dealt for it.
-- Growing a tree, a stone or a bush of the mod's own: the world's objects can be read, moved and taken away, never
-  added.
+- Checked in single player and in a hosted world; a joined client's view of a mod's changes is not checked yet, and
+  a placed object needs the same Mjolnir on every player's machine.
+- A placed bush is gone once it has been gathered to the end, as the game's own gathered items are, and a placed tree
+  stays at the scale it was placed at: nothing grows over time.
+- A road plan's width is this machine's until the world is left.
 - Water: its level can be read, never changed.
 :::
