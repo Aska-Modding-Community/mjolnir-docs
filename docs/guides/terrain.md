@@ -419,11 +419,14 @@ boulder of the scenery gives nothing at all: only `Clear` takes it.
 
 `NaturalObjects.Place` puts down a kind of the world: a tree, a bush, a crop, a stone, a boulder of the scenery. What
 is placed is felled, gathered or cleared as that kind is, is saved with the world and is sent to the other players,
-who need the same Mjolnir to see it.
+who need the same Mjolnir to see it. A bush comes up full and, gathered to the end, stays and gives again when the
+world's bushes of its kind do — the berry bushes at a season's start.
 
 ```csharp
 PlaceableKind? willow = NaturalObjects.FindKind("tree_willow");
-NaturalObject? young = NaturalObjects.Place("tree_willow", position, rotation: 30f, scale: 1.2f);
+
+// A sapling of a third of its grown size: it grows to it over the world's days.
+NaturalObject? young = NaturalObjects.Place("tree_willow", position, rotation: 30f, scale: 0.3f);
 ```
 
 | `NaturalObjects` | What |
@@ -431,13 +434,19 @@ NaturalObject? young = NaturalObjects.Place("tree_willow", position, rotation: 3
 | `Kinds` | Every kind a mod can place: 70 of them, every kind the world grows but its grass. Ready as the game builds its item database, in the main menu already |
 | `FindKind(name)` | One by its name (`"tree_willow"`) or its asset name; `null` for none |
 | `Place(kind, position, rotation, scale)` | Puts one down, its y taken from the ground. The scale is at most `MaximumScale` (4); for a tree it is its age |
+| `TreeGrowthDays` | How many of the world's days a placed tree takes to grow from nothing to its grown size: 32 by default, as long as the game's own birch sapling takes, and 0 stops growth. It holds for every mod's trees, so set it only when the player asks |
 
 | `PlaceableKind` | What |
 |---|---|
 | `Name`, `AssetName` | The game's name of the kind (`"tree_willow"`), and the name of what is placed (`"Mjolnir_World_tree_willow"`) |
 | `Kind` | A tree, an object, a large object or a plant |
-| `MinimumScale`, `MaximumScale` | The scales the world itself grows it at: a tree placed smaller stands as a young one |
+| `MinimumScale`, `MaximumScale` | The scales the world itself grows it at: a tree placed smaller stands as a young one and grows towards its grown size |
 | `IsHarvestable`, `IsGathered` | Whether it is felled or mined, and whether it is picked by hand |
+
+A tree placed smaller than its grown size — a scale between its kind's `MinimumScale` and `MaximumScale`, the same for
+that place on every machine — grows towards it by the world's clock while it stands; a stump does not, and a tree
+placed at its grown size or larger stays as it is. The growing is done on the host while the tree is near a player,
+and the game saves the scale and sends it to the other players. A willow placed at 0.3 reached 1.265 and stopped.
 
 ## Levelling fields
 
@@ -483,12 +492,12 @@ if (RoadPlans.Place([gate, bend, well]) is { } road)
 | `RoadPlans` | What |
 |---|---|
 | `All`, `Nearest(center, radius)` | The road plans of the loaded world, and the one nearest a point |
-| `Place(points, kind, width)` | Lays a plan through 2 to `MaximumPoints` (8) points, at most `MaximumSections` (96) sections of `SectionLength` (2 m) each. `kind` is `Road` by default, or `Dirt` for the game's levelling plan along a line, which levels a strip and leaves it bare earth. The road maker's own checks — its turns, its slope, the water — are not made |
+| `Place(points, kind, width)` | Lays a plan through 2 to `MaximumPoints` (8) points, at most `MaximumSections` (96) sections of `SectionLength` (2 m) each. `kind` is `Road` by default, or `Dirt` for the game's levelling plan along a line, which levels a strip and leaves it bare earth. `width` is 0 for the game's own. The road maker's own checks — its turns, its slope, the water — are not made |
 
 | `RoadPlan` | What |
 |---|---|
 | `Points`, `Kind` | Where it runs, and what it lays |
-| `Width` | How wide a strip each section levels. The game's road levels 3.5 m and paves about a metre less in its middle; a mod's width is from `MinimumWidth` (1 m) to `MaximumWidth` (16 m) |
+| `Width` | How wide a strip each section levels. The game's road levels 3.5 m and paves about a metre less in its middle; a mod's width is from `MinimumWidth` (1 m) to `MaximumWidth` (16 m), in steps of `WidthStep` (0.5 m), and a width between two steps is rounded to the nearer |
 | `Sections`, `LevelledSections`, `IsLevelled` | How many sections it has, how many are levelled and paved, and whether all are |
 | `IsBuilt` | Whether the villagers have brought what it needs, or `Build` did it |
 | `IsGone` | Whether the plan is no longer in the world: the road finished, taken away, or out of the loaded part |
@@ -499,15 +508,12 @@ if (RoadPlans.Place([gate, bend, well]) is { } road)
 The game finishes a road whose last section is paved, so a plan is `IsGone` right after `LevelNow()` did them all. A
 section another mod's protected zone keeps is left as it is.
 
-`Width` belongs to this machine: the game keeps no width of its own for a plan, so it is neither saved nor sent. Once
-the world is loaded again, or on another player's machine, the plan levels the game's width until it is set again;
-the ground already paved stays as it is.
+A width of a mod's own is kept with the plan: the villagers level it too, the game saves it and sends it to the other
+players — who need the same Mjolnir for it — and it holds after the world is loaded again.
 
 :::note[Not done yet]
 - Checked in single player and in a hosted world; a joined client's view of a mod's changes is not checked yet, and
-  a placed object needs the same Mjolnir on every player's machine.
-- A placed bush is gone once it has been gathered to the end, as the game's own gathered items are, and a placed tree
-  stays at the scale it was placed at: nothing grows over time.
-- A road plan's width is this machine's until the world is left.
+  a placed object, like a plan of a mod's width, needs the same Mjolnir on every player's machine.
+- A placed bush gives again, and a placed tree grows, only while a player is near: both wait where nobody comes.
 - Water: its level can be read, never changed.
 :::

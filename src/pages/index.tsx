@@ -403,7 +403,7 @@ function Status(): ReactNode {
             <ul>
               <li>{t('status.todo.1', 'Villager jobs, stat modifiers and terrain changes checked on joined clients')}</li>
               <li>{t('status.todo.2', 'Worn models for armour, buildings with a function of their own')}</li>
-              <li>{t('status.todo.3', 'Trees that grow over time, and water a mod can change')}</li>
+              <li>{t('status.todo.3', 'Water a mod can change, and mod content checked on joined clients')}</li>
               <li>{t('status.todo.4', 'A check after a game update: which game members a module has lost, in the log and the Mods window')}</li>
             </ul>
           </div>

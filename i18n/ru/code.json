@@ -610,8 +610,8 @@
     "description": "A check after a game update: which game members a module has lost, in the log and the Mods window"
   },
   "landing.status.todo.3": {
-    "message": "Деревья, растущие со временем, и вода, которую может менять мод",
-    "description": "Trees that grow over time, and water a mod can change"
+    "message": "Вода, которую может менять мод, и проверка контента модов на подключившихся клиентах",
+    "description": "Water a mod can change, and mod content checked on joined clients"
   },
   "landing.modules.terrain": {
     "message": "Рельеф",
