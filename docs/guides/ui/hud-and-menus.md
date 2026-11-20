@@ -20,11 +20,49 @@ Hud.Add(line, HudAnchor.TopRight);
 | `Hud.Add(element, anchor)` | An element in a corner of the HUD: `TopLeft`, `TopCenter`, `TopRight`, `BottomLeft`, `BottomRight` |
 | `Hud.AddAt(element, () => position, offset)` | An element over a point in the world, which it follows. It hides while the point is behind the camera or off the screen |
 | `Hud.AddAt(element, transform, worldOffset, offset)` | The same over a Unity object |
+| `Hud.AddInPlaceOf(element, part)` | An element in the place of a part of the game's HUD, on every world from now on: the game's part is hidden, its scripts left running, and comes back when the element is taken off. `HudPart.QuickBar` is the row of slots 1–0 at the bottom |
 | `Hud.Remove(element)` | Takes it off at once |
 | `Hud.Ready` | Raised when a world's HUD comes up |
 | `Hud.Root` | The HUD's `RectTransform` while it exists |
 
 HUD elements scale with the game's HUD scale setting times the player's HUD scale in Mjolnir's settings.
+
+A row of `UiQuickSlot`s in the quick bar's place is a tool of a mod's own with modes chosen by number:
+
+```csharp
+var bar = new UiStackPanel { Orientation = Orientation.Horizontal, Spacing = 20 };
+bar.Children.Add(new UiQuickSlot { Icon = flatten, Key = "1", IsSelected = true });
+bar.Children.Add(new UiQuickSlot { Icon = smooth, Key = "2" });
+Hud.AddInPlaceOf(bar, HudPart.QuickBar);
+```
+
+## A palette in the build menu's look
+
+`BuildPalette` is a palette of the mod's own drawn as the game's build menu: the categories as diamonds in two rows,
+the chosen one's name under them, its items as tiles above them, and the ✕. The game's own build menu is not touched —
+the palette is a copy of its look, shown in its place while open.
+
+```csharp
+var palette = new BuildPalette();
+var trees = new PaletteCategory("Trees", treesIcon);
+trees.Items.Add(new PaletteItem("Willow", willowPicture) { Tag = "tree_willow" });
+palette.Categories.Add(trees);
+palette.ItemChosen += (_, e) => Place((string)e.Item.Tag!);
+palette.Open();
+```
+
+| `BuildPalette` | What |
+|---|---|
+| `Categories` | Its `PaletteCategory` list: a `DisplayName`, a diamond `Icon` (the game's are 40 × 40) and `Items` |
+| `SelectedCategory`, `SelectCategory(step)` | The category shown, and stepping through them as Q and E do |
+| `SelectedItem`, `ItemChosen` | The tile chosen: a `PaletteItem` with its `DisplayName`, `Picture` (about 4 : 3) and `Tag` |
+| `Open()`, `Close()`, `Toggle()`, `IsOpen`, `Closed` | Showing it, and when it goes |
+| `Refresh()` | Draws the categories and tiles again after they were changed |
+| `Dispose()` | Takes it away |
+
+The palette takes the mouse itself, also while the player's controls are captured: a diamond chooses its category, a
+tile chooses an item and closes it, the wheel scrolls the tiles, Q and E step through the categories. While it is
+open, `MouseInput.IsOverInterface` is true over it.
 
 ## Notifications
 

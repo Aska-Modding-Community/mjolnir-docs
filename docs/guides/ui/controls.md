@@ -48,6 +48,7 @@ Value events fire on every change: from code, a binding or the player. `Click` f
 | `UiProgressRing` | The HUD's food ring. Its `Width` is its diameter | the same, and `Icon` |
 | `UiImage` | A picture | `Source` (a `Bitmap`), `Stretch` |
 | `UiSlot` | The inventory's item slot | `Icon`, `Count`, `FillFraction`, `IsSelected`, `Click`, `Command` |
+| `UiQuickSlot` | A slot of the game's quick bar: a picture, its key under it, the orange frame of the slot in hand. It shows only — the HUD takes no clicks | `Icon`, `Key`, `IsSelected` |
 | `UiCard` | The deeds page's god card | `Image`, `Title`, `Subtitle`, `IsSelected`, `Click`, `Command`. `Width` scales it |
 | `UiItemCard` | The inventory's card of an item: its picture, name, tier, kind, lore and attributes | `AssetName` |
 

@@ -20,11 +20,49 @@ Hud.Add(line, HudAnchor.TopRight);
 | `Hud.Add(element, anchor)` | Элемент в углу HUD: `TopLeft`, `TopCenter`, `TopRight`, `BottomLeft`, `BottomRight` |
 | `Hud.AddAt(element, () => position, offset)` | Элемент над точкой мира, за которой он следует. Скрывается, пока точка позади камеры или за пределами экрана |
 | `Hud.AddAt(element, transform, worldOffset, offset)` | То же над объектом Unity |
+| `Hud.AddInPlaceOf(element, part)` | Элемент на место части HUD игры, во всех мирах с этого момента: часть игры скрывается, её скрипты продолжают работать, и она возвращается, когда элемент убирают. `HudPart.QuickBar` — это ряд слотов 1–0 внизу |
 | `Hud.Remove(element)` | Убирает элемент сразу |
 | `Hud.Ready` | Возникает, когда появляется HUD мира |
 | `Hud.Root` | `RectTransform` HUD, пока он существует |
 
 Элементы HUD масштабируются настройкой масштаба HUD игры, умноженной на масштаб HUD игрока в настройках Mjolnir.
+
+Ряд `UiQuickSlot` на месте быстрой панели — это собственный инструмент мода с режимами по цифрам:
+
+```csharp
+var bar = new UiStackPanel { Orientation = Orientation.Horizontal, Spacing = 20 };
+bar.Children.Add(new UiQuickSlot { Icon = flatten, Key = "1", IsSelected = true });
+bar.Children.Add(new UiQuickSlot { Icon = smooth, Key = "2" });
+Hud.AddInPlaceOf(bar, HudPart.QuickBar);
+```
+
+## Палитра в виде меню строительства {/* #a-palette-in-the-build-menus-look */}
+
+`BuildPalette` — собственная палитра мода, нарисованная как меню строительства игры: категории ромбами в два ряда,
+название выбранной под ними, её элементы плитками над ними и ✕. Само меню строительства игры не трогается — палитра
+копирует его вид и показывается на его месте, пока открыта.
+
+```csharp
+var palette = new BuildPalette();
+var trees = new PaletteCategory("Trees", treesIcon);
+trees.Items.Add(new PaletteItem("Willow", willowPicture) { Tag = "tree_willow" });
+palette.Categories.Add(trees);
+palette.ItemChosen += (_, e) => Place((string)e.Item.Tag!);
+palette.Open();
+```
+
+| `BuildPalette` | Что |
+|---|---|
+| `Categories` | Список `PaletteCategory`: `DisplayName`, значок ромба `Icon` (у игры 40 × 40) и `Items` |
+| `SelectedCategory`, `SelectCategory(step)` | Показанная категория и переход между ними, как по Q и E |
+| `SelectedItem`, `ItemChosen` | Выбранная плитка: `PaletteItem` со своими `DisplayName`, `Picture` (примерно 4 : 3) и `Tag` |
+| `Open()`, `Close()`, `Toggle()`, `IsOpen`, `Closed` | Показ палитры и её закрытие |
+| `Refresh()` | Перерисовывает категории и плитки после их изменения |
+| `Dispose()` | Убирает палитру |
+
+Палитра сама берёт мышь, в том числе когда управление игрока захвачено: ромб выбирает категорию, плитка выбирает
+элемент и закрывает палитру, колесо прокручивает плитки, Q и E переключают категории. Пока она открыта,
+`MouseInput.IsOverInterface` над ней истинно.
 
 ## Уведомления {/* #notifications */}
 

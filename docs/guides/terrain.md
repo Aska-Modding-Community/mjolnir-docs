@@ -185,7 +185,8 @@ Landscape.Shape(area, (dx, dz, now) =>
 | `Queued` | Asked from another thread: it is made on the main thread at the start of the next frame |
 | `NotAvailable` | No world is loaded |
 | `NotLoaded` | The area is not all in the loaded part of the world |
-| `Blocked` | A building stands in the area, or the game will not change the ground there |
+| `Blocked` | A building, a fixed place of the world or another mod's protected zone stands in the area, or the game will not change the ground there |
+| `Partial` | Made round what stands in the area, or with the ground under it fitted to it (`ObstacleMode`), and the rest changed |
 | `TooSteep` | The ground there is too steep for the game |
 | `TooHigh` | The ground would go higher than the game allows |
 | `Underwater` | The area is under water |
@@ -203,6 +204,8 @@ Landscape.Shape(area, (dx, dz, now) =>
 | `Objects` | What becomes of the natural objects standing where the ground changes |
 | `Harvesting` | With `Objects = Harvest`, who strikes and what the game gives them (`HarvestOptions`); `null` for nobody |
 | `KeepOffBuildings` | Whether a building standing in the area refuses the change (`Blocked`). The game's own check does not look at buildings; the SDK does, unless this is false |
+| `KeepOffLandmarks` | The same for a fixed place of the world — a den, or the rocks a place was made with. The game cannot move them with the ground, so ground dug under them leaves them hanging. True by default |
+| `ObstacleMode` | What a change does where it reaches something it keeps off: `Refuse` (the default) refuses it whole, `GoAround` makes it round that ground, `Fit` makes it with the ground under it fitted to what stands there |
 | `UpdateNavigation` | Whether the villagers' and creatures' paths are worked out again for the new ground, as the game does |
 
 Each option has the game's own behaviour by default; `LandscapeOptions.Default` is what a change made without any
@@ -214,6 +217,34 @@ change over the same ground in that frame reads the ground as it was before and 
 then raised with `OnlyOn` in one frame rises with everything else. Make the next change a frame later, in the next
 `OnUpdate` or posted with `Dispatcher.MainThread.Post`.
 :::
+
+### What stands in the way
+
+With an `ObstacleMode` other than `Refuse`, a change is made where it can be and answers `Partial`. What it goes round
+or fits is the footprint of what stands there: a building's walls and the ground the game levels for it, a den's
+rocks, another mod's protected zone.
+
+`Landscape.ObstaclesIn(area, options)` tells what that would be, before anything is changed — for a preview:
+
+```csharp
+var options = new LandscapeOptions { ObstacleMode = LandscapeObstacleMode.GoAround };
+LandscapeObstacles standing = Landscape.ObstaclesIn(area, options);
+if (!standing.IsEmpty)
+    Log.Info($"going round {string.Join(", ", standing.Names)}");
+
+float after = standing.HeightAfter(x, z, Landscape.HeightAt(x, z), wanted);
+```
+
+| `LandscapeObstacles` | What |
+|---|---|
+| `IsEmpty`, `Fits` | Whether nothing is in the way, and whether the change still fits what is |
+| `Names` | What stands there, by name |
+| `Covers(x, z)` | Whether the ground at a point may not be the change's own |
+| `HeightAfter(x, z, now, changed)` | The height the change leaves at a point: `now` under what it goes round, the fitted height under what it fits, else `changed` |
+| `LandscapeObstacles.None` | Nothing in the way |
+
+`Landscape.Check(area, operation, options)` answers the same way a change would, without making it: `Partial` where
+something stands in the area and the mode lets the change round it.
 
 ## Snapshots
 
@@ -499,10 +530,13 @@ NaturalObject? young = NaturalObjects.Place("tree_willow", position, rotation: 3
 | `FindKind(name)` | One by its name (`"tree_willow"`) or its asset name; `null` for none |
 | `Place(kind, position, rotation, scale)` | Puts one down, its y taken from the ground. The scale is at most `MaximumScale` (4); for a tree it is its age |
 | `TreeGrowthDays` | How many of the world's days a placed tree takes to grow from nothing to its grown size: 32 by default, as long as the game's own birch sapling takes, and 0 stops growth. It holds for every mod's trees, so set it only when the player asks |
+| `PictureOf(kind, width, height)` | A picture of a kind for a palette or a list: its model in three quarters view on the build menu's dark. Taken the first time it is asked for and kept for the game's run; at most `MaximumPictureSize` (1024) a side |
+| `ShowPreview(kind, position)` | The kind's model standing on the ground as a ghost under the cursor, until it is disposed |
 
 | `PlaceableKind` | What |
 |---|---|
 | `Name`, `AssetName` | The game's name of the kind (`"tree_willow"`), and the name of what is placed (`"Mjolnir_World_tree_willow"`) |
+| `DisplayName` | Its name for the player, in their language where the game has one, else made from `Name` (`"tree_birch1"` → `"Birch 1"`) |
 | `Kind` | A tree, an object, a large object or a plant |
 | `MinimumScale`, `MaximumScale` | The scales the world itself grows it at: a tree placed smaller stands as a young one and grows towards its grown size |
 | `IsHarvestable`, `IsGathered` | Whether it is felled or mined, and whether it is picked by hand |
@@ -511,6 +545,11 @@ A tree placed smaller than its grown size — a scale between its kind's `Minimu
 that place on every machine — grows towards it by the world's clock while it stands; a stump does not, and a tree
 placed at its grown size or larger stays as it is. The growing is done on the host while the tree is near a player,
 and the game saves the scale and sends it to the other players. A willow placed at 0.3 reached 1.265 and stopped.
+
+`ShowPreview` gives a `KindPreview` — a picture only, with nothing to harvest, collide with or save, drawn on this
+machine alone. Move it with `Position`, turn and size it with `Rotation` and `Scale`, swap what it shows with `Kind`,
+hide it with `IsVisible`, and set `IsBlocked` to draw it red where the object may not go. Its properties may be set
+from any thread and show from the next frame.
 
 ## Levelling fields
 
@@ -571,6 +610,11 @@ if (RoadPlans.Place([gate, bend, well]) is { } road)
 
 The game finishes a road whose last section is paved, so a plan is `IsGone` right after `LevelNow()` did them all. A
 section another mod's protected zone keeps is left as it is.
+
+`RoadPlans.Line(points, kind)` gives the line a plan through those points would run along, without laying one — for a
+preview while the player draws it. The `RoadLine` holds its `Samples` on the ground at the heights the sections would
+level to, its `Length`, its `Sections`, and `Fits`: whether a plan may run along it at all, that is one section at
+least and no more than `MaximumSections`.
 
 A width of a mod's own is kept with the plan: the villagers level it too, the game saves it and sends it to the other
 players — who need the same Mjolnir for it — and it holds after the world is loaded again.

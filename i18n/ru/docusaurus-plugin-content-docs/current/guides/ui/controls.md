@@ -48,6 +48,7 @@ volume.ValueChanged += (_, e) => Log.Info($"Volume {e.NewValue:0.##}");
 | `UiProgressRing` | Кольцо еды HUD. Его `Width` — диаметр | то же и `Icon` |
 | `UiImage` | Картинка | `Source` (`Bitmap`), `Stretch` |
 | `UiSlot` | Слот предмета инвентаря | `Icon`, `Count`, `FillFraction`, `IsSelected`, `Click`, `Command` |
+| `UiQuickSlot` | Слот быстрой панели игры: картинка, клавиша под ней и оранжевая рамка слота в руке. Только показывает — HUD не принимает нажатий | `Icon`, `Key`, `IsSelected` |
 | `UiCard` | Карточка бога со страницы деяний | `Image`, `Title`, `Subtitle`, `IsSelected`, `Click`, `Command`. `Width` масштабирует её |
 | `UiItemCard` | Инвентарная карточка предмета: картинка, имя, уровень, вид, лор и характеристики | `AssetName` |
 

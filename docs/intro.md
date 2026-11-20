@@ -45,7 +45,7 @@ A mod references the main library `Mjolnir.SDK` and only the modules it uses, ea
 | Assembly | Namespace | What it gives |
 |---|---|---|
 | `Mjolnir.SDK` | `Mjolnir.SDK` | `Mod` and its lifecycle, manifests and dependencies, TOML config, localization, bindable values, the main-thread `Dispatcher`, character sheets, animators and combatants, console commands |
-| `Mjolnir.SDK.UI` | `Mjolnir.SDK.UI` | Windows, dialogs, HUD elements and markers, notifications, menu entries, tabs in the game's own windows, hotkeys, the mouse and keyboard, the player's controls for a mod's tool, controls cloned from the game's interface |
+| `Mjolnir.SDK.UI` | `Mjolnir.SDK.UI` | Windows, dialogs, HUD elements and markers, notifications, menu entries, tabs in the game's own windows, hotkeys, the mouse and keyboard, the player's controls for a mod's tool, a palette in the build menu's look, controls cloned from the game's interface |
 | `Mjolnir.SDK.Player` | `Mjolnir.SDK.Player` | The local player: spawn and death, health, stamina, food, water, warmth, stamina costs, position and teleport |
 | `Mjolnir.SDK.Content` | `Mjolnir.SDK.Content` | Items, weapons, armour and food, recipes, buildings, status effects, models from AssetBundles, the item catalog |
 | `Mjolnir.SDK.Animation` | `Mjolnir.SDK.Animation` | Animations and masks of a mod's own from its AssetBundle; connects `CharacterAnimator` to the game |
