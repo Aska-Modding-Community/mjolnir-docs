@@ -131,6 +131,10 @@ camera is, until it is disposed. The view goes over to it and back over `blend`;
 - The screen shows the mods' camera with the highest priority, and of two alike the newer one. The game's camera comes
   back when none is left.
 - The player still walks, aims and builds as ever: the game reads input whatever the screen shows.
+- The game draws the trees and plants between its camera and the player's character see-through, so the character
+  stays in sight. A mod's camera that follows or looks at the character (`Follow` or `LookAt` set to it or a part of it)
+  keeps that. A camera looking anywhere else sees nothing through: the trees in its view are drawn whole, however far
+  away the character is.
 - A camera ends when it is disposed, its mod is disabled or the world is left. Taken in the main menu, it ends on the
   next frame.
 
