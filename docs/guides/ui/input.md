@@ -82,7 +82,8 @@ public sealed class MarkerMod : Mod
 - the character stands still and attacks nothing;
 - the game's camera does not turn or zoom;
 - the quick slots and the menu keys (Esc, inventory, map, build) do nothing;
-- the mouse cursor shows.
+- the mouse cursor shows, and the game's aim is off: no crosshair, and nothing in the middle of the screen becomes a
+  target, so no card, key prompt or highlight follows the view.
 
 What still works: hotkeys (`HotKeys`), the mod's own windows, and `MouseInput` and `KeyboardInput`, which read the
 devices themselves. A mod window opened over a capture takes the keys while it is open; when it closes, the capture
@@ -94,7 +95,7 @@ example.
 | `Dispose()` | Gives the controls back, on the next frame. Calling it again does nothing |
 | `Ended` | Raised once on the main thread when it ends, whatever the reason: disposed, the world left, its mod disabled after an error |
 | `IsActive` | Whether it still holds |
-| `ShowsCursor` | Whether the cursor shows while it holds; `Capture(showCursor: false)` starts without it |
+| `ShowsCursor` | Whether the cursor shows while it holds, the game's aim off with it; `Capture(showCursor: false)` starts without it and leaves the aim as it is |
 
 `PlayerControls.IsCaptured` says whether any mod holds the controls now. Several captures may be held at once, by one
 mod or several; the controls come back after the last one ends, and the cursor shows while any of them asks for it.

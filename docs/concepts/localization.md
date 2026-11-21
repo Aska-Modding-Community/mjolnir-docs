@@ -121,6 +121,11 @@ removed = "The blessing fades."
 The Mods window takes a mod's name, description and settings in the player's language from its files. Without them it
 shows the code's texts: the manifest's name and description, `WithDisplayName` and the settings' descriptions.
 
+Mjolnir's own texts — the Mods window and its settings page, the console, the word for the mouse wheel in key hints,
+the refusal shown when a session cannot be joined — come in every language the game has: English, German, French,
+Italian, Spanish, Brazilian Portuguese, Polish, Romanian, Russian, Ukrainian, Japanese and Simplified and Traditional
+Chinese.
+
 ```toml title="lang/russian.toml"
 [mod]
 name = "Мой мод"

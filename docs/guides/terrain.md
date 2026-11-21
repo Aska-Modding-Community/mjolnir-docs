@@ -303,8 +303,9 @@ loaded.
 | `LineWidth` | How wide the edge's line is, over 0 to 2 m; 0.2 by default. The blend's line is 0.4 of it |
 | `Dispose()` | Takes it off the ground for good |
 
-The edge is one line, and the outer edge of a rectangle's or a circle's blend a thinner one. Properties may be set
-from any thread and are applied on the next frame. An outline goes when it is disposed or its mod is disabled after an
+The edge is one line, and the outer edge of a rectangle's or a circle's blend a thinner one. The lines are drawn over
+whatever stands in front of them, so a rock or a tree in the way does not hide a part of the outline. Properties may be
+set from any thread and are applied on the next frame. An outline goes when it is disposed or its mod is disabled after an
 error.
 
 ## Tools on the ground
@@ -328,6 +329,22 @@ Only the ground counts: buildings, trees and the game's invisible volumes do not
 ground behind a house rather than on its roof. `maxDistance` is over 0 and at most `MaximumRayDistance`, 2000 m. The
 answer is false for a ray that meets no loaded ground within the distance, a ray that starts under the ground, and a
 call off the main thread.
+
+A tool that works on what stands on the ground — an eraser taking a boulder — asks what the cursor points at instead:
+`GameCamera.TryRaycast(ray, maxDistance, out point, out target)` gives the first thing the ray meets, a rock or a trunk
+as well as the ground, the local player and the game's invisible volumes left out ([Camera](camera.md)):
+
+```csharp
+Ray ray = GameCamera.ScreenPointToRay(MouseInput.Position);
+if (Landscape.TryRaycast(ray, Landscape.MaximumRayDistance, out Vector3 ground))
+{
+    // On a boulder, the brush goes under the part of it the cursor points at, not on the ground behind it.
+    if (GameCamera.TryRaycast(ray, Landscape.MaximumRayDistance, out Vector3 onObject, out _)
+        && (onObject - ray.origin).sqrMagnitude < (ground - ray.origin).sqrMagnitude)
+        ground = new Vector3(onObject.x, Landscape.HeightAt(onObject.x, onObject.z), onObject.z);
+    brush.Area = LandscapeArea.Circle(ground, radius);
+}
+```
 
 ### A grid of cells
 
@@ -457,7 +474,12 @@ ground, nearest first.
 |---|---|
 | `In(area)` | Every object whose place is at least half in the area |
 | `Around(center, radius)` | Within the metres given, at most `MaximumRadius` (64 m) |
+| `Touching(center, radius)` | Those that reach into a circle: whose place lies in it, and those whose footprint on the ground does though their place lies outside |
 | `Nearest(center, radius)` | The nearest one, or `null` |
+
+`Around` and `In` go by an object's place, one point. A large boulder or a cliff of the shore can stand with its place
+several metres from the part of it a player points at; a tool that takes what is under the brush asks `Touching`, so a
+boulder the brush covers only in part is still found.
 
 | `NaturalObject` | What |
 |---|---|
@@ -510,6 +532,30 @@ boulder of the scenery gives nothing at all: only `Clear` takes it.
 | `Clear` | Every object is taken, trees and boulders too, and nothing is dropped; the items lying there stay |
 | `Harvest` | Every object is taken with its loot once the ground has changed: what the game harvests is harvested, what is picked by hand gives all it has, the rest is cleared. `LandscapeOptions.Harvesting` says who strikes |
 
+### Marking objects
+
+`NaturalObjects.ShowMarks()` draws objects over in the game's own see-through red, the red it lays on what keeps a
+building from its place: a tool shows so what it is about to take.
+
+```csharp
+ObjectMarks marks = NaturalObjects.ShowMarks();
+// Every frame, or a few times a second: what the eraser under the cursor would take.
+marks.Set(NaturalObjects.Touching(cursor, radius).Where(o => o.Kind != NaturalObjectKind.Item));
+// …
+marks.Dispose();
+```
+
+| `ObjectMarks` | What |
+|---|---|
+| `Set(objects)` | Marks these objects and no others, at most `MaximumCount` (128); an empty list takes every mark away |
+| `Count` | How many objects are marked |
+| `IsVisible` | Whether the marks are shown; hidden ones keep their objects |
+| `Dispose()` | Takes every mark away for good |
+
+Each mark is a copy of the object's model at its place, turned and sized as the object is and a little larger, so it
+shows over it. It is a picture on this machine only. `Set` is called on the main thread; the marks show from the next
+frame and go with their object, when disposed, or when their mod is disabled after an error.
+
 ### Placing objects
 
 `NaturalObjects.Place` puts down a kind of the world: a tree, a bush, a crop, a stone, a boulder of the scenery. What
@@ -548,7 +594,7 @@ and the game saves the scale and sends it to the other players. A willow placed 
 
 `ShowPreview` gives a `KindPreview` — a picture only, with nothing to harvest, collide with or save, drawn on this
 machine alone. Move it with `Position`, turn and size it with `Rotation` and `Scale`, swap what it shows with `Kind`,
-hide it with `IsVisible`, and set `IsBlocked` to draw it red where the object may not go. Its properties may be set
+hide it with `IsVisible`, and set `IsBlocked` to draw it in the game's see-through red where the object may not go. Its properties may be set
 from any thread and show from the next frame.
 
 ## Levelling fields

@@ -58,11 +58,15 @@ palette.Open();
 | `SelectedItem`, `ItemChosen` | The tile chosen: a `PaletteItem` with its `DisplayName`, `Picture` (about 4 : 3) and `Tag` |
 | `Open()`, `Close()`, `Toggle()`, `IsOpen`, `Closed` | Showing it, and when it goes |
 | `Refresh()` | Draws the categories and tiles again after they were changed |
+| `Scale` | Its size against the game's menu, from `MinimumScale` (0.5) to `MaximumScale` (1.5); 1 is the menu's own. It shrinks or grows about the bottom of the diamonds, which stay where the menu's stand |
 | `Dispose()` | Takes it away |
 
 The palette takes the mouse itself, also while the player's controls are captured: a diamond chooses its category, a
 tile chooses an item and closes it, the wheel scrolls the tiles, Q and E step through the categories. While it is
 open, `MouseInput.IsOverInterface` is true over it.
+
+A palette held open while the player works covers more of the screen than a menu opened for a moment: a smaller
+`Scale`, 0.8 say, leaves more of the ground in sight, and the player may be given it as a setting.
 
 ## Notifications
 

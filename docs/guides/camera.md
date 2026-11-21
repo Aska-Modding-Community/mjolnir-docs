@@ -71,6 +71,7 @@ public sealed class OverheadMod : Mod
 | `WorldToScreen(world)` | A point of the world on the screen, in pixels from the bottom left corner. `z` is how far in front of the camera it is, negative behind it |
 | `ScreenPointToRay(screen)` | The ray from the camera through a point of the screen |
 | `TryRaycast(maxDistance, out point, out target)` | What the middle of the screen looks at, where the game's crosshair is. The local player is left out |
+| `TryRaycast(ray, maxDistance, out point, out target)` | What any ray meets first — the cursor's, from `ScreenPointToRay`: a rock, a trunk or a wall as well as the ground. The local player and the game's invisible volumes are left out |
 
 Read the camera on the main thread; another thread gets what it showed there last.
 
