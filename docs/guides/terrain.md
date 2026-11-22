@@ -5,7 +5,7 @@ title: Terrain
 # Terrain
 
 `Mjolnir.SDK.Terrain` gives mods the ground of the world: its height, its kind, its biome and the water over it;
-changes to it; the trees, stones and bushes standing on it; and the levelling fields the villagers work. Reference
+changes to it; the trees, stones and bushes standing on it; the levelling fields the villagers work; and ponds. Reference
 `Mjolnir.SDK.Terrain.dll` and add `using Mjolnir.SDK.Terrain;`.
 
 A change is made as the game makes its own — the player's hoe, a villager's shovel, a building's footprint — so it is
@@ -665,10 +665,83 @@ least and no more than `MaximumSections`.
 A width of a mod's own is kept with the plan: the villagers level it too, the game saves it and sends it to the other
 players — who need the same Mjolnir for it — and it holds after the world is loaded again.
 
+## Ponds
+
+A pond is water a mod pours into a basin it has dug. `WaterBodies.Place` fills the basin a point lies in up to a level:
+as far as the ground under that level reaches from the point, within a square around it. The water is the game's lake
+water — its shore, its reflections — the character swims in it, the game's own question of what water stands at a point
+(which creatures and fishing ask) is answered with the pond, and the game saves the pond and sends it to the other players. Its shape is the ground's: dig its shore wider and the water follows on the next
+frame.
+
+```csharp title="PondMod.cs"
+using Mjolnir.SDK;
+using Mjolnir.SDK.Terrain;
+using UnityEngine;
+
+namespace PondMod;
+
+[ModManifest("author.pond", "Pond", "1.0.0")]
+public sealed class PondMod : Mod
+{
+    // A round pond in front of a point: a basin dug 3 m, filled to half a metre under its lowest rim.
+    public static WaterBody? Dig(Vector3 at)
+    {
+        if (Landscape.Lower(LandscapeArea.Circle(at, 8, 4), 3f) != LandscapeResult.Done) return null;
+        float rim = float.MaxValue;
+        for (int k = 0; k < 36; k++)
+        {
+            var edge = at + Quaternion.Euler(0, k * 10, 0) * Vector3.forward * 13f;
+            rim = Mathf.Min(rim, Landscape.HeightAt(edge.x, edge.z));
+        }
+        var fill = WaterBodies.Measure(at, rim - 0.5f, 40);
+        return fill.Result == WaterFillResult.Fits ? WaterBodies.Place(at, rim - 0.5f, 40) : null;
+    }
+}
+```
+
+A change of the ground shows a frame later (see the warning above): measure and place a pond on the frame after the
+basin was dug.
+
+| `WaterBodies` | What |
+|---|---|
+| `All` | Every pond of the world and the lakes of the loaded part |
+| `At(x, z)`, `Nearest(center, radius)` | The pond or lake whose water covers a point, and the one whose middle is nearest |
+| `Measure(point, level, size)` | What a pond filled from `point` up to `level` would cover, without placing it: a `WaterFill`, for a preview. `size` is the side of the square around the point the water reaches no further than, from `MinimumSize` (4 m) to `MaximumSize` (128 m); 64 by default |
+| `Place(point, level, size)` | Fills the basin if it fits there, and gives the `WaterBody`; null where it does not fit (the reason is `Measure`'s) |
+
+| `WaterFillResult` | Why |
+|---|---|
+| `Fits` | The basin holds the water: a pond may be placed |
+| `Spills` | The water reaches the edge of the square: the basin is open at that level, or larger than the square |
+| `AboveLevel` | The ground at the point is at the level or above: nothing to fill |
+| `InWater` | The point is in water already: the sea, a lake or a pond |
+| `Overlaps` | The water would run into a pond's or a lake's |
+| `NotLoaded` | Part of the square is not in the loaded part of the world |
+| `NotAvailable` | No world, or not the main thread |
+
+A `WaterFill` tells its `Result`, its `Level`, the square its water lies in (`Bounds`), its `Area` in square metres and
+its `Volume` in cubic metres, and `Covers(x, z)` and `DepthAt(x, z)` for a point. The ground is read at most every half
+metre (a coarser step in a square over 64 m).
+
+| `WaterBody` | What |
+|---|---|
+| `Center`, `Level` | The point it was filled from at the height of its surface, and that height |
+| `Size`, `Bounds` | The side of its square, and the square its water lies in now |
+| `Area`, `Volume` | Its surface in square metres and its water in cubic metres, as filled now; 0 for a lake |
+| `Covers(x, z)`, `DepthAt(x, z)` | Whether its water covers a point, and how deep it is there |
+| `IsWorldLake` | One of the world's lakes, which a mod reads but does not change |
+| `IsGone` | Taken away, or no longer in the world |
+| `Remove()` | Takes a pond away, saved and for the other players too; false for a lake |
+
+`Landscape.IsUnderwater` is true in a pond, as in a lake. The water is still water: there is no drinking from it, as
+there is none from the game's lakes. The console's `water` lists the ponds and lakes, `water fill [depth] [size]` fills
+the basin ahead of the player up to `depth` over the ground there, and `water remove` takes the nearest pond away.
+
 :::note[Not done yet]
 - Checked in single player and in a hosted world; a joined client's view of a mod's changes is not checked yet, and
   a placed object, like a plan of a mod's width, needs the same Mjolnir on every player's machine.
 - A placed bush gives again, and a placed tree grows, only while a player is near: both wait where nobody comes.
-- Water: its level can be read, never changed.
+- Ponds: checked in single player and in a hosted world, not yet on a joined client; under a pond's surface the view
+  is the dry basin; things dropped in a pond do not float; the sea's level can be read, never changed.
 - A grid has one pair of shades: ground to fill and ground to cut cannot have colours of their own in one grid.
 :::

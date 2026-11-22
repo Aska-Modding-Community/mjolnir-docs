@@ -610,16 +610,16 @@
     "description": "A check after a game update: which game members a module has lost, in the log and the Mods window"
   },
   "landing.status.todo.3": {
-    "message": "Вода, которую может менять мод, и проверка контента модов на подключившихся клиентах",
-    "description": "Water a mod can change, and mod content checked on joined clients"
+    "message": "Проверка прудов и контента модов на подключившихся клиентах",
+    "description": "Ponds and mod content checked on joined clients"
   },
   "landing.modules.terrain": {
     "message": "Рельеф",
     "description": "Terrain"
   },
   "landing.modules.terrain.text": {
-    "message": "Высоты, виды и биомы, запретные зоны, дороги и объекты мира — поставить или срубить.",
-    "description": "Heights, kinds and biomes, protected zones, roads, and the world’s trees and stones to place or fell."
+    "message": "Высоты, виды и биомы, запретные зоны, дороги, пруды и объекты мира — поставить или срубить.",
+    "description": "Heights, kinds and biomes, protected zones, roads, ponds, and the world’s trees and stones to place or fell."
   },
   "landing.boot.lead": {
     "message": "Собственное внедрение, собственный рантайм и собственный API: четыре слоя между нативным кодом игры и модом.",
