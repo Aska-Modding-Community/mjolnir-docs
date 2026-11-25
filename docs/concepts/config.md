@@ -108,6 +108,42 @@ The builders return the entry and chain after `Bind`:
 Section and row names, descriptions and enum names can be translated in the mod's `lang` files. See
 [Localization](localization.md#the-mods-window).
 
+## Your own settings page
+
+The page behind the Settings button is built from the config: a header per section, a control per setting. That is
+the right page for most mods. When the settings need more shape than a flat list, `ModSettings.SetPage` puts your own
+control there instead:
+
+```csharp
+using Mjolnir.SDK.UI;
+
+public override void OnGameReady()
+{
+    ConfigEntry<float> speed = Config.Bind("Movement", "Speed", 1f).WithRange(0.5f, 3f);
+
+    ModSettings.SetPage(() => new UiStackPanel
+    {
+        Children =
+        {
+            new UiSectionHeader { Text = "Movement" },
+            SettingControls.For(speed),
+            new UiButton { Header = "Advanced", Content = "Open" }.OnClick(() => OpenAdvanced()),
+        },
+    });
+}
+```
+
+Everything around the page stays the platform's: the title, the footer's Reset and Close, the note about settings that
+need a restart, and the save when the page closes. So a control from `SettingControls.For` behaves exactly as it does
+on the built page, and `Reset` still puts every setting of the config back to its default.
+
+- The builder runs once, the first time the player opens the page, on the main thread.
+- `ModSettings.ClearPage()` gives the built page back.
+- A row that opens a page of its own is an ordinary `UiWindow` you `Show()` from its click.
+- A mod with no settings at all has no Settings button, and a page set for it is never reached.
+
+`ModSettings` is in `Mjolnir.SDK.UI`, so a mod that uses it references that module and needs Mjolnir 0.4.9 or later.
+
 ## Reading and writing
 
 - `entry.Value` reads the current value. Setting it clamps to the range, marks the config changed and raises

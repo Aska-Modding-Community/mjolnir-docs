@@ -142,6 +142,12 @@ UiTabItem tab = Menus.Settings.Add(new UiTabItem
 Without an `Icon` the tab shows its header's first letter. Set the icon in `OnGameReady` or later: pictures need the
 running game. Changes to the item's `Header`, `Icon`, `IsVisible` or `Content` reach tabs already shown.
 
+## Your own settings page
+
+`ModSettings.SetPage(() => control)` puts your control behind your mod's Settings button in the Mods window, in place
+of the page built from its config, while the title, Reset, Close and the save on close stay the platform's. See
+[Your own settings page](../../concepts/config.md#your-own-settings-page).
+
 ## Hotkeys
 
 ```csharp
